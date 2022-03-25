@@ -16,7 +16,7 @@ all: install build
 
 install: # @HELP install the atomix command line tool
 install:
-	go install -ldflags "-X github.com/atomix/atomix-runtime/pkg/version.version=$(VERSION)" "-X github.com/atomix/atomix-runtime/pkg/version.commitHash=$(COMMIT)" ./cmd/atomix
+	go install -ldflags "-X github.com/atomix/atomix-runtime/pkg/version.version=$(VERSION) -X github.com/atomix/atomix-runtime/pkg/version.commit=$(COMMIT)" ./cmd/atomix
 
 build: # @HELP build the source code
 build: deps
