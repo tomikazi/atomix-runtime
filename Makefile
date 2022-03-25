@@ -38,12 +38,11 @@ linters: # @HELP examines Go source code and reports coding problems
 license_check: # @HELP examine and ensure license headers exist
 	./build/bin/license-check
 
-proto: # @HELP build Protobuf/gRPC generated types
-proto:
-	docker run -it -v `pwd`:/go/src/github.com/atomix/atomix-raft-storage \
-		-w /go/src/github.com/atomix/atomix-raft-storage \
+protos: # @HELP build Protobuf/gRPC generated types
+protos:
+	docker run -it -v `pwd`:/build \
 		--entrypoint build/bin/compile_protos.sh \
-		onosproject/protoc-go:stable
+		`docker build -q build/docker/protoc`
 
 images: # @HELP build atomix storage controller Docker images
 images: build

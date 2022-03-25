@@ -1,0 +1,79 @@
+/*
+Copyright 2020-present Open Networking Foundation.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+package atomix.primitive.meta.v1;
+
+import "google/protobuf/timestamp.proto";
+import "gogoproto/gogo.proto";
+
+message Timestamp {
+    oneof timestamp {
+        PhysicalTimestamp physical_timestamp = 1;
+        LogicalTimestamp logical_timestamp = 2;
+        VectorTimestamp vector_timestamp = 3;
+        EpochTimestamp epoch_timestamp = 4;
+        CompositeTimestamp composite_timestamp = 5;
+    }
+}
+
+message LogicalTimestamp {
+    uint64 time = 1 [
+        (gogoproto.casttype) = "LogicalTime"
+    ];
+}
+
+message VectorTimestamp {
+    repeated uint64 time = 1 [
+        (gogoproto.casttype) = "LogicalTime"
+    ];
+}
+
+message PhysicalTimestamp {
+    google.protobuf.Timestamp time = 1 [
+        (gogoproto.stdtime) = true,
+        (gogoproto.nullable) = false,
+        (gogoproto.casttype) = "PhysicalTime"
+    ];
+}
+
+message Epoch {
+    uint64 num = 1 [
+        (gogoproto.casttype) = "EpochNum"
+    ];
+}
+
+message EpochTimestamp {
+    Epoch epoch = 1 [
+        (gogoproto.nullable) = false
+    ];
+    Sequence sequence = 2 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message Sequence {
+    uint64 num = 1 [
+        (gogoproto.casttype) = "SequenceNum"
+    ];
+}
+
+message CompositeTimestamp {
+    repeated Timestamp timestamps = 1 [
+        (gogoproto.nullable) = false
+    ];
+}
