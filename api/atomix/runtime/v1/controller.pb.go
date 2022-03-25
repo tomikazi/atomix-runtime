@@ -4,7 +4,6 @@
 package v1
 
 import (
-	v1 "atomix/runtime/v1"
 	context "context"
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
@@ -29,7 +28,7 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type CreatePrimitiveRequest struct {
-	Primitive *v1.Primitive `protobuf:"bytes,1,opt,name=primitive,proto3" json:"primitive,omitempty"`
+	Primitive *Primitive `protobuf:"bytes,1,opt,name=primitive,proto3" json:"primitive,omitempty"`
 }
 
 func (m *CreatePrimitiveRequest) Reset()         { *m = CreatePrimitiveRequest{} }
@@ -65,7 +64,7 @@ func (m *CreatePrimitiveRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CreatePrimitiveRequest proto.InternalMessageInfo
 
-func (m *CreatePrimitiveRequest) GetPrimitive() *v1.Primitive {
+func (m *CreatePrimitiveRequest) GetPrimitive() *Primitive {
 	if m != nil {
 		return m.Primitive
 	}
@@ -109,7 +108,7 @@ func (m *CreatePrimitiveResponse) XXX_DiscardUnknown() {
 var xxx_messageInfo_CreatePrimitiveResponse proto.InternalMessageInfo
 
 type UpdatePrimitiveRequest struct {
-	Primitive *v1.Primitive `protobuf:"bytes,1,opt,name=primitive,proto3" json:"primitive,omitempty"`
+	Primitive *Primitive `protobuf:"bytes,1,opt,name=primitive,proto3" json:"primitive,omitempty"`
 }
 
 func (m *UpdatePrimitiveRequest) Reset()         { *m = UpdatePrimitiveRequest{} }
@@ -145,7 +144,7 @@ func (m *UpdatePrimitiveRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_UpdatePrimitiveRequest proto.InternalMessageInfo
 
-func (m *UpdatePrimitiveRequest) GetPrimitive() *v1.Primitive {
+func (m *UpdatePrimitiveRequest) GetPrimitive() *Primitive {
 	if m != nil {
 		return m.Primitive
 	}
@@ -767,7 +766,7 @@ func (m *CreatePrimitiveRequest) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if m.Primitive == nil {
-				m.Primitive = &v1.Primitive{}
+				m.Primitive = &Primitive{}
 			}
 			if err := m.Primitive.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
@@ -903,7 +902,7 @@ func (m *UpdatePrimitiveRequest) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if m.Primitive == nil {
-				m.Primitive = &v1.Primitive{}
+				m.Primitive = &Primitive{}
 			}
 			if err := m.Primitive.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
