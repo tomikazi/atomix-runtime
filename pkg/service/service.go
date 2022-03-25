@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package node
+package service
 
-// Node is the base interface for all nodes
-type Node interface {
-	// Start starts the node
+// Service is the base interface for all services
+type Service interface {
+	// Start starts the service
 	Start() error
-	// Stop stops the node
+	// Stop stops the service
 	Stop() error
 }
