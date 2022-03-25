@@ -6,7 +6,7 @@ package v1
 import (
 	context "context"
 	fmt "fmt"
-	_ "github.com/atomix/atomix-runtime/api/proto/atomix/primitive/v1"
+	_ "github.com/atomix/atomix-runtime/api/atomix/primitive/v1"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"
