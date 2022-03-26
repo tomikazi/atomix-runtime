@@ -35,3 +35,5 @@ require (
 	gopkg.in/ini.v1 v1.66.2 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 )
+
+replace github.com/atomix/atomix-sdk => ../atomix-sdk
