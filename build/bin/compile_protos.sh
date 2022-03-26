@@ -61,6 +61,24 @@ protoc -I=$proto_path \
   api/atomix/primitive/counter/v1/service.proto
 
 protoc -I=$proto_path \
+  --doc_out=api/atomix/primitive/election/v1 \
+  --doc_opt=markdown,service.md \
+  --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-runtime/api/atomix/primitive/election/v1,plugins=grpc:api \
+  api/atomix/primitive/election/v1/service.proto
+
+protoc -I=$proto_path \
+  --doc_out=api/atomix/primitive/indexedmap/v1 \
+  --doc_opt=markdown,service.md \
+  --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-runtime/api/atomix/primitive/indexedmap/v1,plugins=grpc:api \
+  api/atomix/primitive/indexedmap/v1/service.proto
+
+protoc -I=$proto_path \
+  --doc_out=api/atomix/primitive/list/v1 \
+  --doc_opt=markdown,service.md \
+  --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-runtime/api/atomix/primitive/list/v1,plugins=grpc:api \
+  api/atomix/primitive/list/v1/service.proto
+
+protoc -I=$proto_path \
   --doc_out=api/atomix/primitive/lock/v1 \
   --doc_opt=markdown,service.md \
   --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-runtime/api/atomix/primitive/lock/v1,plugins=grpc:api \
@@ -83,3 +101,9 @@ protoc -I=$proto_path \
   --doc_opt=markdown,service.md \
   --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-runtime/api/atomix/primitive/topic/v1,plugins=grpc:api \
   api/atomix/primitive/topic/v1/service.proto
+
+protoc -I=$proto_path \
+  --doc_out=api/atomix/primitive/value/v1 \
+  --doc_opt=markdown,service.md \
+  --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-runtime/api/atomix/primitive/value/v1,plugins=grpc:api \
+  api/atomix/primitive/value/v1/service.proto
