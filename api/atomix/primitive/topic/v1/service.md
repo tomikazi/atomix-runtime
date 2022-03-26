@@ -30,7 +30,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| data | [bytes](#bytes) |  |  |
+| payload | [bytes](#bytes) |  |  |
 
 
 
@@ -66,7 +66,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | offset | [uint64](#uint64) |  |  |
-| data | [bytes](#bytes) |  |  |
+| timestamp | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
+| payload | [bytes](#bytes) |  |  |
 
 
 

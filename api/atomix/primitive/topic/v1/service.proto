@@ -20,9 +20,10 @@ package atomix.primitive.topic.v1;
 
 import "atomix/primitive/v1/descriptor.proto";
 import "gogoproto/gogo.proto";
+import "google/protobuf/timestamp.proto";
 
 message PublishRequest {
-    bytes data = 1;
+    bytes payload = 1;
 }
 
 message PublishResponse {
@@ -35,7 +36,10 @@ message SubscribeRequest {
 
 message SubscribeResponse {
     uint64 offset = 1;
-    bytes data = 2;
+    google.protobuf.Timestamp timestamp = 2 [
+        (gogoproto.stdtime) = true
+    ];
+    bytes payload = 3;
 }
 
 service Topic {
