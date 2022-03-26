@@ -13,6 +13,12 @@ go_import_paths="${go_import_paths},Matomix/primitive/meta/v1/object.proto=githu
 go_import_paths="${go_import_paths},Matomix/primitive/meta/v1/timestamp.proto=github.com/atomix/atomix-runtime/api/atomix/primitive/meta/v1"
 
 protoc -I=$proto_path \
+  --doc_out=api/atomix/controller/v1 \
+  --doc_opt=markdown,controller.md \
+  --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-runtime/api/atomix/controller/v1,plugins=grpc:api \
+  api/atomix/controller/v1/controller.proto
+
+protoc -I=$proto_path \
   --doc_out=api/atomix/runtime/v1 \
   --doc_opt=markdown,controller.md \
   --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-runtime/api/atomix/runtime/v1,plugins=grpc:api \

@@ -20,47 +20,86 @@ package atomix.runtime.v1;
 
 import "gogoproto/gogo.proto";
 
-message DriverId {
+message Driver {
+    string name = 1;
+    string version = 2;
+}
+
+message Agent {
     string name = 1;
     string namespace = 2;
 }
 
-message Driver {
-    DriverId id = 1 [
-        (gogoproto.embed) = true,
+message StartAgentRequest {
+    Driver driver = 1 [
+        (gogoproto.nullable) = false
+    ];
+    Agent agent = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
-message StartDriverRequest {
-    Driver driver = 1;
-}
-
-message StartDriverResponse {
+message StartAgentResponse {
 
 }
 
-message ConfigureDriverRequest {
-    Driver driver = 1;
-}
-
-message ConfigureDriverResponse {
-
-}
-
-message StopDriverRequest {
-    DriverId id = 1 [
-        (gogoproto.embed) = true,
+message ConfigureAgentRequest {
+    Driver driver = 1 [
+        (gogoproto.nullable) = false
+    ];
+    Agent agent = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
-message StopDriverResponse {
+message ConfigureAgentResponse {
 
 }
 
+message StopAgentRequest {
+    Driver driver = 1 [
+        (gogoproto.nullable) = false
+    ];
+    Agent agent = 2 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message StopAgentResponse {
+
+}
+
+message Proxy {
+    string name = 1;
+    string namespace = 2;
+}
+
+message CreateProxyRequest {
+    Proxy proxy = 1 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message CreateProxyResponse {
+
+}
+
+message DestroyProxyRequest {
+    Proxy id = 1 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message DestroyProxyResponse {
+
+}
+
+// The runtime controller service provides functions for the core controller to manage
+// the runtime drivers based on external configurations.
 service Controller {
-    rpc StartDriver(StartDriverRequest) returns (StartDriverResponse);
-    rpc ConfigureDriver(ConfigureDriverRequest) returns (ConfigureDriverResponse);
-    rpc StopDriver(StopDriverRequest) returns (StopDriverResponse);
+    rpc StartAgent(StartAgentRequest) returns (StartAgentResponse);
+    rpc StopAgent(StopAgentRequest) returns (StopAgentResponse);
+
+    rpc CreateProxy(CreateProxyRequest) returns (CreateProxyResponse);
+    rpc DestroyProxy(DestroyProxyRequest) returns (DestroyProxyResponse);
 }

@@ -4,14 +4,19 @@
 ## Table of Contents
 
 - [atomix/runtime/v1/controller.proto](#atomix_runtime_v1_controller-proto)
-    - [ConfigureDriverRequest](#atomix-runtime-v1-ConfigureDriverRequest)
-    - [ConfigureDriverResponse](#atomix-runtime-v1-ConfigureDriverResponse)
+    - [Agent](#atomix-runtime-v1-Agent)
+    - [ConfigureAgentRequest](#atomix-runtime-v1-ConfigureAgentRequest)
+    - [ConfigureAgentResponse](#atomix-runtime-v1-ConfigureAgentResponse)
+    - [CreateProxyRequest](#atomix-runtime-v1-CreateProxyRequest)
+    - [CreateProxyResponse](#atomix-runtime-v1-CreateProxyResponse)
+    - [DestroyProxyRequest](#atomix-runtime-v1-DestroyProxyRequest)
+    - [DestroyProxyResponse](#atomix-runtime-v1-DestroyProxyResponse)
     - [Driver](#atomix-runtime-v1-Driver)
-    - [DriverId](#atomix-runtime-v1-DriverId)
-    - [StartDriverRequest](#atomix-runtime-v1-StartDriverRequest)
-    - [StartDriverResponse](#atomix-runtime-v1-StartDriverResponse)
-    - [StopDriverRequest](#atomix-runtime-v1-StopDriverRequest)
-    - [StopDriverResponse](#atomix-runtime-v1-StopDriverResponse)
+    - [Proxy](#atomix-runtime-v1-Proxy)
+    - [StartAgentRequest](#atomix-runtime-v1-StartAgentRequest)
+    - [StartAgentResponse](#atomix-runtime-v1-StartAgentResponse)
+    - [StopAgentRequest](#atomix-runtime-v1-StopAgentRequest)
+    - [StopAgentResponse](#atomix-runtime-v1-StopAgentResponse)
   
     - [Controller](#atomix-runtime-v1-Controller)
   
@@ -26,24 +31,91 @@
 
 
 
-<a name="atomix-runtime-v1-ConfigureDriverRequest"></a>
+<a name="atomix-runtime-v1-Agent"></a>
 
-### ConfigureDriverRequest
+### Agent
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| namespace | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="atomix-runtime-v1-ConfigureAgentRequest"></a>
+
+### ConfigureAgentRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | driver | [Driver](#atomix-runtime-v1-Driver) |  |  |
+| agent | [Agent](#atomix-runtime-v1-Agent) |  |  |
 
 
 
 
 
 
-<a name="atomix-runtime-v1-ConfigureDriverResponse"></a>
+<a name="atomix-runtime-v1-ConfigureAgentResponse"></a>
 
-### ConfigureDriverResponse
+### ConfigureAgentResponse
+
+
+
+
+
+
+
+<a name="atomix-runtime-v1-CreateProxyRequest"></a>
+
+### CreateProxyRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| proxy | [Proxy](#atomix-runtime-v1-Proxy) |  |  |
+
+
+
+
+
+
+<a name="atomix-runtime-v1-CreateProxyResponse"></a>
+
+### CreateProxyResponse
+
+
+
+
+
+
+
+<a name="atomix-runtime-v1-DestroyProxyRequest"></a>
+
+### DestroyProxyRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [Proxy](#atomix-runtime-v1-Proxy) |  |  |
+
+
+
+
+
+
+<a name="atomix-runtime-v1-DestroyProxyResponse"></a>
+
+### DestroyProxyResponse
 
 
 
@@ -59,16 +131,17 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [DriverId](#atomix-runtime-v1-DriverId) |  |  |
+| name | [string](#string) |  |  |
+| version | [string](#string) |  |  |
 
 
 
 
 
 
-<a name="atomix-runtime-v1-DriverId"></a>
+<a name="atomix-runtime-v1-Proxy"></a>
 
-### DriverId
+### Proxy
 
 
 
@@ -82,49 +155,51 @@
 
 
 
-<a name="atomix-runtime-v1-StartDriverRequest"></a>
+<a name="atomix-runtime-v1-StartAgentRequest"></a>
 
-### StartDriverRequest
+### StartAgentRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | driver | [Driver](#atomix-runtime-v1-Driver) |  |  |
+| agent | [Agent](#atomix-runtime-v1-Agent) |  |  |
 
 
 
 
 
 
-<a name="atomix-runtime-v1-StartDriverResponse"></a>
+<a name="atomix-runtime-v1-StartAgentResponse"></a>
 
-### StartDriverResponse
-
-
+### StartAgentResponse
 
 
 
 
 
-<a name="atomix-runtime-v1-StopDriverRequest"></a>
 
-### StopDriverRequest
+
+<a name="atomix-runtime-v1-StopAgentRequest"></a>
+
+### StopAgentRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [DriverId](#atomix-runtime-v1-DriverId) |  |  |
+| driver | [Driver](#atomix-runtime-v1-Driver) |  |  |
+| agent | [Agent](#atomix-runtime-v1-Agent) |  |  |
 
 
 
 
 
 
-<a name="atomix-runtime-v1-StopDriverResponse"></a>
+<a name="atomix-runtime-v1-StopAgentResponse"></a>
 
-### StopDriverResponse
+### StopAgentResponse
 
 
 
@@ -141,13 +216,15 @@
 <a name="atomix-runtime-v1-Controller"></a>
 
 ### Controller
-
+The runtime controller service provides functions for the core controller to manage
+the runtime drivers based on external configurations.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| StartDriver | [StartDriverRequest](#atomix-runtime-v1-StartDriverRequest) | [StartDriverResponse](#atomix-runtime-v1-StartDriverResponse) |  |
-| ConfigureDriver | [ConfigureDriverRequest](#atomix-runtime-v1-ConfigureDriverRequest) | [ConfigureDriverResponse](#atomix-runtime-v1-ConfigureDriverResponse) |  |
-| StopDriver | [StopDriverRequest](#atomix-runtime-v1-StopDriverRequest) | [StopDriverResponse](#atomix-runtime-v1-StopDriverResponse) |  |
+| StartAgent | [StartAgentRequest](#atomix-runtime-v1-StartAgentRequest) | [StartAgentResponse](#atomix-runtime-v1-StartAgentResponse) |  |
+| StopAgent | [StopAgentRequest](#atomix-runtime-v1-StopAgentRequest) | [StopAgentResponse](#atomix-runtime-v1-StopAgentResponse) |  |
+| CreateProxy | [CreateProxyRequest](#atomix-runtime-v1-CreateProxyRequest) | [CreateProxyResponse](#atomix-runtime-v1-CreateProxyResponse) |  |
+| DestroyProxy | [DestroyProxyRequest](#atomix-runtime-v1-DestroyProxyRequest) | [DestroyProxyResponse](#atomix-runtime-v1-DestroyProxyResponse) |  |
 
  
 

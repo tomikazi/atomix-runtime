@@ -16,7 +16,7 @@ limitations under the License.
 
 syntax = "proto3";
 
-package atomix.runtime.v1;
+package atomix.controller.v1;
 
 import "gogoproto/gogo.proto";
 
@@ -44,9 +44,8 @@ message DeletePrimitiveResponse {
 
 }
 
-// The runtime service provides functions for applications to create and manage primitives
-// at runtime.
-service Runtime {
+// The controller service provides functions for managing the environment.
+service Controller {
     rpc CreatePrimitive(CreatePrimitiveRequest) returns (CreatePrimitiveResponse);
     rpc DeletePrimitive(DeletePrimitiveRequest) returns (DeletePrimitiveResponse);
 }

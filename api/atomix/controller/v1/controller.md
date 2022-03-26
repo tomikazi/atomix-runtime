@@ -3,27 +3,27 @@
 
 ## Table of Contents
 
-- [atomix/runtime/v1/runtime.proto](#atomix_runtime_v1_runtime-proto)
-    - [CreatePrimitiveRequest](#atomix-runtime-v1-CreatePrimitiveRequest)
-    - [CreatePrimitiveResponse](#atomix-runtime-v1-CreatePrimitiveResponse)
-    - [DeletePrimitiveRequest](#atomix-runtime-v1-DeletePrimitiveRequest)
-    - [DeletePrimitiveResponse](#atomix-runtime-v1-DeletePrimitiveResponse)
-    - [Primitive](#atomix-runtime-v1-Primitive)
+- [atomix/controller/v1/controller.proto](#atomix_controller_v1_controller-proto)
+    - [CreatePrimitiveRequest](#atomix-controller-v1-CreatePrimitiveRequest)
+    - [CreatePrimitiveResponse](#atomix-controller-v1-CreatePrimitiveResponse)
+    - [DeletePrimitiveRequest](#atomix-controller-v1-DeletePrimitiveRequest)
+    - [DeletePrimitiveResponse](#atomix-controller-v1-DeletePrimitiveResponse)
+    - [Primitive](#atomix-controller-v1-Primitive)
   
-    - [Runtime](#atomix-runtime-v1-Runtime)
+    - [Controller](#atomix-controller-v1-Controller)
   
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix_runtime_v1_runtime-proto"></a>
+<a name="atomix_controller_v1_controller-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/runtime/v1/runtime.proto
+## atomix/controller/v1/controller.proto
 
 
 
-<a name="atomix-runtime-v1-CreatePrimitiveRequest"></a>
+<a name="atomix-controller-v1-CreatePrimitiveRequest"></a>
 
 ### CreatePrimitiveRequest
 
@@ -31,14 +31,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive | [Primitive](#atomix-runtime-v1-Primitive) |  |  |
+| primitive | [Primitive](#atomix-controller-v1-Primitive) |  |  |
 
 
 
 
 
 
-<a name="atomix-runtime-v1-CreatePrimitiveResponse"></a>
+<a name="atomix-controller-v1-CreatePrimitiveResponse"></a>
 
 ### CreatePrimitiveResponse
 
@@ -48,7 +48,7 @@
 
 
 
-<a name="atomix-runtime-v1-DeletePrimitiveRequest"></a>
+<a name="atomix-controller-v1-DeletePrimitiveRequest"></a>
 
 ### DeletePrimitiveRequest
 
@@ -56,14 +56,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive | [Primitive](#atomix-runtime-v1-Primitive) |  |  |
+| primitive | [Primitive](#atomix-controller-v1-Primitive) |  |  |
 
 
 
 
 
 
-<a name="atomix-runtime-v1-DeletePrimitiveResponse"></a>
+<a name="atomix-controller-v1-DeletePrimitiveResponse"></a>
 
 ### DeletePrimitiveResponse
 
@@ -73,7 +73,7 @@
 
 
 
-<a name="atomix-runtime-v1-Primitive"></a>
+<a name="atomix-controller-v1-Primitive"></a>
 
 ### Primitive
 
@@ -94,16 +94,15 @@
  
 
 
-<a name="atomix-runtime-v1-Runtime"></a>
+<a name="atomix-controller-v1-Controller"></a>
 
-### Runtime
-The runtime service provides functions for applications to create and manage primitives
-at runtime.
+### Controller
+The controller service provides functions for managing the environment.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreatePrimitive | [CreatePrimitiveRequest](#atomix-runtime-v1-CreatePrimitiveRequest) | [CreatePrimitiveResponse](#atomix-runtime-v1-CreatePrimitiveResponse) |  |
-| DeletePrimitive | [DeletePrimitiveRequest](#atomix-runtime-v1-DeletePrimitiveRequest) | [DeletePrimitiveResponse](#atomix-runtime-v1-DeletePrimitiveResponse) |  |
+| CreatePrimitive | [CreatePrimitiveRequest](#atomix-controller-v1-CreatePrimitiveRequest) | [CreatePrimitiveResponse](#atomix-controller-v1-CreatePrimitiveResponse) |  |
+| DeletePrimitive | [DeletePrimitiveRequest](#atomix-controller-v1-DeletePrimitiveRequest) | [DeletePrimitiveResponse](#atomix-controller-v1-DeletePrimitiveResponse) |  |
 
  
 
