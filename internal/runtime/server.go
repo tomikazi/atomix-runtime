@@ -12,4 +12,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package storage
+package runtime
+
+import (
+	"github.com/atomix/atomix-runtime/pkg/service"
+	"google.golang.org/grpc"
+)
+
+// NewServer creates a new runtime server
+func NewServer() *Server {
+	return &Server{
+		server: grpc.NewServer(),
+	}
+}
+
+// Server is the runtime server
+type Server struct {
+	server *grpc.Server
+}
+
+func (s *Server) Start() error {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (s *Server) Stop() error {
+	//TODO implement me
+	panic("implement me")
+}
+
+var _ service.Service = (*Server)(nil)
