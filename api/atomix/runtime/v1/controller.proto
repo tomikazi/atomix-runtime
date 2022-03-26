@@ -18,38 +18,49 @@ syntax = "proto3";
 
 package atomix.runtime.v1;
 
-import "atomix/runtime/v1/primitive.proto";
 import "gogoproto/gogo.proto";
 
-message CreatePrimitiveRequest {
-    Primitive primitive = 1;
+message DriverId {
+    string name = 1;
+    string namespace = 2;
 }
 
-message CreatePrimitiveResponse {
-
-}
-
-message UpdatePrimitiveRequest {
-    Primitive primitive = 1;
-}
-
-message UpdatePrimitiveResponse {
-
-}
-
-message DeletePrimitiveRequest {
-    string primitive_id = 1 [
-        (gogoproto.customname) = "PrimitiveID",
-        (gogoproto.casttype) = "PrimitiveID"
+message Driver {
+    DriverId id = 1 [
+        (gogoproto.embed) = true,
+        (gogoproto.nullable) = false
     ];
 }
 
-message DeletePrimitiveResponse {
+message StartDriverRequest {
+    Driver driver = 1;
+}
+
+message StartDriverResponse {
+
+}
+
+message ConfigureDriverRequest {
+    Driver driver = 1;
+}
+
+message ConfigureDriverResponse {
+
+}
+
+message StopDriverRequest {
+    DriverId id = 1 [
+        (gogoproto.embed) = true,
+        (gogoproto.nullable) = false
+    ];
+}
+
+message StopDriverResponse {
 
 }
 
 service Controller {
-    rpc CreatePrimitive(CreatePrimitiveRequest) returns (CreatePrimitiveResponse);
-    rpc UpdatePrimitive(UpdatePrimitiveRequest) returns (UpdatePrimitiveResponse);
-    rpc DeletePrimitive(DeletePrimitiveRequest) returns (DeletePrimitiveResponse);
+    rpc StartDriver(StartDriverRequest) returns (StartDriverResponse);
+    rpc ConfigureDriver(ConfigureDriverRequest) returns (ConfigureDriverResponse);
+    rpc StopDriver(StopDriverRequest) returns (StopDriverResponse);
 }

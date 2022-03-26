@@ -4,12 +4,14 @@
 ## Table of Contents
 
 - [atomix/runtime/v1/controller.proto](#atomix_runtime_v1_controller-proto)
-    - [CreatePrimitiveRequest](#atomix-runtime-v1-CreatePrimitiveRequest)
-    - [CreatePrimitiveResponse](#atomix-runtime-v1-CreatePrimitiveResponse)
-    - [DeletePrimitiveRequest](#atomix-runtime-v1-DeletePrimitiveRequest)
-    - [DeletePrimitiveResponse](#atomix-runtime-v1-DeletePrimitiveResponse)
-    - [UpdatePrimitiveRequest](#atomix-runtime-v1-UpdatePrimitiveRequest)
-    - [UpdatePrimitiveResponse](#atomix-runtime-v1-UpdatePrimitiveResponse)
+    - [ConfigureDriverRequest](#atomix-runtime-v1-ConfigureDriverRequest)
+    - [ConfigureDriverResponse](#atomix-runtime-v1-ConfigureDriverResponse)
+    - [Driver](#atomix-runtime-v1-Driver)
+    - [DriverId](#atomix-runtime-v1-DriverId)
+    - [StartDriverRequest](#atomix-runtime-v1-StartDriverRequest)
+    - [StartDriverResponse](#atomix-runtime-v1-StartDriverResponse)
+    - [StopDriverRequest](#atomix-runtime-v1-StopDriverRequest)
+    - [StopDriverResponse](#atomix-runtime-v1-StopDriverResponse)
   
     - [Controller](#atomix-runtime-v1-Controller)
   
@@ -24,74 +26,105 @@
 
 
 
-<a name="atomix-runtime-v1-CreatePrimitiveRequest"></a>
+<a name="atomix-runtime-v1-ConfigureDriverRequest"></a>
 
-### CreatePrimitiveRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| primitive | [Primitive](#atomix-runtime-v1-Primitive) |  |  |
-
-
-
-
-
-
-<a name="atomix-runtime-v1-CreatePrimitiveResponse"></a>
-
-### CreatePrimitiveResponse
-
-
-
-
-
-
-
-<a name="atomix-runtime-v1-DeletePrimitiveRequest"></a>
-
-### DeletePrimitiveRequest
+### ConfigureDriverRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive_id | [string](#string) |  |  |
+| driver | [Driver](#atomix-runtime-v1-Driver) |  |  |
 
 
 
 
 
 
-<a name="atomix-runtime-v1-DeletePrimitiveResponse"></a>
+<a name="atomix-runtime-v1-ConfigureDriverResponse"></a>
 
-### DeletePrimitiveResponse
-
-
+### ConfigureDriverResponse
 
 
 
 
 
-<a name="atomix-runtime-v1-UpdatePrimitiveRequest"></a>
 
-### UpdatePrimitiveRequest
+
+<a name="atomix-runtime-v1-Driver"></a>
+
+### Driver
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive | [Primitive](#atomix-runtime-v1-Primitive) |  |  |
+| id | [DriverId](#atomix-runtime-v1-DriverId) |  |  |
 
 
 
 
 
 
-<a name="atomix-runtime-v1-UpdatePrimitiveResponse"></a>
+<a name="atomix-runtime-v1-DriverId"></a>
 
-### UpdatePrimitiveResponse
+### DriverId
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| namespace | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="atomix-runtime-v1-StartDriverRequest"></a>
+
+### StartDriverRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| driver | [Driver](#atomix-runtime-v1-Driver) |  |  |
+
+
+
+
+
+
+<a name="atomix-runtime-v1-StartDriverResponse"></a>
+
+### StartDriverResponse
+
+
+
+
+
+
+
+<a name="atomix-runtime-v1-StopDriverRequest"></a>
+
+### StopDriverRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [DriverId](#atomix-runtime-v1-DriverId) |  |  |
+
+
+
+
+
+
+<a name="atomix-runtime-v1-StopDriverResponse"></a>
+
+### StopDriverResponse
 
 
 
@@ -112,9 +145,9 @@
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreatePrimitive | [CreatePrimitiveRequest](#atomix-runtime-v1-CreatePrimitiveRequest) | [CreatePrimitiveResponse](#atomix-runtime-v1-CreatePrimitiveResponse) |  |
-| UpdatePrimitive | [UpdatePrimitiveRequest](#atomix-runtime-v1-UpdatePrimitiveRequest) | [UpdatePrimitiveResponse](#atomix-runtime-v1-UpdatePrimitiveResponse) |  |
-| DeletePrimitive | [DeletePrimitiveRequest](#atomix-runtime-v1-DeletePrimitiveRequest) | [DeletePrimitiveResponse](#atomix-runtime-v1-DeletePrimitiveResponse) |  |
+| StartDriver | [StartDriverRequest](#atomix-runtime-v1-StartDriverRequest) | [StartDriverResponse](#atomix-runtime-v1-StartDriverResponse) |  |
+| ConfigureDriver | [ConfigureDriverRequest](#atomix-runtime-v1-ConfigureDriverRequest) | [ConfigureDriverResponse](#atomix-runtime-v1-ConfigureDriverResponse) |  |
+| StopDriver | [StopDriverRequest](#atomix-runtime-v1-StopDriverRequest) | [StopDriverResponse](#atomix-runtime-v1-StopDriverResponse) |  |
 
  
 

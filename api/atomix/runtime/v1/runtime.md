@@ -3,17 +3,75 @@
 
 ## Table of Contents
 
-- [atomix/runtime/v1/primitive.proto](#atomix_runtime_v1_primitive-proto)
+- [atomix/runtime/v1/runtime.proto](#atomix_runtime_v1_runtime-proto)
+    - [CreatePrimitiveRequest](#atomix-runtime-v1-CreatePrimitiveRequest)
+    - [CreatePrimitiveResponse](#atomix-runtime-v1-CreatePrimitiveResponse)
+    - [DeletePrimitiveRequest](#atomix-runtime-v1-DeletePrimitiveRequest)
+    - [DeletePrimitiveResponse](#atomix-runtime-v1-DeletePrimitiveResponse)
     - [Primitive](#atomix-runtime-v1-Primitive)
+    - [UpdatePrimitiveRequest](#atomix-runtime-v1-UpdatePrimitiveRequest)
+    - [UpdatePrimitiveResponse](#atomix-runtime-v1-UpdatePrimitiveResponse)
+  
+    - [Runtime](#atomix-runtime-v1-Runtime)
   
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix_runtime_v1_primitive-proto"></a>
+<a name="atomix_runtime_v1_runtime-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/runtime/v1/primitive.proto
+## atomix/runtime/v1/runtime.proto
+
+
+
+<a name="atomix-runtime-v1-CreatePrimitiveRequest"></a>
+
+### CreatePrimitiveRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| primitive | [Primitive](#atomix-runtime-v1-Primitive) |  |  |
+
+
+
+
+
+
+<a name="atomix-runtime-v1-CreatePrimitiveResponse"></a>
+
+### CreatePrimitiveResponse
+
+
+
+
+
+
+
+<a name="atomix-runtime-v1-DeletePrimitiveRequest"></a>
+
+### DeletePrimitiveRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| primitive_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="atomix-runtime-v1-DeletePrimitiveResponse"></a>
+
+### DeletePrimitiveResponse
+
+
+
+
 
 
 
@@ -31,11 +89,48 @@
 
 
 
- 
+
+<a name="atomix-runtime-v1-UpdatePrimitiveRequest"></a>
+
+### UpdatePrimitiveRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| primitive | [Primitive](#atomix-runtime-v1-Primitive) |  |  |
+
+
+
+
+
+
+<a name="atomix-runtime-v1-UpdatePrimitiveResponse"></a>
+
+### UpdatePrimitiveResponse
+
+
+
+
+
 
  
 
  
+
+ 
+
+
+<a name="atomix-runtime-v1-Runtime"></a>
+
+### Runtime
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| CreatePrimitive | [CreatePrimitiveRequest](#atomix-runtime-v1-CreatePrimitiveRequest) | [CreatePrimitiveResponse](#atomix-runtime-v1-CreatePrimitiveResponse) |  |
+| UpdatePrimitive | [UpdatePrimitiveRequest](#atomix-runtime-v1-UpdatePrimitiveRequest) | [UpdatePrimitiveResponse](#atomix-runtime-v1-UpdatePrimitiveResponse) |  |
+| DeletePrimitive | [DeletePrimitiveRequest](#atomix-runtime-v1-DeletePrimitiveRequest) | [DeletePrimitiveResponse](#atomix-runtime-v1-DeletePrimitiveResponse) |  |
 
  
 

@@ -27,22 +27,23 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-type CreatePrimitiveRequest struct {
-	Primitive *Primitive `protobuf:"bytes,1,opt,name=primitive,proto3" json:"primitive,omitempty"`
+type DriverId struct {
+	Name      string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
 }
 
-func (m *CreatePrimitiveRequest) Reset()         { *m = CreatePrimitiveRequest{} }
-func (m *CreatePrimitiveRequest) String() string { return proto.CompactTextString(m) }
-func (*CreatePrimitiveRequest) ProtoMessage()    {}
-func (*CreatePrimitiveRequest) Descriptor() ([]byte, []int) {
+func (m *DriverId) Reset()         { *m = DriverId{} }
+func (m *DriverId) String() string { return proto.CompactTextString(m) }
+func (*DriverId) ProtoMessage()    {}
+func (*DriverId) Descriptor() ([]byte, []int) {
 	return fileDescriptor_68c82018edebe4a3, []int{0}
 }
-func (m *CreatePrimitiveRequest) XXX_Unmarshal(b []byte) error {
+func (m *DriverId) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *CreatePrimitiveRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *DriverId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_CreatePrimitiveRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_DriverId.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -52,200 +53,48 @@ func (m *CreatePrimitiveRequest) XXX_Marshal(b []byte, deterministic bool) ([]by
 		return b[:n], nil
 	}
 }
-func (m *CreatePrimitiveRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreatePrimitiveRequest.Merge(m, src)
+func (m *DriverId) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DriverId.Merge(m, src)
 }
-func (m *CreatePrimitiveRequest) XXX_Size() int {
+func (m *DriverId) XXX_Size() int {
 	return m.Size()
 }
-func (m *CreatePrimitiveRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreatePrimitiveRequest.DiscardUnknown(m)
+func (m *DriverId) XXX_DiscardUnknown() {
+	xxx_messageInfo_DriverId.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreatePrimitiveRequest proto.InternalMessageInfo
+var xxx_messageInfo_DriverId proto.InternalMessageInfo
 
-func (m *CreatePrimitiveRequest) GetPrimitive() *Primitive {
+func (m *DriverId) GetName() string {
 	if m != nil {
-		return m.Primitive
-	}
-	return nil
-}
-
-type CreatePrimitiveResponse struct {
-}
-
-func (m *CreatePrimitiveResponse) Reset()         { *m = CreatePrimitiveResponse{} }
-func (m *CreatePrimitiveResponse) String() string { return proto.CompactTextString(m) }
-func (*CreatePrimitiveResponse) ProtoMessage()    {}
-func (*CreatePrimitiveResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_68c82018edebe4a3, []int{1}
-}
-func (m *CreatePrimitiveResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *CreatePrimitiveResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_CreatePrimitiveResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *CreatePrimitiveResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreatePrimitiveResponse.Merge(m, src)
-}
-func (m *CreatePrimitiveResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *CreatePrimitiveResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreatePrimitiveResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreatePrimitiveResponse proto.InternalMessageInfo
-
-type UpdatePrimitiveRequest struct {
-	Primitive *Primitive `protobuf:"bytes,1,opt,name=primitive,proto3" json:"primitive,omitempty"`
-}
-
-func (m *UpdatePrimitiveRequest) Reset()         { *m = UpdatePrimitiveRequest{} }
-func (m *UpdatePrimitiveRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdatePrimitiveRequest) ProtoMessage()    {}
-func (*UpdatePrimitiveRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_68c82018edebe4a3, []int{2}
-}
-func (m *UpdatePrimitiveRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *UpdatePrimitiveRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_UpdatePrimitiveRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *UpdatePrimitiveRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdatePrimitiveRequest.Merge(m, src)
-}
-func (m *UpdatePrimitiveRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *UpdatePrimitiveRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdatePrimitiveRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdatePrimitiveRequest proto.InternalMessageInfo
-
-func (m *UpdatePrimitiveRequest) GetPrimitive() *Primitive {
-	if m != nil {
-		return m.Primitive
-	}
-	return nil
-}
-
-type UpdatePrimitiveResponse struct {
-}
-
-func (m *UpdatePrimitiveResponse) Reset()         { *m = UpdatePrimitiveResponse{} }
-func (m *UpdatePrimitiveResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdatePrimitiveResponse) ProtoMessage()    {}
-func (*UpdatePrimitiveResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_68c82018edebe4a3, []int{3}
-}
-func (m *UpdatePrimitiveResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *UpdatePrimitiveResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_UpdatePrimitiveResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *UpdatePrimitiveResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdatePrimitiveResponse.Merge(m, src)
-}
-func (m *UpdatePrimitiveResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *UpdatePrimitiveResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdatePrimitiveResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdatePrimitiveResponse proto.InternalMessageInfo
-
-type DeletePrimitiveRequest struct {
-	PrimitiveID PrimitiveID `protobuf:"bytes,1,opt,name=primitive_id,json=primitiveId,proto3,casttype=PrimitiveID" json:"primitive_id,omitempty"`
-}
-
-func (m *DeletePrimitiveRequest) Reset()         { *m = DeletePrimitiveRequest{} }
-func (m *DeletePrimitiveRequest) String() string { return proto.CompactTextString(m) }
-func (*DeletePrimitiveRequest) ProtoMessage()    {}
-func (*DeletePrimitiveRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_68c82018edebe4a3, []int{4}
-}
-func (m *DeletePrimitiveRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *DeletePrimitiveRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_DeletePrimitiveRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *DeletePrimitiveRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeletePrimitiveRequest.Merge(m, src)
-}
-func (m *DeletePrimitiveRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *DeletePrimitiveRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeletePrimitiveRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeletePrimitiveRequest proto.InternalMessageInfo
-
-func (m *DeletePrimitiveRequest) GetPrimitiveID() PrimitiveID {
-	if m != nil {
-		return m.PrimitiveID
+		return m.Name
 	}
 	return ""
 }
 
-type DeletePrimitiveResponse struct {
+func (m *DriverId) GetNamespace() string {
+	if m != nil {
+		return m.Namespace
+	}
+	return ""
 }
 
-func (m *DeletePrimitiveResponse) Reset()         { *m = DeletePrimitiveResponse{} }
-func (m *DeletePrimitiveResponse) String() string { return proto.CompactTextString(m) }
-func (*DeletePrimitiveResponse) ProtoMessage()    {}
-func (*DeletePrimitiveResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_68c82018edebe4a3, []int{5}
+type Driver struct {
+	DriverId `protobuf:"bytes,1,opt,name=id,proto3,embedded=id" json:"id"`
 }
-func (m *DeletePrimitiveResponse) XXX_Unmarshal(b []byte) error {
+
+func (m *Driver) Reset()         { *m = Driver{} }
+func (m *Driver) String() string { return proto.CompactTextString(m) }
+func (*Driver) ProtoMessage()    {}
+func (*Driver) Descriptor() ([]byte, []int) {
+	return fileDescriptor_68c82018edebe4a3, []int{1}
+}
+func (m *Driver) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *DeletePrimitiveResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *Driver) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_DeletePrimitiveResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_Driver.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -255,25 +104,260 @@ func (m *DeletePrimitiveResponse) XXX_Marshal(b []byte, deterministic bool) ([]b
 		return b[:n], nil
 	}
 }
-func (m *DeletePrimitiveResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeletePrimitiveResponse.Merge(m, src)
+func (m *Driver) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Driver.Merge(m, src)
 }
-func (m *DeletePrimitiveResponse) XXX_Size() int {
+func (m *Driver) XXX_Size() int {
 	return m.Size()
 }
-func (m *DeletePrimitiveResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeletePrimitiveResponse.DiscardUnknown(m)
+func (m *Driver) XXX_DiscardUnknown() {
+	xxx_messageInfo_Driver.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeletePrimitiveResponse proto.InternalMessageInfo
+var xxx_messageInfo_Driver proto.InternalMessageInfo
+
+type StartDriverRequest struct {
+	Driver *Driver `protobuf:"bytes,1,opt,name=driver,proto3" json:"driver,omitempty"`
+}
+
+func (m *StartDriverRequest) Reset()         { *m = StartDriverRequest{} }
+func (m *StartDriverRequest) String() string { return proto.CompactTextString(m) }
+func (*StartDriverRequest) ProtoMessage()    {}
+func (*StartDriverRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_68c82018edebe4a3, []int{2}
+}
+func (m *StartDriverRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *StartDriverRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_StartDriverRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *StartDriverRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StartDriverRequest.Merge(m, src)
+}
+func (m *StartDriverRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *StartDriverRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_StartDriverRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_StartDriverRequest proto.InternalMessageInfo
+
+func (m *StartDriverRequest) GetDriver() *Driver {
+	if m != nil {
+		return m.Driver
+	}
+	return nil
+}
+
+type StartDriverResponse struct {
+}
+
+func (m *StartDriverResponse) Reset()         { *m = StartDriverResponse{} }
+func (m *StartDriverResponse) String() string { return proto.CompactTextString(m) }
+func (*StartDriverResponse) ProtoMessage()    {}
+func (*StartDriverResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_68c82018edebe4a3, []int{3}
+}
+func (m *StartDriverResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *StartDriverResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_StartDriverResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *StartDriverResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StartDriverResponse.Merge(m, src)
+}
+func (m *StartDriverResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *StartDriverResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_StartDriverResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_StartDriverResponse proto.InternalMessageInfo
+
+type ConfigureDriverRequest struct {
+	Driver *Driver `protobuf:"bytes,1,opt,name=driver,proto3" json:"driver,omitempty"`
+}
+
+func (m *ConfigureDriverRequest) Reset()         { *m = ConfigureDriverRequest{} }
+func (m *ConfigureDriverRequest) String() string { return proto.CompactTextString(m) }
+func (*ConfigureDriverRequest) ProtoMessage()    {}
+func (*ConfigureDriverRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_68c82018edebe4a3, []int{4}
+}
+func (m *ConfigureDriverRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *ConfigureDriverRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ConfigureDriverRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *ConfigureDriverRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConfigureDriverRequest.Merge(m, src)
+}
+func (m *ConfigureDriverRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *ConfigureDriverRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ConfigureDriverRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ConfigureDriverRequest proto.InternalMessageInfo
+
+func (m *ConfigureDriverRequest) GetDriver() *Driver {
+	if m != nil {
+		return m.Driver
+	}
+	return nil
+}
+
+type ConfigureDriverResponse struct {
+}
+
+func (m *ConfigureDriverResponse) Reset()         { *m = ConfigureDriverResponse{} }
+func (m *ConfigureDriverResponse) String() string { return proto.CompactTextString(m) }
+func (*ConfigureDriverResponse) ProtoMessage()    {}
+func (*ConfigureDriverResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_68c82018edebe4a3, []int{5}
+}
+func (m *ConfigureDriverResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *ConfigureDriverResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ConfigureDriverResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *ConfigureDriverResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConfigureDriverResponse.Merge(m, src)
+}
+func (m *ConfigureDriverResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *ConfigureDriverResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ConfigureDriverResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ConfigureDriverResponse proto.InternalMessageInfo
+
+type StopDriverRequest struct {
+	DriverId `protobuf:"bytes,1,opt,name=id,proto3,embedded=id" json:"id"`
+}
+
+func (m *StopDriverRequest) Reset()         { *m = StopDriverRequest{} }
+func (m *StopDriverRequest) String() string { return proto.CompactTextString(m) }
+func (*StopDriverRequest) ProtoMessage()    {}
+func (*StopDriverRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_68c82018edebe4a3, []int{6}
+}
+func (m *StopDriverRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *StopDriverRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_StopDriverRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *StopDriverRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StopDriverRequest.Merge(m, src)
+}
+func (m *StopDriverRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *StopDriverRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_StopDriverRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_StopDriverRequest proto.InternalMessageInfo
+
+type StopDriverResponse struct {
+}
+
+func (m *StopDriverResponse) Reset()         { *m = StopDriverResponse{} }
+func (m *StopDriverResponse) String() string { return proto.CompactTextString(m) }
+func (*StopDriverResponse) ProtoMessage()    {}
+func (*StopDriverResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_68c82018edebe4a3, []int{7}
+}
+func (m *StopDriverResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *StopDriverResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_StopDriverResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *StopDriverResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StopDriverResponse.Merge(m, src)
+}
+func (m *StopDriverResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *StopDriverResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_StopDriverResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_StopDriverResponse proto.InternalMessageInfo
 
 func init() {
-	proto.RegisterType((*CreatePrimitiveRequest)(nil), "atomix.runtime.v1.CreatePrimitiveRequest")
-	proto.RegisterType((*CreatePrimitiveResponse)(nil), "atomix.runtime.v1.CreatePrimitiveResponse")
-	proto.RegisterType((*UpdatePrimitiveRequest)(nil), "atomix.runtime.v1.UpdatePrimitiveRequest")
-	proto.RegisterType((*UpdatePrimitiveResponse)(nil), "atomix.runtime.v1.UpdatePrimitiveResponse")
-	proto.RegisterType((*DeletePrimitiveRequest)(nil), "atomix.runtime.v1.DeletePrimitiveRequest")
-	proto.RegisterType((*DeletePrimitiveResponse)(nil), "atomix.runtime.v1.DeletePrimitiveResponse")
+	proto.RegisterType((*DriverId)(nil), "atomix.runtime.v1.DriverId")
+	proto.RegisterType((*Driver)(nil), "atomix.runtime.v1.Driver")
+	proto.RegisterType((*StartDriverRequest)(nil), "atomix.runtime.v1.StartDriverRequest")
+	proto.RegisterType((*StartDriverResponse)(nil), "atomix.runtime.v1.StartDriverResponse")
+	proto.RegisterType((*ConfigureDriverRequest)(nil), "atomix.runtime.v1.ConfigureDriverRequest")
+	proto.RegisterType((*ConfigureDriverResponse)(nil), "atomix.runtime.v1.ConfigureDriverResponse")
+	proto.RegisterType((*StopDriverRequest)(nil), "atomix.runtime.v1.StopDriverRequest")
+	proto.RegisterType((*StopDriverResponse)(nil), "atomix.runtime.v1.StopDriverResponse")
 }
 
 func init() {
@@ -281,26 +365,30 @@ func init() {
 }
 
 var fileDescriptor_68c82018edebe4a3 = []byte{
-	// 301 bytes of a gzipped FileDescriptorProto
+	// 353 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x52, 0x4a, 0x2c, 0xc9, 0xcf,
 	0xcd, 0xac, 0xd0, 0x2f, 0x2a, 0xcd, 0x2b, 0xc9, 0xcc, 0x4d, 0xd5, 0x2f, 0x33, 0xd4, 0x4f, 0xce,
 	0xcf, 0x2b, 0x29, 0xca, 0xcf, 0xc9, 0x49, 0x2d, 0xd2, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x12,
-	0x84, 0xa8, 0xd1, 0x83, 0xaa, 0xd1, 0x2b, 0x33, 0x94, 0x52, 0xc4, 0xd4, 0x56, 0x50, 0x94, 0x99,
-	0x9b, 0x59, 0x92, 0x59, 0x96, 0x0a, 0xd1, 0x25, 0x25, 0x92, 0x9e, 0x9f, 0x9e, 0x0f, 0x66, 0xea,
-	0x83, 0x58, 0x10, 0x51, 0xa5, 0x10, 0x2e, 0x31, 0xe7, 0xa2, 0xd4, 0xc4, 0x92, 0xd4, 0x00, 0x98,
-	0xf2, 0xa0, 0xd4, 0xc2, 0xd2, 0xd4, 0xe2, 0x12, 0x21, 0x2b, 0x2e, 0x4e, 0xb8, 0x11, 0x12, 0x8c,
-	0x0a, 0x8c, 0x1a, 0xdc, 0x46, 0x32, 0x7a, 0x18, 0x36, 0xeb, 0x21, 0xf4, 0x21, 0x94, 0x2b, 0x49,
-	0x72, 0x89, 0x63, 0x98, 0x5a, 0x5c, 0x90, 0x9f, 0x57, 0x9c, 0x0a, 0xb2, 0x30, 0xb4, 0x20, 0x85,
-	0x06, 0x16, 0x62, 0x98, 0x0a, 0xb5, 0x30, 0x9a, 0x4b, 0xcc, 0x25, 0x35, 0x27, 0x15, 0x8b, 0x85,
-	0x8e, 0x5c, 0x3c, 0x70, 0x13, 0xe2, 0x33, 0x53, 0xc0, 0x76, 0x72, 0x3a, 0xc9, 0x3d, 0xba, 0x27,
-	0xcf, 0x0d, 0x57, 0xeb, 0xe9, 0xf2, 0x0b, 0x95, 0x1b, 0xc4, 0x0d, 0xd7, 0xe3, 0x99, 0x02, 0xb2,
-	0x17, 0xc3, 0x70, 0x88, 0xbd, 0x46, 0xa7, 0x98, 0xb8, 0xb8, 0x9c, 0xe1, 0x51, 0x27, 0x94, 0xc1,
-	0xc5, 0x8f, 0x16, 0x24, 0x42, 0x9a, 0x58, 0x7c, 0x87, 0x3d, 0x32, 0xa4, 0xb4, 0x88, 0x51, 0x0a,
-	0xb1, 0x18, 0x64, 0x13, 0x5a, 0x58, 0x60, 0xb5, 0x09, 0x7b, 0x2c, 0x60, 0xb5, 0x09, 0x47, 0xd0,
-	0x82, 0x6c, 0x42, 0xf3, 0x3d, 0x56, 0x9b, 0xb0, 0x07, 0x3f, 0x56, 0x9b, 0x70, 0x04, 0xa6, 0x93,
-	0xc4, 0x89, 0x47, 0x72, 0x8c, 0x17, 0x1e, 0xc9, 0x31, 0x3e, 0x78, 0x24, 0xc7, 0x38, 0xe1, 0xb1,
-	0x1c, 0xc3, 0x85, 0xc7, 0x72, 0x0c, 0x37, 0x1e, 0xcb, 0x31, 0x24, 0xb1, 0x81, 0xd3, 0xb1, 0x31,
-	0x20, 0x00, 0x00, 0xff, 0xff, 0xf6, 0x91, 0x00, 0x7f, 0x39, 0x03, 0x00, 0x00,
+	0x84, 0xa8, 0xd1, 0x83, 0xaa, 0xd1, 0x2b, 0x33, 0x94, 0x12, 0x49, 0xcf, 0x4f, 0xcf, 0x07, 0xcb,
+	0xea, 0x83, 0x58, 0x10, 0x85, 0x4a, 0x36, 0x5c, 0x1c, 0x2e, 0x45, 0x99, 0x65, 0xa9, 0x45, 0x9e,
+	0x29, 0x42, 0x42, 0x5c, 0x2c, 0x79, 0x89, 0xb9, 0xa9, 0x12, 0x8c, 0x0a, 0x8c, 0x1a, 0x9c, 0x41,
+	0x60, 0xb6, 0x90, 0x0c, 0x17, 0x27, 0x88, 0x2e, 0x2e, 0x48, 0x4c, 0x4e, 0x95, 0x60, 0x02, 0x4b,
+	0x20, 0x04, 0x94, 0xec, 0xb9, 0xd8, 0x20, 0xba, 0x85, 0x4c, 0xb9, 0x98, 0x32, 0x53, 0xc0, 0x3a,
+	0xb9, 0x8d, 0xa4, 0xf5, 0x30, 0x6c, 0xd7, 0x83, 0x59, 0xe2, 0xc4, 0x71, 0xe2, 0x9e, 0x3c, 0xc3,
+	0x85, 0x7b, 0xf2, 0x8c, 0x41, 0x4c, 0x99, 0x29, 0x4a, 0xee, 0x5c, 0x42, 0xc1, 0x25, 0x89, 0x45,
+	0x25, 0x10, 0xe9, 0xa0, 0xd4, 0xc2, 0xd2, 0xd4, 0xe2, 0x12, 0x21, 0x43, 0x2e, 0xb6, 0x14, 0xb0,
+	0x00, 0xd4, 0x40, 0x49, 0x9c, 0x06, 0x06, 0x41, 0x15, 0x2a, 0x89, 0x72, 0x09, 0xa3, 0x18, 0x54,
+	0x5c, 0x90, 0x9f, 0x57, 0x9c, 0xaa, 0xe4, 0xcd, 0x25, 0xe6, 0x9c, 0x9f, 0x97, 0x96, 0x99, 0x5e,
+	0x5a, 0x94, 0x4a, 0xb1, 0x1d, 0x92, 0x5c, 0xe2, 0x18, 0x86, 0x41, 0xed, 0xf1, 0xe2, 0x12, 0x0c,
+	0x2e, 0xc9, 0x2f, 0x40, 0xb5, 0x82, 0xcc, 0x30, 0x11, 0x01, 0x85, 0x09, 0xc2, 0x2c, 0x88, 0x0d,
+	0x46, 0xeb, 0x99, 0xb8, 0xb8, 0x9c, 0xe1, 0xd1, 0x2c, 0x14, 0xc3, 0xc5, 0x8d, 0xe4, 0x5f, 0x21,
+	0x55, 0x2c, 0xc6, 0x63, 0x06, 0xac, 0x94, 0x1a, 0x21, 0x65, 0x10, 0xcb, 0x84, 0x32, 0xb8, 0xf8,
+	0xd1, 0x7c, 0x2a, 0xa4, 0x89, 0x45, 0x2b, 0xf6, 0xa0, 0x95, 0xd2, 0x22, 0x46, 0x29, 0xd4, 0xa6,
+	0x48, 0x2e, 0x2e, 0x84, 0x67, 0x85, 0x54, 0xb0, 0xba, 0x0f, 0x2d, 0x5c, 0xa5, 0x54, 0x09, 0xa8,
+	0x82, 0x18, 0xed, 0x24, 0x71, 0xe2, 0x91, 0x1c, 0xe3, 0x85, 0x47, 0x72, 0x8c, 0x0f, 0x1e, 0xc9,
+	0x31, 0x4e, 0x78, 0x2c, 0xc7, 0x70, 0xe1, 0xb1, 0x1c, 0xc3, 0x8d, 0xc7, 0x72, 0x0c, 0x49, 0x6c,
+	0xe0, 0xb4, 0x6f, 0x0c, 0x08, 0x00, 0x00, 0xff, 0xff, 0x9c, 0x6b, 0x47, 0x8f, 0x4a, 0x03, 0x00,
+	0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -315,9 +403,9 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ControllerClient interface {
-	CreatePrimitive(ctx context.Context, in *CreatePrimitiveRequest, opts ...grpc.CallOption) (*CreatePrimitiveResponse, error)
-	UpdatePrimitive(ctx context.Context, in *UpdatePrimitiveRequest, opts ...grpc.CallOption) (*UpdatePrimitiveResponse, error)
-	DeletePrimitive(ctx context.Context, in *DeletePrimitiveRequest, opts ...grpc.CallOption) (*DeletePrimitiveResponse, error)
+	StartDriver(ctx context.Context, in *StartDriverRequest, opts ...grpc.CallOption) (*StartDriverResponse, error)
+	ConfigureDriver(ctx context.Context, in *ConfigureDriverRequest, opts ...grpc.CallOption) (*ConfigureDriverResponse, error)
+	StopDriver(ctx context.Context, in *StopDriverRequest, opts ...grpc.CallOption) (*StopDriverResponse, error)
 }
 
 type controllerClient struct {
@@ -328,27 +416,27 @@ func NewControllerClient(cc *grpc.ClientConn) ControllerClient {
 	return &controllerClient{cc}
 }
 
-func (c *controllerClient) CreatePrimitive(ctx context.Context, in *CreatePrimitiveRequest, opts ...grpc.CallOption) (*CreatePrimitiveResponse, error) {
-	out := new(CreatePrimitiveResponse)
-	err := c.cc.Invoke(ctx, "/atomix.runtime.v1.Controller/CreatePrimitive", in, out, opts...)
+func (c *controllerClient) StartDriver(ctx context.Context, in *StartDriverRequest, opts ...grpc.CallOption) (*StartDriverResponse, error) {
+	out := new(StartDriverResponse)
+	err := c.cc.Invoke(ctx, "/atomix.runtime.v1.Controller/StartDriver", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *controllerClient) UpdatePrimitive(ctx context.Context, in *UpdatePrimitiveRequest, opts ...grpc.CallOption) (*UpdatePrimitiveResponse, error) {
-	out := new(UpdatePrimitiveResponse)
-	err := c.cc.Invoke(ctx, "/atomix.runtime.v1.Controller/UpdatePrimitive", in, out, opts...)
+func (c *controllerClient) ConfigureDriver(ctx context.Context, in *ConfigureDriverRequest, opts ...grpc.CallOption) (*ConfigureDriverResponse, error) {
+	out := new(ConfigureDriverResponse)
+	err := c.cc.Invoke(ctx, "/atomix.runtime.v1.Controller/ConfigureDriver", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *controllerClient) DeletePrimitive(ctx context.Context, in *DeletePrimitiveRequest, opts ...grpc.CallOption) (*DeletePrimitiveResponse, error) {
-	out := new(DeletePrimitiveResponse)
-	err := c.cc.Invoke(ctx, "/atomix.runtime.v1.Controller/DeletePrimitive", in, out, opts...)
+func (c *controllerClient) StopDriver(ctx context.Context, in *StopDriverRequest, opts ...grpc.CallOption) (*StopDriverResponse, error) {
+	out := new(StopDriverResponse)
+	err := c.cc.Invoke(ctx, "/atomix.runtime.v1.Controller/StopDriver", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -357,79 +445,79 @@ func (c *controllerClient) DeletePrimitive(ctx context.Context, in *DeletePrimit
 
 // ControllerServer is the server API for Controller service.
 type ControllerServer interface {
-	CreatePrimitive(context.Context, *CreatePrimitiveRequest) (*CreatePrimitiveResponse, error)
-	UpdatePrimitive(context.Context, *UpdatePrimitiveRequest) (*UpdatePrimitiveResponse, error)
-	DeletePrimitive(context.Context, *DeletePrimitiveRequest) (*DeletePrimitiveResponse, error)
+	StartDriver(context.Context, *StartDriverRequest) (*StartDriverResponse, error)
+	ConfigureDriver(context.Context, *ConfigureDriverRequest) (*ConfigureDriverResponse, error)
+	StopDriver(context.Context, *StopDriverRequest) (*StopDriverResponse, error)
 }
 
 // UnimplementedControllerServer can be embedded to have forward compatible implementations.
 type UnimplementedControllerServer struct {
 }
 
-func (*UnimplementedControllerServer) CreatePrimitive(ctx context.Context, req *CreatePrimitiveRequest) (*CreatePrimitiveResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreatePrimitive not implemented")
+func (*UnimplementedControllerServer) StartDriver(ctx context.Context, req *StartDriverRequest) (*StartDriverResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StartDriver not implemented")
 }
-func (*UnimplementedControllerServer) UpdatePrimitive(ctx context.Context, req *UpdatePrimitiveRequest) (*UpdatePrimitiveResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdatePrimitive not implemented")
+func (*UnimplementedControllerServer) ConfigureDriver(ctx context.Context, req *ConfigureDriverRequest) (*ConfigureDriverResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfigureDriver not implemented")
 }
-func (*UnimplementedControllerServer) DeletePrimitive(ctx context.Context, req *DeletePrimitiveRequest) (*DeletePrimitiveResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeletePrimitive not implemented")
+func (*UnimplementedControllerServer) StopDriver(ctx context.Context, req *StopDriverRequest) (*StopDriverResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StopDriver not implemented")
 }
 
 func RegisterControllerServer(s *grpc.Server, srv ControllerServer) {
 	s.RegisterService(&_Controller_serviceDesc, srv)
 }
 
-func _Controller_CreatePrimitive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreatePrimitiveRequest)
+func _Controller_StartDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StartDriverRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ControllerServer).CreatePrimitive(ctx, in)
+		return srv.(ControllerServer).StartDriver(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/atomix.runtime.v1.Controller/CreatePrimitive",
+		FullMethod: "/atomix.runtime.v1.Controller/StartDriver",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ControllerServer).CreatePrimitive(ctx, req.(*CreatePrimitiveRequest))
+		return srv.(ControllerServer).StartDriver(ctx, req.(*StartDriverRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Controller_UpdatePrimitive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdatePrimitiveRequest)
+func _Controller_ConfigureDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConfigureDriverRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ControllerServer).UpdatePrimitive(ctx, in)
+		return srv.(ControllerServer).ConfigureDriver(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/atomix.runtime.v1.Controller/UpdatePrimitive",
+		FullMethod: "/atomix.runtime.v1.Controller/ConfigureDriver",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ControllerServer).UpdatePrimitive(ctx, req.(*UpdatePrimitiveRequest))
+		return srv.(ControllerServer).ConfigureDriver(ctx, req.(*ConfigureDriverRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Controller_DeletePrimitive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeletePrimitiveRequest)
+func _Controller_StopDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StopDriverRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ControllerServer).DeletePrimitive(ctx, in)
+		return srv.(ControllerServer).StopDriver(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/atomix.runtime.v1.Controller/DeletePrimitive",
+		FullMethod: "/atomix.runtime.v1.Controller/StopDriver",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ControllerServer).DeletePrimitive(ctx, req.(*DeletePrimitiveRequest))
+		return srv.(ControllerServer).StopDriver(ctx, req.(*StopDriverRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -439,23 +527,23 @@ var _Controller_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*ControllerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreatePrimitive",
-			Handler:    _Controller_CreatePrimitive_Handler,
+			MethodName: "StartDriver",
+			Handler:    _Controller_StartDriver_Handler,
 		},
 		{
-			MethodName: "UpdatePrimitive",
-			Handler:    _Controller_UpdatePrimitive_Handler,
+			MethodName: "ConfigureDriver",
+			Handler:    _Controller_ConfigureDriver_Handler,
 		},
 		{
-			MethodName: "DeletePrimitive",
-			Handler:    _Controller_DeletePrimitive_Handler,
+			MethodName: "StopDriver",
+			Handler:    _Controller_StopDriver_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "atomix/runtime/v1/controller.proto",
 }
 
-func (m *CreatePrimitiveRequest) Marshal() (dAtA []byte, err error) {
+func (m *DriverId) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -465,19 +553,89 @@ func (m *CreatePrimitiveRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *CreatePrimitiveRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *DriverId) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *CreatePrimitiveRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *DriverId) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.Primitive != nil {
+	if len(m.Namespace) > 0 {
+		i -= len(m.Namespace)
+		copy(dAtA[i:], m.Namespace)
+		i = encodeVarintController(dAtA, i, uint64(len(m.Namespace)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintController(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *Driver) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Driver) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Driver) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.DriverId.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintController(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *StartDriverRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *StartDriverRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *StartDriverRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Driver != nil {
 		{
-			size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
+			size, err := m.Driver.MarshalToSizedBuffer(dAtA[:i])
 			if err != nil {
 				return 0, err
 			}
@@ -490,7 +648,7 @@ func (m *CreatePrimitiveRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 	return len(dAtA) - i, nil
 }
 
-func (m *CreatePrimitiveResponse) Marshal() (dAtA []byte, err error) {
+func (m *StartDriverResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -500,12 +658,12 @@ func (m *CreatePrimitiveResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *CreatePrimitiveResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *StartDriverResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *CreatePrimitiveResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *StartDriverResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -513,7 +671,7 @@ func (m *CreatePrimitiveResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	return len(dAtA) - i, nil
 }
 
-func (m *UpdatePrimitiveRequest) Marshal() (dAtA []byte, err error) {
+func (m *ConfigureDriverRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -523,19 +681,19 @@ func (m *UpdatePrimitiveRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *UpdatePrimitiveRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *ConfigureDriverRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *UpdatePrimitiveRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *ConfigureDriverRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.Primitive != nil {
+	if m.Driver != nil {
 		{
-			size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
+			size, err := m.Driver.MarshalToSizedBuffer(dAtA[:i])
 			if err != nil {
 				return 0, err
 			}
@@ -548,7 +706,7 @@ func (m *UpdatePrimitiveRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 	return len(dAtA) - i, nil
 }
 
-func (m *UpdatePrimitiveResponse) Marshal() (dAtA []byte, err error) {
+func (m *ConfigureDriverResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -558,12 +716,12 @@ func (m *UpdatePrimitiveResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *UpdatePrimitiveResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *ConfigureDriverResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *UpdatePrimitiveResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *ConfigureDriverResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -571,7 +729,7 @@ func (m *UpdatePrimitiveResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	return len(dAtA) - i, nil
 }
 
-func (m *DeletePrimitiveRequest) Marshal() (dAtA []byte, err error) {
+func (m *StopDriverRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -581,27 +739,30 @@ func (m *DeletePrimitiveRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *DeletePrimitiveRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *StopDriverRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *DeletePrimitiveRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *StopDriverRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.PrimitiveID) > 0 {
-		i -= len(m.PrimitiveID)
-		copy(dAtA[i:], m.PrimitiveID)
-		i = encodeVarintController(dAtA, i, uint64(len(m.PrimitiveID)))
-		i--
-		dAtA[i] = 0xa
+	{
+		size, err := m.DriverId.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintController(dAtA, i, uint64(size))
 	}
+	i--
+	dAtA[i] = 0xa
 	return len(dAtA) - i, nil
 }
 
-func (m *DeletePrimitiveResponse) Marshal() (dAtA []byte, err error) {
+func (m *StopDriverResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -611,12 +772,12 @@ func (m *DeletePrimitiveResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *DeletePrimitiveResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *StopDriverResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *DeletePrimitiveResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *StopDriverResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -635,64 +796,90 @@ func encodeVarintController(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *CreatePrimitiveRequest) Size() (n int) {
+func (m *DriverId) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.Primitive != nil {
-		l = m.Primitive.Size()
+	l = len(m.Name)
+	if l > 0 {
 		n += 1 + l + sovController(uint64(l))
 	}
-	return n
-}
-
-func (m *CreatePrimitiveResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	return n
-}
-
-func (m *UpdatePrimitiveRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Primitive != nil {
-		l = m.Primitive.Size()
-		n += 1 + l + sovController(uint64(l))
-	}
-	return n
-}
-
-func (m *UpdatePrimitiveResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	return n
-}
-
-func (m *DeletePrimitiveRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.PrimitiveID)
+	l = len(m.Namespace)
 	if l > 0 {
 		n += 1 + l + sovController(uint64(l))
 	}
 	return n
 }
 
-func (m *DeletePrimitiveResponse) Size() (n int) {
+func (m *Driver) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.DriverId.Size()
+	n += 1 + l + sovController(uint64(l))
+	return n
+}
+
+func (m *StartDriverRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Driver != nil {
+		l = m.Driver.Size()
+		n += 1 + l + sovController(uint64(l))
+	}
+	return n
+}
+
+func (m *StartDriverResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *ConfigureDriverRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Driver != nil {
+		l = m.Driver.Size()
+		n += 1 + l + sovController(uint64(l))
+	}
+	return n
+}
+
+func (m *ConfigureDriverResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *StopDriverRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.DriverId.Size()
+	n += 1 + l + sovController(uint64(l))
+	return n
+}
+
+func (m *StopDriverResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -707,7 +894,7 @@ func sovController(x uint64) (n int) {
 func sozController(x uint64) (n int) {
 	return sovController(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (m *CreatePrimitiveRequest) Unmarshal(dAtA []byte) error {
+func (m *DriverId) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -730,287 +917,15 @@ func (m *CreatePrimitiveRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: CreatePrimitiveRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: DriverId: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: CreatePrimitiveRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: DriverId: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Primitive", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowController
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthController
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthController
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Primitive == nil {
-				m.Primitive = &Primitive{}
-			}
-			if err := m.Primitive.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipController(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *CreatePrimitiveResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowController
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: CreatePrimitiveResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: CreatePrimitiveResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		default:
-			iNdEx = preIndex
-			skippy, err := skipController(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *UpdatePrimitiveRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowController
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: UpdatePrimitiveRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: UpdatePrimitiveRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Primitive", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowController
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthController
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthController
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Primitive == nil {
-				m.Primitive = &Primitive{}
-			}
-			if err := m.Primitive.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipController(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *UpdatePrimitiveResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowController
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: UpdatePrimitiveResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: UpdatePrimitiveResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		default:
-			iNdEx = preIndex
-			skippy, err := skipController(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if (skippy < 0) || (iNdEx+skippy) < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *DeletePrimitiveRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowController
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: DeletePrimitiveRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: DeletePrimitiveRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PrimitiveID", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1038,7 +953,39 @@ func (m *DeletePrimitiveRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.PrimitiveID = PrimitiveID(dAtA[iNdEx:postIndex])
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Namespace", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowController
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthController
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthController
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Namespace = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -1061,7 +1008,7 @@ func (m *DeletePrimitiveRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *DeletePrimitiveResponse) Unmarshal(dAtA []byte) error {
+func (m *Driver) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1084,10 +1031,448 @@ func (m *DeletePrimitiveResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: DeletePrimitiveResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: Driver: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: DeletePrimitiveResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: Driver: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DriverId", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowController
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthController
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthController
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.DriverId.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipController(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthController
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *StartDriverRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowController
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: StartDriverRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: StartDriverRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Driver", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowController
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthController
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthController
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Driver == nil {
+				m.Driver = &Driver{}
+			}
+			if err := m.Driver.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipController(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthController
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *StartDriverResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowController
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: StartDriverResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: StartDriverResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipController(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthController
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *ConfigureDriverRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowController
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: ConfigureDriverRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: ConfigureDriverRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Driver", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowController
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthController
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthController
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Driver == nil {
+				m.Driver = &Driver{}
+			}
+			if err := m.Driver.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipController(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthController
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *ConfigureDriverResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowController
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: ConfigureDriverResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: ConfigureDriverResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipController(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthController
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *StopDriverRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowController
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: StopDriverRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: StopDriverRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field DriverId", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowController
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthController
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthController
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.DriverId.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipController(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthController
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *StopDriverResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowController
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: StopDriverResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: StopDriverResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:

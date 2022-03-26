@@ -26,3 +26,36 @@ message Primitive {
         (gogoproto.casttype) = "PrimitiveID"
     ];
 }
+
+message CreatePrimitiveRequest {
+    Primitive primitive = 1;
+}
+
+message CreatePrimitiveResponse {
+
+}
+
+message UpdatePrimitiveRequest {
+    Primitive primitive = 1;
+}
+
+message UpdatePrimitiveResponse {
+
+}
+
+message DeletePrimitiveRequest {
+    string primitive_id = 1 [
+        (gogoproto.customname) = "PrimitiveID",
+        (gogoproto.casttype) = "PrimitiveID"
+    ];
+}
+
+message DeletePrimitiveResponse {
+
+}
+
+service Runtime {
+    rpc CreatePrimitive(CreatePrimitiveRequest) returns (CreatePrimitiveResponse);
+    rpc UpdatePrimitive(UpdatePrimitiveRequest) returns (UpdatePrimitiveResponse);
+    rpc DeletePrimitive(DeletePrimitiveRequest) returns (DeletePrimitiveResponse);
+}

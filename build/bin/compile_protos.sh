@@ -20,15 +20,9 @@ protoc -I=$proto_path \
 
 protoc -I=$proto_path \
   --doc_out=api/atomix/runtime/v1 \
-  --doc_opt=markdown,primitive.md \
+  --doc_opt=markdown,runtime.md \
   --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-runtime/api/atomix/runtime/v1,plugins=grpc:api \
-  api/atomix/runtime/v1/primitive.proto
-
-protoc -I=$proto_path \
-  --doc_out=api/atomix/runtime/v1 \
-  --doc_opt=markdown,agent.md \
-  --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-runtime/api/atomix/runtime/v1,plugins=grpc:api \
-  api/atomix/runtime/v1/agent.proto
+  api/atomix/runtime/v1/runtime.proto
 
 protoc -I=$proto_path \
   --doc_out=api/atomix/primitive/v1 \
