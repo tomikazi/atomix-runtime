@@ -20,9 +20,9 @@ protoc -I=$proto_path \
 
 protoc -I=$proto_path \
   --doc_out=api/atomix/runtime/v1 \
-  --doc_opt=markdown,controller.md \
+  --doc_opt=markdown,manager.md \
   --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-runtime/api/atomix/runtime/v1,plugins=grpc:api \
-  api/atomix/runtime/v1/controller.proto
+  api/atomix/runtime/v1/manager.proto
 
 protoc -I=$proto_path \
   --doc_out=api/atomix/runtime/v1 \

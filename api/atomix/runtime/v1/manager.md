@@ -3,7 +3,7 @@
 
 ## Table of Contents
 
-- [atomix/runtime/v1/controller.proto](#atomix_runtime_v1_controller-proto)
+- [atomix/runtime/v1/manager.proto](#atomix_runtime_v1_manager-proto)
     - [Agent](#atomix-runtime-v1-Agent)
     - [ConfigureAgentRequest](#atomix-runtime-v1-ConfigureAgentRequest)
     - [ConfigureAgentResponse](#atomix-runtime-v1-ConfigureAgentResponse)
@@ -18,16 +18,16 @@
     - [StopAgentRequest](#atomix-runtime-v1-StopAgentRequest)
     - [StopAgentResponse](#atomix-runtime-v1-StopAgentResponse)
   
-    - [Controller](#atomix-runtime-v1-Controller)
+    - [RuntimeManager](#atomix-runtime-v1-RuntimeManager)
   
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix_runtime_v1_controller-proto"></a>
+<a name="atomix_runtime_v1_manager-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/runtime/v1/controller.proto
+## atomix/runtime/v1/manager.proto
 
 
 
@@ -213,11 +213,10 @@
  
 
 
-<a name="atomix-runtime-v1-Controller"></a>
+<a name="atomix-runtime-v1-RuntimeManager"></a>
 
-### Controller
-The runtime controller service provides functions for the core controller to manage
-the runtime drivers based on external configurations.
+### RuntimeManager
+The runtime manager service provides functions managing runtime drivers externally.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|

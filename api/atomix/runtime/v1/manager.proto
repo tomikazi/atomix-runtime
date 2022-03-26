@@ -94,9 +94,8 @@ message DestroyProxyResponse {
 
 }
 
-// The runtime controller service provides functions for the core controller to manage
-// the runtime drivers based on external configurations.
-service Controller {
+// The runtime manager service provides functions managing runtime drivers externally.
+service RuntimeManager {
     rpc StartAgent(StartAgentRequest) returns (StartAgentResponse);
     rpc StopAgent(StopAgentRequest) returns (StopAgentResponse);
 
