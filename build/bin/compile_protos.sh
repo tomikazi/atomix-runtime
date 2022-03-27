@@ -11,6 +11,7 @@ go_import_paths="${go_import_paths},Matomix/controller/v1/controller.proto=githu
 go_import_paths="${go_import_paths},Matomix/runtime/v1/runtime.proto=github.com/atomix/atomix-runtime/api/atomix/runtime/v1"
 go_import_paths="${go_import_paths},Matomix/runtime/primitive/v1/primitive.proto=github.com/atomix/atomix-runtime/api/atomix/runtime/primitive/v1"
 go_import_paths="${go_import_paths},Matomix/runtime/primitive/v1/descriptor.proto=github.com/atomix/atomix-runtime/api/atomix/runtime/primitive/v1"
+go_import_paths="${go_import_paths},Matomix/runtime/meta/v1/headers.proto=github.com/atomix/atomix-runtime/api/atomix/runtime/meta/v1"
 go_import_paths="${go_import_paths},Matomix/runtime/meta/v1/object.proto=github.com/atomix/atomix-runtime/api/atomix/runtime/meta/v1"
 go_import_paths="${go_import_paths},Matomix/runtime/meta/v1/timestamp.proto=github.com/atomix/atomix-runtime/api/atomix/runtime/meta/v1"
 go_import_paths="${go_import_paths},Matomix/runtime/counter/v1/options.proto=github.com/atomix/atomix-runtime/api/atomix/runtime/counter/v1"
