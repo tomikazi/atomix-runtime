@@ -19,8 +19,14 @@ import (
 	"github.com/atomix/atomix-runtime/internal/controller"
 )
 
-const DefaultHost = "127.0.0.1"
-const DefaultPort = 5678
+const (
+	DefaultHost               = "127.0.0.1"
+	DefaultPort               = 5678
+	DefaultControllerHost     = controller.DefaultHost
+	DefaultControllerPort     = controller.DefaultPort
+	DefaultDriverPluginDir    = "./plugins/driver"
+	DefaultPrimitivePluginDir = "./plugins/primitive"
+)
 
 // NewOptions creates new Options from the given set of Option
 func NewOptions(opts ...Option) Options {
@@ -54,8 +60,10 @@ type Option interface {
 
 // ServerOptions is a set of service options
 type ServerOptions struct {
-	Host string
-	Port int
+	Host               string
+	Port               int
+	DriverPluginDir    string
+	PrimitivePluginDir string
 }
 
 func (o ServerOptions) Address() string {
@@ -65,14 +73,16 @@ func (o ServerOptions) Address() string {
 func (o ServerOptions) apply(opts ...ServerOption) {
 	o.Host = DefaultHost
 	o.Port = DefaultPort
+	o.DriverPluginDir = DefaultDriverPluginDir
+	o.PrimitivePluginDir = DefaultPrimitivePluginDir
 	for _, opt := range opts {
-		opt.applyServiceOptions(&o)
+		opt.applyServerOptions(&o)
 	}
 }
 
 // ServerOption is a service option
 type ServerOption interface {
-	applyServiceOptions(*ServerOptions)
+	applyServerOptions(*ServerOptions)
 }
 
 // WithHost overrides the default service host
@@ -89,6 +99,20 @@ func WithPort(port int) ServerOption {
 	})
 }
 
+// WithDriverPluginDir overrides the default driver plugin directory
+func WithDriverPluginDir(driverPluginDir string) ServerOption {
+	return newFuncOption(func(options *ServerOptions) {
+		options.DriverPluginDir = driverPluginDir
+	})
+}
+
+// WithPrimitivePluginDir overrides the default primitive plugin directory
+func WithPrimitivePluginDir(primitivePluginDir string) ServerOption {
+	return newFuncOption(func(options *ServerOptions) {
+		options.PrimitivePluginDir = primitivePluginDir
+	})
+}
+
 func newFuncOption(f func(*ServerOptions)) ServerOption {
 	return &funcServiceOption{f}
 }
@@ -97,7 +121,7 @@ type funcServiceOption struct {
 	f func(*ServerOptions)
 }
 
-func (o *funcServiceOption) applyServiceOptions(options *ServerOptions) {
+func (o *funcServiceOption) applyServerOptions(options *ServerOptions) {
 	o.f(options)
 }
 

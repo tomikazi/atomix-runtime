@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package driver
+package primitive
 
 import (
 	"fmt"
-	"github.com/atomix/atomix-runtime/pkg/driver"
+	"github.com/atomix/atomix-runtime/pkg/primitive"
 	"io/fs"
 	"path/filepath"
 	"plugin"
@@ -24,34 +24,34 @@ import (
 	"sync"
 )
 
-// Registry is a driver registry
+// Registry is a primitive registry
 type Registry interface {
-	Lookup(name, version string) (driver.Driver, error)
-	List() ([]driver.Driver, error)
+	Lookup(name, version string) (primitive.PrimitiveType, error)
+	List() ([]primitive.PrimitiveType, error)
 }
 
 func NewPluginRegistry(path string) Registry {
 	return &pluginRegistry{
-		path:    path,
-		drivers: make(map[string]map[string]driver.Driver),
+		path:       path,
+		primitives: make(map[string]map[string]primitive.PrimitiveType),
 	}
 }
 
 type pluginRegistry struct {
-	path    string
-	drivers map[string]map[string]driver.Driver
-	mu      sync.Mutex
+	path       string
+	primitives map[string]map[string]primitive.PrimitiveType
+	mu         sync.Mutex
 }
 
-func (r *pluginRegistry) Lookup(name, version string) (driver.Driver, error) {
+func (r *pluginRegistry) Lookup(name, version string) (primitive.PrimitiveType, error) {
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
-	versions, ok := r.drivers[name]
+	versions, ok := r.primitives[name]
 	if ok {
-		d, ok := versions[version]
+		t, ok := versions[version]
 		if ok {
-			return d, nil
+			return t, nil
 		}
 	}
 
@@ -65,19 +65,19 @@ func (r *pluginRegistry) Lookup(name, version string) (driver.Driver, error) {
 		return nil, err
 	}
 
-	d := s.(driver.Driver)
+	t := s.(primitive.PrimitiveType)
 
-	versions, ok = r.drivers[name]
+	versions, ok = r.primitives[name]
 	if !ok {
-		versions = make(map[string]driver.Driver)
-		r.drivers[name] = versions
+		versions = make(map[string]primitive.PrimitiveType)
+		r.primitives[name] = versions
 	}
-	versions[version] = d
-	return d, nil
+	versions[version] = t
+	return t, nil
 }
 
-func (r *pluginRegistry) List() ([]driver.Driver, error) {
-	var drivers []driver.Driver
+func (r *pluginRegistry) List() ([]primitive.PrimitiveType, error) {
+	var primitives []primitive.PrimitiveType
 	err := filepath.Walk(r.path, func(path string, info fs.FileInfo, err error) error {
 		if !info.IsDir() {
 			return nil
@@ -90,15 +90,15 @@ func (r *pluginRegistry) List() ([]driver.Driver, error) {
 			return nil
 		}
 		name, version := parts[0], parts[1]
-		driver, err := r.Lookup(name, version)
+		primitive, err := r.Lookup(name, version)
 		if err != nil {
 			return err
 		}
-		drivers = append(drivers, driver)
+		primitives = append(primitives, primitive)
 		return nil
 	})
 	if err != nil {
 		return nil, err
 	}
-	return drivers, nil
+	return primitives, nil
 }

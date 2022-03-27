@@ -15,7 +15,6 @@
 package driver
 
 import (
-	"github.com/atomix/atomix-runtime/pkg/codec"
 	"github.com/atomix/atomix-runtime/pkg/service"
 )
 
@@ -24,11 +23,9 @@ type Config interface{}
 
 // Driver is a storage driver
 type Driver[C Config] interface {
-	Codec() codec.Codec[C]
-	NewAgent(id AgentID) Agent[C]
+	NewConfig() C
+	NewAgent() Agent[C]
 }
-
-type AgentID string
 
 // Agent is a storage agent
 type Agent[C Config] interface {

@@ -28,10 +28,12 @@ func main() {
 	cmd := &cobra.Command{
 		Use: "atomix-runtime",
 	}
-	cmd.Flags().StringP("host", "h", "127.0.0.1", "the host to which to bind the runtime server")
-	cmd.Flags().IntP("port", "p", 5678, "the port to which to bind the runtime server")
-	cmd.Flags().String("controller-host", "127.0.0.1", "the host at which to connect to the controller server")
-	cmd.Flags().Int("controller-port", 5680, "the port at which to connect to the controller server")
+	cmd.Flags().StringP("host", "h", runtime.DefaultHost, "the host to which to bind the runtime server")
+	cmd.Flags().IntP("port", "p", runtime.DefaultPort, "the port to which to bind the runtime server")
+	cmd.Flags().String("controller-host", runtime.DefaultControllerHost, "the host at which to connect to the controller server")
+	cmd.Flags().Int("controller-port", runtime.DefaultControllerPort, "the port at which to connect to the controller server")
+	cmd.Flags().String("driver-plugin-dir", runtime.DefaultDriverPluginDir, "the directory from which to load driver plugins")
+	cmd.Flags().String("primitive-plugin-dir", runtime.DefaultPrimitivePluginDir, "the directory from which to load primitive plugins")
 
 	if err := cmd.Execute(); err != nil {
 		panic(err)
@@ -53,12 +55,22 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	driverPluginDir, err := cmd.Flags().GetString("driver-plugin-dir")
+	if err != nil {
+		panic(err)
+	}
+	primitivePluginDir, err := cmd.Flags().GetString("primitive-plugin-dir")
+	if err != nil {
+		panic(err)
+	}
 
 	r := runtime.New(
 		runtime.WithHost(host),
 		runtime.WithPort(port),
 		runtime.WithControllerHost(controllerHost),
-		runtime.WithControllerPort(controllerPort))
+		runtime.WithControllerPort(controllerPort),
+		runtime.WithDriverPluginDir(driverPluginDir),
+		runtime.WithPrimitivePluginDir(primitivePluginDir))
 	if err := r.Start(); err != nil {
 		panic(err)
 	}

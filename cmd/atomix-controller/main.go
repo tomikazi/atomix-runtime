@@ -29,7 +29,7 @@ func main() {
 		Use: "atomix-controller",
 	}
 	cmd.Flags().StringP("host", "h", "", "the host to which to bind the controller server")
-	cmd.Flags().IntP("port", "p", 5680, "the port to which to bind the controller server")
+	cmd.Flags().IntP("port", "p", controller.DefaultPort, "the port to which to bind the controller server")
 
 	if err := cmd.Execute(); err != nil {
 		panic(err)
@@ -39,7 +39,6 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-
 	port, err := cmd.Flags().GetInt("port")
 	if err != nil {
 		panic(err)

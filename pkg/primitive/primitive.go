@@ -14,12 +14,13 @@
 
 package primitive
 
-import "github.com/atomix/atomix-runtime/pkg/codec"
+import (
+	"google.golang.org/grpc"
+)
 
 // Config is an identifier interface for primitive configuration
 type Config interface{}
 
-type Type[C Config] interface {
-	Codec() codec.Codec[C]
-	Configure(config C) error
+type PrimitiveType interface {
+	RegisterServer(server *grpc.Server)
 }
