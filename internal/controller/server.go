@@ -17,7 +17,7 @@ package controller
 import (
 	context "context"
 	controllerv1 "github.com/atomix/atomix-runtime/api/atomix/controller/v1"
-	"github.com/atomix/atomix-sdk/pkg/logging"
+	"github.com/atomix/atomix-runtime/pkg/logging"
 )
 
 func NewServer() controllerv1.ControllerServer {
@@ -33,7 +33,17 @@ func (s *Server) CreatePrimitive(ctx context.Context, request *controllerv1.Crea
 	panic("implement me")
 }
 
+func (s *Server) GetPrimitive(ctx context.Context, request *controllerv1.GetPrimitiveRequest) (*controllerv1.GetPrimitiveResponse, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
 func (s *Server) DeletePrimitive(ctx context.Context, request *controllerv1.DeletePrimitiveRequest) (*controllerv1.DeletePrimitiveResponse, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
+func (s *Server) GetStore(ctx context.Context, request *controllerv1.GetStoreRequest) (*controllerv1.GetStoreResponse, error) {
 	//TODO implement me
 	panic("implement me")
 }

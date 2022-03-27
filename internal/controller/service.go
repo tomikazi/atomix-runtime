@@ -16,26 +16,26 @@ package controller
 
 import (
 	controllerv1 "github.com/atomix/atomix-runtime/api/atomix/controller/v1"
+	"github.com/atomix/atomix-runtime/pkg/logging"
 	"github.com/atomix/atomix-runtime/pkg/service"
-	"github.com/atomix/atomix-sdk/pkg/logging"
 	"google.golang.org/grpc"
 	"net"
 )
 
-var log = logging.GetLogger("atomix", "runtime", "controller")
+var log = logging.GetLogger("atomix", "controller", "kubernetes")
 
 // NewService creates a new controller service
-func NewService(opts ...Option) service.Service {
+func NewService(opts ...ServerOption) service.Service {
 	return &Service{
 		server:  grpc.NewServer(),
-		options: NewOptions(opts...),
+		options: NewServerOptions(opts...),
 	}
 }
 
 // Service is a service managing the lifecycle of the controller server
 type Service struct {
 	server  *grpc.Server
-	options Options
+	options ServerOptions
 }
 
 func (s *Service) Start() error {

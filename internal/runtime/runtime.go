@@ -14,9 +14,20 @@
 
 package runtime
 
-func New(registry Registry) Runtime {
-	return &runtime{
-		registry: registry,
+import (
+	controllerv1 "github.com/atomix/atomix-runtime/api/atomix/controller/v1"
+	runtimev1 "github.com/atomix/atomix-runtime/api/atomix/runtime/v1"
+	"github.com/atomix/atomix-runtime/pkg/logging"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
+	"net"
+)
+
+var log = logging.GetLogger("atomix", "runtime")
+
+func New(opts ...Option) Runtime {
+	return &atomixRuntime{
+		options: NewOptions(opts...),
 	}
 }
 
@@ -24,11 +35,29 @@ type Runtime interface {
 	Run() error
 }
 
-type runtime struct {
-	registry Registry
+type atomixRuntime struct {
+	runtimeServer    *grpc.Server
+	controllerClient controllerv1.ControllerClient
+	options          Options
 }
 
-func (r *runtime) Run() error {
-	//TODO implement me
-	panic("implement me")
+func (r *atomixRuntime) Run() error {
+	controllerConn, err := grpc.Dial(
+		r.options.ControllerOptions.Address(),
+		grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		return err
+	}
+	r.controllerClient = controllerv1.NewControllerClient(controllerConn)
+	runtimev1.RegisterRuntimeServer(r.runtimeServer, NewServer(r.controllerClient))
+	lis, err := net.Listen("tcp", r.options.ServerOptions.Address())
+	if err != nil {
+		return err
+	}
+	go func() {
+		if err := r.runtimeServer.Serve(lis); err != nil {
+			log.Error(err)
+		}
+	}()
+	return nil
 }

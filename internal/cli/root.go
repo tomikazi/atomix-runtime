@@ -16,7 +16,7 @@ package cli
 
 import (
 	"fmt"
-	"github.com/atomix/atomix-sdk/pkg/logging"
+	"github.com/atomix/atomix-runtime/pkg/logging"
 	"github.com/spf13/cobra"
 	"os"
 )

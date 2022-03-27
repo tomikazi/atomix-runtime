@@ -16,8 +16,8 @@ package controller
 
 import "fmt"
 
-const defaultHost = "127.0.0.1"
-const defaultPort = 5679
+const DefaultHost = "127.0.0.1"
+const DefaultPort = 5680
 
 // NewOptions creates new Options from the given set of Option
 func NewOptions(opts ...Option) Options {
@@ -26,51 +26,60 @@ func NewOptions(opts ...Option) Options {
 	return options
 }
 
-// Options is a set of controller options
 type Options struct {
-	Host string
-	Port int
-}
-
-func (o Options) Address() string {
-	return fmt.Sprintf("%s:%d", o.Host, o.Port)
+	ServerOptions
 }
 
 func (o Options) apply(opts ...Option) {
-	o.Host = defaultHost
-	o.Port = defaultPort
+	var serverOpts []ServerOption
 	for _, opt := range opts {
-		opt.apply(&o)
+		if serviceOpt, ok := opt.(ServerOption); ok {
+			serverOpts = append(serverOpts, serviceOpt)
+		}
+	}
+	o.ServerOptions.apply(serverOpts...)
+}
+
+type Option interface {
+	applyOptions(*Options)
+}
+
+// ServerOptions is a set of service options
+type ServerOptions struct {
+	Port int
+}
+
+func (o ServerOptions) Address() string {
+	return fmt.Sprintf(":%d", o.Port)
+}
+
+func (o ServerOptions) apply(opts ...ServerOption) {
+	o.Port = DefaultPort
+	for _, opt := range opts {
+		opt.applyServerOption(&o)
 	}
 }
 
-// Option is a controller option
-type Option interface {
-	apply(*Options)
+// ServerOption is a service option
+type ServerOption interface {
+	applyServerOption(*ServerOptions)
 }
 
-// WithHost overrides the default controller host
-func WithHost(host string) Option {
-	return newFuncOption(func(options *Options) {
-		options.Host = host
-	})
-}
-
-// WithPort overrides the default controller port
-func WithPort(port int) Option {
-	return newFuncOption(func(options *Options) {
+// WithPort overrides the default service port
+func WithPort(port int) ServerOption {
+	return newFuncServerOption(func(options *ServerOptions) {
 		options.Port = port
 	})
 }
 
-func newFuncOption(f func(*Options)) Option {
-	return &funcOption{f}
+func newFuncServerOption(f func(*ServerOptions)) ServerOption {
+	return &funcServerOption{f}
 }
 
-type funcOption struct {
-	f func(*Options)
+type funcServerOption struct {
+	f func(*ServerOptions)
 }
 
-func (o *funcOption) apply(options *Options) {
+func (o *funcServerOption) applyServerOption(options *ServerOptions) {
 	o.f(options)
 }
