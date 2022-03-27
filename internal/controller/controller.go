@@ -22,39 +22,43 @@ import (
 	"net"
 )
 
-var log = logging.GetLogger("atomix", "controller", "kubernetes")
+var log = logging.GetLogger("atomix", "controller")
 
-// NewService creates a new controller service
-func NewService(opts ...ServerOption) service.Service {
-	return &Service{
+// NewController creates a new controller service
+func NewController(opts ...Option) Controller {
+	return &atomixController{
 		server:  grpc.NewServer(),
-		options: NewServerOptions(opts...),
+		options: NewOptions(opts...),
 	}
 }
 
-// Service is a service managing the lifecycle of the controller server
-type Service struct {
-	server  *grpc.Server
-	options ServerOptions
+// Controller is a runtime controller
+type Controller interface {
+	service.Service
 }
 
-func (s *Service) Start() error {
-	controllerv1.RegisterControllerServer(s.server, NewServer())
-	lis, err := net.Listen("tcp", s.options.Address())
+type atomixController struct {
+	server  *grpc.Server
+	options Options
+}
+
+func (c *atomixController) Start() error {
+	controllerv1.RegisterControllerServer(c.server, NewServer())
+	lis, err := net.Listen("tcp", c.options.Address())
 	if err != nil {
 		return err
 	}
 	go func() {
-		if err := s.server.Serve(lis); err != nil {
+		if err := c.server.Serve(lis); err != nil {
 			log.Error(err)
 		}
 	}()
 	return nil
 }
 
-func (s *Service) Stop() error {
-	s.server.Stop()
+func (c *atomixController) Stop() error {
+	c.server.Stop()
 	return nil
 }
 
-var _ service.Service = (*Service)(nil)
+var _ Controller = (*atomixController)(nil)

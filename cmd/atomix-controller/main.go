@@ -17,7 +17,7 @@ package main
 import (
 	_ "github.com/atomix/atomix-runtime/examples/pubsub"
 	_ "github.com/atomix/atomix-runtime/examples/storage"
-	"github.com/atomix/atomix-runtime/internal/runtime"
+	"github.com/atomix/atomix-runtime/internal/controller"
 	"github.com/spf13/cobra"
 	"os"
 	"os/signal"
@@ -26,12 +26,10 @@ import (
 
 func main() {
 	cmd := &cobra.Command{
-		Use: "atomix-runtime",
+		Use: "atomix-controller",
 	}
-	cmd.Flags().StringP("host", "h", "127.0.0.1", "the host to which to bind the runtime server")
-	cmd.Flags().IntP("port", "p", 5678, "the port to which to bind the runtime server")
-	cmd.Flags().String("controller-host", "127.0.0.1", "the host at which to connect to the controller server")
-	cmd.Flags().Int("controller-port", 5680, "the port at which to connect to the controller server")
+	cmd.Flags().StringP("host", "h", "", "the host to which to bind the controller server")
+	cmd.Flags().IntP("port", "p", 5680, "the port to which to bind the controller server")
 
 	if err := cmd.Execute(); err != nil {
 		panic(err)
@@ -41,25 +39,16 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+
 	port, err := cmd.Flags().GetInt("port")
 	if err != nil {
 		panic(err)
 	}
-	controllerHost, err := cmd.Flags().GetString("controller-host")
-	if err != nil {
-		panic(err)
-	}
-	controllerPort, err := cmd.Flags().GetInt("controller-port")
-	if err != nil {
-		panic(err)
-	}
 
-	r := runtime.New(
-		runtime.WithHost(host),
-		runtime.WithPort(port),
-		runtime.WithControllerHost(controllerHost),
-		runtime.WithControllerPort(controllerPort))
-	if err := r.Start(); err != nil {
+	c := controller.NewController(
+		controller.WithHost(host),
+		controller.WithPort(port))
+	if err := c.Start(); err != nil {
 		panic(err)
 	}
 
@@ -68,7 +57,7 @@ func main() {
 	signal.Notify(ch, os.Interrupt, syscall.SIGTERM)
 	<-ch
 
-	if err := r.Stop(); err != nil {
+	if err := c.Stop(); err != nil {
 		panic(err)
 	}
 }

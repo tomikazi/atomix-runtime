@@ -49,7 +49,7 @@ func (o Options) apply(opts ...Option) {
 }
 
 type Option interface {
-	applyOptions(*Options)
+	ServerOption | ControllerOption
 }
 
 // ServerOptions is a set of service options

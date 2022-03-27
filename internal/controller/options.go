@@ -41,16 +41,17 @@ func (o Options) apply(opts ...Option) {
 }
 
 type Option interface {
-	applyOptions(*Options)
+	ServerOption
 }
 
 // ServerOptions is a set of service options
 type ServerOptions struct {
+	Host string
 	Port int
 }
 
 func (o ServerOptions) Address() string {
-	return fmt.Sprintf(":%d", o.Port)
+	return fmt.Sprintf("%s:%d", o.Host, o.Port)
 }
 
 func (o ServerOptions) apply(opts ...ServerOption) {
@@ -63,6 +64,13 @@ func (o ServerOptions) apply(opts ...ServerOption) {
 // ServerOption is a service option
 type ServerOption interface {
 	applyServerOption(*ServerOptions)
+}
+
+// WithHost overrides the default service host
+func WithHost(host string) ServerOption {
+	return newFuncServerOption(func(options *ServerOptions) {
+		options.Host = host
+	})
 }
 
 // WithPort overrides the default service port
