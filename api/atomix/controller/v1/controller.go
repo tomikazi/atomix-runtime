@@ -14,8 +14,4 @@
 
 package v1
 
-type PrimitiveID string
-
 type StoreID string
-
-type ProxyID uint64

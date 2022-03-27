@@ -4,16 +4,11 @@
 ## Table of Contents
 
 - [atomix/controller/v1/controller.proto](#atomix_controller_v1_controller-proto)
-    - [CreatePrimitiveRequest](#atomix-controller-v1-CreatePrimitiveRequest)
-    - [CreatePrimitiveResponse](#atomix-controller-v1-CreatePrimitiveResponse)
-    - [DeletePrimitiveRequest](#atomix-controller-v1-DeletePrimitiveRequest)
-    - [DeletePrimitiveResponse](#atomix-controller-v1-DeletePrimitiveResponse)
-    - [GetPrimitiveRequest](#atomix-controller-v1-GetPrimitiveRequest)
-    - [GetPrimitiveResponse](#atomix-controller-v1-GetPrimitiveResponse)
-    - [GetStoreRequest](#atomix-controller-v1-GetStoreRequest)
-    - [GetStoreResponse](#atomix-controller-v1-GetStoreResponse)
-    - [Primitive](#atomix-controller-v1-Primitive)
-    - [Store](#atomix-controller-v1-Store)
+    - [Configuration](#atomix-controller-v1-Configuration)
+    - [GetConfigurationRequest](#atomix-controller-v1-GetConfigurationRequest)
+    - [GetConfigurationResponse](#atomix-controller-v1-GetConfigurationResponse)
+    - [WatchConfigurationRequest](#atomix-controller-v1-WatchConfigurationRequest)
+    - [WatchConfigurationResponse](#atomix-controller-v1-WatchConfigurationResponse)
   
     - [Controller](#atomix-controller-v1-Controller)
   
@@ -28,146 +23,78 @@
 
 
 
-<a name="atomix-controller-v1-CreatePrimitiveRequest"></a>
+<a name="atomix-controller-v1-Configuration"></a>
 
-### CreatePrimitiveRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| primitive | [Primitive](#atomix-controller-v1-Primitive) |  |  |
-
-
-
-
-
-
-<a name="atomix-controller-v1-CreatePrimitiveResponse"></a>
-
-### CreatePrimitiveResponse
-
-
-
-
-
-
-
-<a name="atomix-controller-v1-DeletePrimitiveRequest"></a>
-
-### DeletePrimitiveRequest
+### Configuration
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive_id | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix-controller-v1-DeletePrimitiveResponse"></a>
-
-### DeletePrimitiveResponse
-
-
-
-
-
-
-
-<a name="atomix-controller-v1-GetPrimitiveRequest"></a>
-
-### GetPrimitiveRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| primitive_id | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix-controller-v1-GetPrimitiveResponse"></a>
-
-### GetPrimitiveResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| primitive | [Primitive](#atomix-controller-v1-Primitive) |  |  |
-
-
-
-
-
-
-<a name="atomix-controller-v1-GetStoreRequest"></a>
-
-### GetStoreRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| store_id | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix-controller-v1-GetStoreResponse"></a>
-
-### GetStoreResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| store | [Store](#atomix-controller-v1-Store) |  |  |
-
-
-
-
-
-
-<a name="atomix-controller-v1-Primitive"></a>
-
-### Primitive
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  |  |
-| type | [string](#string) |  |  |
-| version | [string](#string) |  |  |
-| options | [google.protobuf.Any](#google-protobuf-Any) |  |  |
-
-
-
-
-
-
-<a name="atomix-controller-v1-Store"></a>
-
-### Store
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  |  |
-| type | [string](#string) |  |  |
+| store | [string](#string) |  |  |
+| driver | [string](#string) |  |  |
 | version | [string](#string) |  |  |
 | configuration | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+
+
+
+
+
+
+<a name="atomix-controller-v1-GetConfigurationRequest"></a>
+
+### GetConfigurationRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| store | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="atomix-controller-v1-GetConfigurationResponse"></a>
+
+### GetConfigurationResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| configuration | [Configuration](#atomix-controller-v1-Configuration) |  |  |
+
+
+
+
+
+
+<a name="atomix-controller-v1-WatchConfigurationRequest"></a>
+
+### WatchConfigurationRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| store | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="atomix-controller-v1-WatchConfigurationResponse"></a>
+
+### WatchConfigurationResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| configuration | [Configuration](#atomix-controller-v1-Configuration) |  |  |
 
 
 
@@ -187,10 +114,8 @@ The controller service provides control functions for the runtime.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreatePrimitive | [CreatePrimitiveRequest](#atomix-controller-v1-CreatePrimitiveRequest) | [CreatePrimitiveResponse](#atomix-controller-v1-CreatePrimitiveResponse) |  |
-| GetPrimitive | [GetPrimitiveRequest](#atomix-controller-v1-GetPrimitiveRequest) | [GetPrimitiveResponse](#atomix-controller-v1-GetPrimitiveResponse) |  |
-| DeletePrimitive | [DeletePrimitiveRequest](#atomix-controller-v1-DeletePrimitiveRequest) | [DeletePrimitiveResponse](#atomix-controller-v1-DeletePrimitiveResponse) |  |
-| GetStore | [GetStoreRequest](#atomix-controller-v1-GetStoreRequest) | [GetStoreResponse](#atomix-controller-v1-GetStoreResponse) |  |
+| GetConfiguration | [GetConfigurationRequest](#atomix-controller-v1-GetConfigurationRequest) | [GetConfigurationResponse](#atomix-controller-v1-GetConfigurationResponse) |  |
+| WatchConfiguration | [WatchConfigurationRequest](#atomix-controller-v1-WatchConfigurationRequest) | [WatchConfigurationResponse](#atomix-controller-v1-WatchConfigurationResponse) stream |  |
 
  
 
