@@ -1,0 +1,202 @@
+/*
+Copyright 2020-present Open Networking Foundation.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+package atomix.runtime.map.v1;
+
+import "google/protobuf/duration.proto";
+import "atomix/runtime/meta/v1/object.proto";
+import "atomix/runtime/primitive/v1/descriptor.proto";
+import "gogoproto/gogo.proto";
+
+message SizeRequest {
+
+}
+
+message SizeResponse {
+    uint32 size = 2 [
+        (atomix.runtime.primitive.v1.operation_aggregate) = SUM
+    ];
+}
+
+message Precondition {
+    oneof precondition {
+        atomix.runtime.meta.v1.ObjectMeta metadata = 1;
+    }
+}
+
+message PutRequest {
+    Entry entry = 2 [
+        (gogoproto.nullable) = false
+    ];
+    repeated Precondition preconditions = 3 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message PutResponse {
+    Entry entry = 2 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message GetRequest {
+    string key = 2 [
+        (atomix.runtime.primitive.v1.partition_key) = true
+    ];
+}
+
+message GetResponse {
+    Entry entry = 2 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message RemoveRequest {
+    Key key = 2 [
+        (gogoproto.nullable) = false
+    ];
+    repeated Precondition preconditions = 3 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message RemoveResponse {
+    Entry entry = 2 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message ClearRequest {
+
+}
+
+message ClearResponse {
+
+}
+
+message EntriesRequest {
+
+}
+
+message EntriesResponse {
+    Entry entry = 2 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message EventsRequest {
+    string key = 2;
+    bool replay = 3;
+}
+
+message EventsResponse {
+    Event event = 2 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message Event {
+    Type type = 1;
+    Entry entry = 2 [
+        (gogoproto.nullable) = false
+    ];
+
+    enum Type {
+        NONE = 0;
+        INSERT = 1;
+        UPDATE = 2;
+        REMOVE = 3;
+        REPLAY = 4;
+    }
+}
+
+message Entry {
+    Key key = 1 [
+        (gogoproto.nullable) = false
+    ];
+    Value value = 2;
+}
+
+message Key {
+    atomix.runtime.meta.v1.ObjectMeta meta = 1 [
+        (gogoproto.embed) = true,
+        (gogoproto.nullable) = false
+    ];
+    string key = 2 [
+        (atomix.runtime.primitive.v1.partition_key) = true
+    ];
+}
+
+message Value {
+    bytes value = 1;
+    google.protobuf.Duration ttl = 2 [
+        (gogoproto.customname) = "TTL",
+        (gogoproto.stdduration) = true
+    ];
+}
+
+// Map is a service for a map primitive
+service Map {
+    option (atomix.runtime.primitive.v1.primitive_type) = "Map";
+    option (atomix.runtime.primitive.v1.partitioned) = true;
+
+    // Size returns the size of the map
+    rpc Size (SizeRequest) returns (SizeResponse) {
+        option (atomix.runtime.primitive.v1.operation_id) = 1;
+        option (atomix.runtime.primitive.v1.operation_type) = QUERY;
+    }
+
+    // Put puts an entry into the map
+    rpc Put (PutRequest) returns (PutResponse) {
+        option (atomix.runtime.primitive.v1.operation_id) = 2;
+        option (atomix.runtime.primitive.v1.operation_type) = COMMAND;
+        option (atomix.runtime.primitive.v1.partition_strategy) = HASH;
+    }
+
+    // Get gets the entry for a key
+    rpc Get (GetRequest) returns (GetResponse) {
+        option (atomix.runtime.primitive.v1.operation_id) = 3;
+        option (atomix.runtime.primitive.v1.operation_type) = QUERY;
+        option (atomix.runtime.primitive.v1.partition_strategy) = HASH;
+    }
+
+    // Remove removes an entry from the map
+    rpc Remove (RemoveRequest) returns (RemoveResponse) {
+        option (atomix.runtime.primitive.v1.operation_id) = 4;
+        option (atomix.runtime.primitive.v1.operation_type) = COMMAND;
+        option (atomix.runtime.primitive.v1.partition_strategy) = HASH;
+    }
+
+    // Clear removes all entries from the map
+    rpc Clear (ClearRequest) returns (ClearResponse) {
+        option (atomix.runtime.primitive.v1.operation_id) = 5;
+        option (atomix.runtime.primitive.v1.operation_type) = COMMAND;
+    }
+
+    // Events listens for change events
+    rpc Events (EventsRequest) returns (stream EventsResponse) {
+        option (atomix.runtime.primitive.v1.operation_id) = 6;
+        option (atomix.runtime.primitive.v1.operation_type) = COMMAND;
+    }
+
+    // Entries lists all entries in the map
+    rpc Entries (EntriesRequest) returns (stream EntriesResponse) {
+        option (atomix.runtime.primitive.v1.operation_id) = 7;
+        option (atomix.runtime.primitive.v1.operation_type) = QUERY;
+    }
+}

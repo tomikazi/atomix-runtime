@@ -4,11 +4,14 @@
 ## Table of Contents
 
 - [atomix/runtime/v1/runtime.proto](#atomix_runtime_v1_runtime-proto)
+    - [CloseProxyRequest](#atomix-runtime-v1-CloseProxyRequest)
+    - [CloseProxyResponse](#atomix-runtime-v1-CloseProxyResponse)
     - [CreatePrimitiveRequest](#atomix-runtime-v1-CreatePrimitiveRequest)
     - [CreatePrimitiveResponse](#atomix-runtime-v1-CreatePrimitiveResponse)
+    - [CreateProxyRequest](#atomix-runtime-v1-CreateProxyRequest)
+    - [CreateProxyResponse](#atomix-runtime-v1-CreateProxyResponse)
     - [DeletePrimitiveRequest](#atomix-runtime-v1-DeletePrimitiveRequest)
     - [DeletePrimitiveResponse](#atomix-runtime-v1-DeletePrimitiveResponse)
-    - [Primitive](#atomix-runtime-v1-Primitive)
   
     - [Runtime](#atomix-runtime-v1-Runtime)
   
@@ -23,6 +26,31 @@
 
 
 
+<a name="atomix-runtime-v1-CloseProxyRequest"></a>
+
+### CloseProxyRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| session_id | [uint64](#uint64) |  |  |
+
+
+
+
+
+
+<a name="atomix-runtime-v1-CloseProxyResponse"></a>
+
+### CloseProxyResponse
+
+
+
+
+
+
+
 <a name="atomix-runtime-v1-CreatePrimitiveRequest"></a>
 
 ### CreatePrimitiveRequest
@@ -31,7 +59,17 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive | [Primitive](#atomix-runtime-v1-Primitive) |  |  |
+| primitive_id | [string](#string) |  |  |
+| store_id | [string](#string) |  |  |
+| counter | [atomix.runtime.counter.v1.CounterOptions](#atomix-runtime-counter-v1-CounterOptions) |  |  |
+| election | [atomix.runtime.election.v1.ElectionOptions](#atomix-runtime-election-v1-ElectionOptions) |  |  |
+| indexed_map | [atomix.runtime.indexed_map.v1.IndexedMapOptions](#atomix-runtime-indexed_map-v1-IndexedMapOptions) |  |  |
+| list | [atomix.runtime.list.v1.ListOptions](#atomix-runtime-list-v1-ListOptions) |  |  |
+| lock | [atomix.runtime.lock.v1.LockOptions](#atomix-runtime-lock-v1-LockOptions) |  |  |
+| map | [atomix.runtime.map.v1.MapOptions](#atomix-runtime-map-v1-MapOptions) |  |  |
+| set | [atomix.runtime.set.v1.SetOptions](#atomix-runtime-set-v1-SetOptions) |  |  |
+| topic | [atomix.runtime.topic.v1.TopicOptions](#atomix-runtime-topic-v1-TopicOptions) |  |  |
+| value | [atomix.runtime.value.v1.ValueOptions](#atomix-runtime-value-v1-ValueOptions) |  |  |
 
 
 
@@ -48,6 +86,45 @@
 
 
 
+<a name="atomix-runtime-v1-CreateProxyRequest"></a>
+
+### CreateProxyRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| primitive_id | [string](#string) |  |  |
+| counter | [atomix.runtime.counter.v1.CounterProxyOptions](#atomix-runtime-counter-v1-CounterProxyOptions) |  |  |
+| election | [atomix.runtime.election.v1.ElectionProxyOptions](#atomix-runtime-election-v1-ElectionProxyOptions) |  |  |
+| indexed_map | [atomix.runtime.indexed_map.v1.IndexedMapProxyOptions](#atomix-runtime-indexed_map-v1-IndexedMapProxyOptions) |  |  |
+| list | [atomix.runtime.list.v1.ListProxyOptions](#atomix-runtime-list-v1-ListProxyOptions) |  |  |
+| lock | [atomix.runtime.lock.v1.LockProxyOptions](#atomix-runtime-lock-v1-LockProxyOptions) |  |  |
+| map | [atomix.runtime.map.v1.MapProxyOptions](#atomix-runtime-map-v1-MapProxyOptions) |  |  |
+| set | [atomix.runtime.set.v1.SetProxyOptions](#atomix-runtime-set-v1-SetProxyOptions) |  |  |
+| topic | [atomix.runtime.topic.v1.TopicProxyOptions](#atomix-runtime-topic-v1-TopicProxyOptions) |  |  |
+| value | [atomix.runtime.value.v1.ValueProxyOptions](#atomix-runtime-value-v1-ValueProxyOptions) |  |  |
+
+
+
+
+
+
+<a name="atomix-runtime-v1-CreateProxyResponse"></a>
+
+### CreateProxyResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| session_id | [uint64](#uint64) |  |  |
+
+
+
+
+
+
 <a name="atomix-runtime-v1-DeletePrimitiveRequest"></a>
 
 ### DeletePrimitiveRequest
@@ -56,7 +133,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive | [Primitive](#atomix-runtime-v1-Primitive) |  |  |
+| primitive_id | [string](#string) |  |  |
+| store_id | [string](#string) |  |  |
 
 
 
@@ -67,21 +145,6 @@
 
 ### DeletePrimitiveResponse
 
-
-
-
-
-
-
-<a name="atomix-runtime-v1-Primitive"></a>
-
-### Primitive
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
 
 
 
@@ -104,6 +167,8 @@ at runtime.
 | ----------- | ------------ | ------------- | ------------|
 | CreatePrimitive | [CreatePrimitiveRequest](#atomix-runtime-v1-CreatePrimitiveRequest) | [CreatePrimitiveResponse](#atomix-runtime-v1-CreatePrimitiveResponse) |  |
 | DeletePrimitive | [DeletePrimitiveRequest](#atomix-runtime-v1-DeletePrimitiveRequest) | [DeletePrimitiveResponse](#atomix-runtime-v1-DeletePrimitiveResponse) |  |
+| CreateProxy | [CreateProxyRequest](#atomix-runtime-v1-CreateProxyRequest) | [CreateProxyResponse](#atomix-runtime-v1-CreateProxyResponse) |  |
+| CloseProxy | [CloseProxyRequest](#atomix-runtime-v1-CloseProxyRequest) | [CloseProxyResponse](#atomix-runtime-v1-CloseProxyResponse) |  |
 
  
 

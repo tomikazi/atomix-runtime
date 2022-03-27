@@ -1,0 +1,107 @@
+/*
+Copyright 2020-present Open Networking Foundation.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+package atomix.runtime.value.v1;
+
+import "atomix/runtime/primitive/v1/descriptor.proto";
+import "atomix/runtime/meta/v1/object.proto";
+import "gogoproto/gogo.proto";
+
+message GetRequest {
+
+}
+
+message GetResponse {
+    Object value = 2 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message Precondition {
+    oneof precondition {
+        atomix.runtime.meta.v1.ObjectMeta metadata = 1;
+    }
+}
+
+message SetRequest {
+    Object value = 2 [
+        (gogoproto.nullable) = false
+    ];
+    repeated Precondition preconditions = 3 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message SetResponse {
+    Object value = 2 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message EventsRequest {
+
+}
+
+message EventsResponse {
+    Event event = 2 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message Event {
+    Type type = 1;
+    Object value = 2 [
+        (gogoproto.nullable) = false
+    ];
+
+    enum Type {
+        NONE = 0;
+        UPDATE = 1;
+    }
+}
+
+message Object {
+    atomix.runtime.meta.v1.ObjectMeta meta = 1 [
+        (gogoproto.embed) = true,
+        (gogoproto.nullable) = false
+    ];
+    bytes value = 2;
+}
+
+// Value is a service for a value primitive
+service Value {
+    option (atomix.runtime.primitive.v1.primitive_type) = "Value";
+
+    // Set sets the value
+    rpc Set (SetRequest) returns (SetResponse) {
+        option (atomix.runtime.primitive.v1.operation_id) = 1;
+        option (atomix.runtime.primitive.v1.operation_type) = COMMAND;
+    }
+
+    // Get gets the value
+    rpc Get (GetRequest) returns (GetResponse) {
+        option (atomix.runtime.primitive.v1.operation_id) = 2;
+        option (atomix.runtime.primitive.v1.operation_type) = QUERY;
+    }
+
+    // Events listens for value change events
+    rpc Events (EventsRequest) returns (stream EventsResponse) {
+        option (atomix.runtime.primitive.v1.operation_id) = 3;
+        option (atomix.runtime.primitive.v1.operation_type) = COMMAND;
+    }
+}

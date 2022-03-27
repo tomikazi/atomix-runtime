@@ -20,14 +20,47 @@ package atomix.runtime.v1;
 
 import "gogoproto/gogo.proto";
 
-message Primitive {
-    string name = 1;
+import "atomix/runtime/counter/v1/options.proto";
+import "atomix/runtime/election/v1/options.proto";
+import "atomix/runtime/indexed_map/v1/options.proto";
+import "atomix/runtime/list/v1/options.proto";
+import "atomix/runtime/lock/v1/options.proto";
+import "atomix/runtime/map/v1/options.proto";
+import "atomix/runtime/set/v1/options.proto";
+import "atomix/runtime/topic/v1/options.proto";
+import "atomix/runtime/value/v1/options.proto";
+
+// The runtime service provides functions for applications to create and manage primitives
+// at runtime.
+service Runtime {
+    rpc CreatePrimitive(CreatePrimitiveRequest) returns (CreatePrimitiveResponse);
+    rpc DeletePrimitive(DeletePrimitiveRequest) returns (DeletePrimitiveResponse);
+    rpc CreateProxy(CreateProxyRequest) returns (CreateProxyResponse);
+    rpc CloseProxy(CloseProxyRequest) returns (CloseProxyResponse);
 }
 
 message CreatePrimitiveRequest {
-    Primitive primitive = 1 [
-        (gogoproto.nullable) = false
+    string primitive_id = 1 [
+        (gogoproto.customname) = "PrimitiveID",
+        (gogoproto.casttype) = "PrimitiveID"
     ];
+
+    string store_id = 2 [
+        (gogoproto.customname) = "StoreID",
+        (gogoproto.casttype) = "StoreID"
+    ];
+
+    oneof primitive {
+        atomix.runtime.counter.v1.CounterOptions counter = 3;
+        atomix.runtime.election.v1.ElectionOptions election = 4;
+        atomix.runtime.indexed_map.v1.IndexedMapOptions indexed_map = 5;
+        atomix.runtime.list.v1.ListOptions list = 6;
+        atomix.runtime.lock.v1.LockOptions lock = 7;
+        atomix.runtime.map.v1.MapOptions map = 8;
+        atomix.runtime.set.v1.SetOptions set = 9;
+        atomix.runtime.topic.v1.TopicOptions topic = 10;
+        atomix.runtime.value.v1.ValueOptions value = 11;
+    }
 }
 
 message CreatePrimitiveResponse {
@@ -35,8 +68,14 @@ message CreatePrimitiveResponse {
 }
 
 message DeletePrimitiveRequest {
-    Primitive primitive = 1 [
-        (gogoproto.nullable) = false
+    string primitive_id = 1 [
+        (gogoproto.customname) = "PrimitiveID",
+        (gogoproto.casttype) = "PrimitiveID"
+    ];
+
+    string store_id = 2 [
+        (gogoproto.customname) = "StoreID",
+        (gogoproto.casttype) = "StoreID"
     ];
 }
 
@@ -44,9 +83,39 @@ message DeletePrimitiveResponse {
 
 }
 
-// The runtime service provides functions for applications to create and manage primitives
-// at runtime.
-service Runtime {
-    rpc CreatePrimitive(CreatePrimitiveRequest) returns (CreatePrimitiveResponse);
-    rpc DeletePrimitive(DeletePrimitiveRequest) returns (DeletePrimitiveResponse);
+message CreateProxyRequest {
+    string primitive_id = 1 [
+        (gogoproto.customname) = "PrimitiveID",
+        (gogoproto.casttype) = "PrimitiveID"
+    ];
+
+    oneof proxy {
+        atomix.runtime.counter.v1.CounterProxyOptions counter = 2;
+        atomix.runtime.election.v1.ElectionProxyOptions election = 3;
+        atomix.runtime.indexed_map.v1.IndexedMapProxyOptions indexed_map = 4;
+        atomix.runtime.list.v1.ListProxyOptions list = 5;
+        atomix.runtime.lock.v1.LockProxyOptions lock = 6;
+        atomix.runtime.map.v1.MapProxyOptions map = 7;
+        atomix.runtime.set.v1.SetProxyOptions set = 8;
+        atomix.runtime.topic.v1.TopicProxyOptions topic = 9;
+        atomix.runtime.value.v1.ValueProxyOptions value = 10;
+    }
+}
+
+message CreateProxyResponse {
+    uint64 session_id = 1 [
+        (gogoproto.customname) = "SessionID",
+        (gogoproto.casttype) = "SessionID"
+    ];
+}
+
+message CloseProxyRequest {
+    uint64 session_id = 1 [
+        (gogoproto.customname) = "SessionID",
+        (gogoproto.casttype) = "SessionID"
+    ];
+}
+
+message CloseProxyResponse {
+
 }

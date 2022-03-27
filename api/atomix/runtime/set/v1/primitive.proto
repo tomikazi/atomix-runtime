@@ -1,0 +1,170 @@
+/*
+Copyright 2020-present Open Networking Foundation.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+package atomix.runtime.set.v1;
+
+import "atomix/runtime/primitive/v1/descriptor.proto";
+import "atomix/runtime/meta/v1/object.proto";
+import "gogoproto/gogo.proto";
+
+message SizeRequest {
+
+}
+
+message SizeResponse {
+    uint32 size = 2 [
+        (atomix.runtime.primitive.v1.operation_aggregate) = SUM
+    ];
+}
+
+message ContainsRequest {
+    Element element = 2 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message ContainsResponse {
+    bool contains = 2;
+}
+
+message AddRequest {
+    Element element = 2 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message AddResponse {
+    Element element = 2 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message RemoveRequest {
+    Element element = 2 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message RemoveResponse {
+    Element element = 2 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message ClearRequest {
+
+}
+
+message ClearResponse {
+
+}
+
+message EventsRequest {
+    bool replay = 2;
+}
+
+message EventsResponse {
+    Event event = 2 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message Event {
+    Type type = 1;
+    Element element = 2 [
+        (gogoproto.nullable) = false
+    ];
+
+    enum Type {
+        NONE = 0;
+        ADD = 1;
+        REMOVE = 2;
+        REPLAY = 3;
+    }
+}
+
+message ElementsRequest {
+
+}
+
+message ElementsResponse {
+    Element element = 2 [
+        (gogoproto.nullable) = false
+    ];
+}
+
+message Element {
+    atomix.runtime.meta.v1.ObjectMeta meta = 1 [
+        (gogoproto.embed) = true,
+        (gogoproto.nullable) = false
+    ];
+    string value = 2 [
+        (atomix.runtime.primitive.v1.partition_key) = true
+    ];
+}
+
+// Set is a service for a set primitive
+service Set {
+    option (atomix.runtime.primitive.v1.primitive_type) = "Set";
+    option (atomix.runtime.primitive.v1.partitioned) = true;
+
+    // Size gets the number of elements in the set
+    rpc Size (SizeRequest) returns (SizeResponse) {
+        option (atomix.runtime.primitive.v1.operation_id) = 1;
+        option (atomix.runtime.primitive.v1.operation_type) = QUERY;
+    }
+
+    // Contains returns whether the set contains a value
+    rpc Contains (ContainsRequest) returns (ContainsResponse) {
+        option (atomix.runtime.primitive.v1.operation_id) = 2;
+        option (atomix.runtime.primitive.v1.operation_type) = QUERY;
+        option (atomix.runtime.primitive.v1.partition_strategy) = HASH;
+    }
+
+    // Add adds a value to the set
+    rpc Add (AddRequest) returns (AddResponse) {
+        option (atomix.runtime.primitive.v1.operation_id) = 3;
+        option (atomix.runtime.primitive.v1.operation_type) = COMMAND;
+        option (atomix.runtime.primitive.v1.partition_strategy) = HASH;
+    }
+
+    // Remove removes a value from the set
+    rpc Remove (RemoveRequest) returns (RemoveResponse) {
+        option (atomix.runtime.primitive.v1.operation_id) = 4;
+        option (atomix.runtime.primitive.v1.operation_type) = COMMAND;
+        option (atomix.runtime.primitive.v1.partition_strategy) = HASH;
+    }
+
+    // Clear removes all values from the set
+    rpc Clear (ClearRequest) returns (ClearResponse) {
+        option (atomix.runtime.primitive.v1.operation_id) = 5;
+        option (atomix.runtime.primitive.v1.operation_type) = COMMAND;
+    }
+
+    // Events listens for set change events
+    rpc Events (EventsRequest) returns (stream EventsResponse) {
+        option (atomix.runtime.primitive.v1.operation_id) = 6;
+        option (atomix.runtime.primitive.v1.operation_type) = COMMAND;
+    }
+
+    // Elements lists all elements in the set
+    rpc Elements (ElementsRequest) returns (stream ElementsResponse) {
+        option (atomix.runtime.primitive.v1.operation_id) = 7;
+        option (atomix.runtime.primitive.v1.operation_type) = QUERY;
+    }
+}
