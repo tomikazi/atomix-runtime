@@ -3,51 +3,26 @@
 
 ## Table of Contents
 
-- [atomix/runtime/v1/runtime.proto](#atomix_runtime_v1_runtime-proto)
-    - [CloseProxyRequest](#atomix-runtime-v1-CloseProxyRequest)
-    - [CloseProxyResponse](#atomix-runtime-v1-CloseProxyResponse)
+- [atomix/runtime/v1/controller.proto](#atomix_runtime_v1_controller-proto)
     - [CreatePrimitiveRequest](#atomix-runtime-v1-CreatePrimitiveRequest)
     - [CreatePrimitiveResponse](#atomix-runtime-v1-CreatePrimitiveResponse)
-    - [CreateProxyRequest](#atomix-runtime-v1-CreateProxyRequest)
-    - [CreateProxyResponse](#atomix-runtime-v1-CreateProxyResponse)
     - [DeletePrimitiveRequest](#atomix-runtime-v1-DeletePrimitiveRequest)
     - [DeletePrimitiveResponse](#atomix-runtime-v1-DeletePrimitiveResponse)
+    - [GetPrimitiveRequest](#atomix-runtime-v1-GetPrimitiveRequest)
+    - [GetPrimitiveResponse](#atomix-runtime-v1-GetPrimitiveResponse)
+    - [GetStoreRequest](#atomix-runtime-v1-GetStoreRequest)
+    - [GetStoreResponse](#atomix-runtime-v1-GetStoreResponse)
   
-    - [Runtime](#atomix-runtime-v1-Runtime)
+    - [Controller](#atomix-runtime-v1-Controller)
   
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix_runtime_v1_runtime-proto"></a>
+<a name="atomix_runtime_v1_controller-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/runtime/v1/runtime.proto
-
-
-
-<a name="atomix-runtime-v1-CloseProxyRequest"></a>
-
-### CloseProxyRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proxy_id | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="atomix-runtime-v1-CloseProxyResponse"></a>
-
-### CloseProxyResponse
-
-
-
-
+## atomix/runtime/v1/controller.proto
 
 
 
@@ -76,36 +51,6 @@
 
 
 
-<a name="atomix-runtime-v1-CreateProxyRequest"></a>
-
-### CreateProxyRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proxy | [Proxy](#atomix-runtime-v1-Proxy) |  |  |
-
-
-
-
-
-
-<a name="atomix-runtime-v1-CreateProxyResponse"></a>
-
-### CreateProxyResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proxy_id | [uint64](#uint64) |  |  |
-
-
-
-
-
-
 <a name="atomix-runtime-v1-DeletePrimitiveRequest"></a>
 
 ### DeletePrimitiveRequest
@@ -115,7 +60,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | primitive_id | [string](#string) |  |  |
-| store_id | [string](#string) |  |  |
 
 
 
@@ -131,25 +75,84 @@
 
 
 
- 
+
+<a name="atomix-runtime-v1-GetPrimitiveRequest"></a>
+
+### GetPrimitiveRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| primitive_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="atomix-runtime-v1-GetPrimitiveResponse"></a>
+
+### GetPrimitiveResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| primitive | [Primitive](#atomix-runtime-v1-Primitive) |  |  |
+
+
+
+
+
+
+<a name="atomix-runtime-v1-GetStoreRequest"></a>
+
+### GetStoreRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| store_id | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="atomix-runtime-v1-GetStoreResponse"></a>
+
+### GetStoreResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| store | [Store](#atomix-runtime-v1-Store) |  |  |
+
+
+
+
 
  
 
  
 
+ 
 
-<a name="atomix-runtime-v1-Runtime"></a>
 
-### Runtime
-The runtime service provides functions for applications to create and manage primitives
-at runtime.
+<a name="atomix-runtime-v1-Controller"></a>
+
+### Controller
+The controller service provides control functions for the runtime.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | CreatePrimitive | [CreatePrimitiveRequest](#atomix-runtime-v1-CreatePrimitiveRequest) | [CreatePrimitiveResponse](#atomix-runtime-v1-CreatePrimitiveResponse) |  |
+| GetPrimitive | [GetPrimitiveRequest](#atomix-runtime-v1-GetPrimitiveRequest) | [GetPrimitiveResponse](#atomix-runtime-v1-GetPrimitiveResponse) |  |
 | DeletePrimitive | [DeletePrimitiveRequest](#atomix-runtime-v1-DeletePrimitiveRequest) | [DeletePrimitiveResponse](#atomix-runtime-v1-DeletePrimitiveResponse) |  |
-| CreateProxy | [CreateProxyRequest](#atomix-runtime-v1-CreateProxyRequest) | [CreateProxyResponse](#atomix-runtime-v1-CreateProxyResponse) |  |
-| CloseProxy | [CloseProxyRequest](#atomix-runtime-v1-CloseProxyRequest) | [CloseProxyResponse](#atomix-runtime-v1-CloseProxyResponse) |  |
+| GetStore | [GetStoreRequest](#atomix-runtime-v1-GetStoreRequest) | [GetStoreResponse](#atomix-runtime-v1-GetStoreResponse) |  |
 
  
 

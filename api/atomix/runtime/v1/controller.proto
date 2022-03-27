@@ -22,13 +22,12 @@ import "gogoproto/gogo.proto";
 
 import "atomix/runtime/v1/common.proto";
 
-// The runtime service provides functions for applications to create and manage primitives
-// at runtime.
-service Runtime {
+// The controller service provides control functions for the runtime.
+service Controller {
     rpc CreatePrimitive(CreatePrimitiveRequest) returns (CreatePrimitiveResponse);
+    rpc GetPrimitive(GetPrimitiveRequest) returns (GetPrimitiveResponse);
     rpc DeletePrimitive(DeletePrimitiveRequest) returns (DeletePrimitiveResponse);
-    rpc CreateProxy(CreateProxyRequest) returns (CreateProxyResponse);
-    rpc CloseProxy(CloseProxyRequest) returns (CloseProxyResponse);
+    rpc GetStore(GetStoreRequest) returns (GetStoreResponse);
 }
 
 message CreatePrimitiveRequest {
@@ -39,15 +38,21 @@ message CreatePrimitiveResponse {
 
 }
 
-message DeletePrimitiveRequest {
+message GetPrimitiveRequest {
     string primitive_id = 1 [
         (gogoproto.customname) = "PrimitiveID",
         (gogoproto.casttype) = "PrimitiveID"
     ];
+}
 
-    string store_id = 2 [
-        (gogoproto.customname) = "StoreID",
-        (gogoproto.casttype) = "StoreID"
+message GetPrimitiveResponse {
+    Primitive primitive = 1;
+}
+
+message DeletePrimitiveRequest {
+    string primitive_id = 1 [
+        (gogoproto.customname) = "PrimitiveID",
+        (gogoproto.casttype) = "PrimitiveID"
     ];
 }
 
@@ -55,24 +60,13 @@ message DeletePrimitiveResponse {
 
 }
 
-message CreateProxyRequest {
-    Proxy proxy = 1;
-}
-
-message CreateProxyResponse {
-    uint64 proxy_id = 1 [
-        (gogoproto.customname) = "ProxyID",
-        (gogoproto.casttype) = "ProxyID"
+message GetStoreRequest {
+    string store_id = 1 [
+        (gogoproto.customname) = "StoreID",
+        (gogoproto.casttype) = "StoreID"
     ];
 }
 
-message CloseProxyRequest {
-    uint64 proxy_id = 1 [
-        (gogoproto.customname) = "ProxyID",
-        (gogoproto.casttype) = "ProxyID"
-    ];
-}
-
-message CloseProxyResponse {
-
+message GetStoreResponse {
+    Store store = 1;
 }

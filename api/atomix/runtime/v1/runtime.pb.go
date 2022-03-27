@@ -6,15 +6,6 @@ package v1
 import (
 	context "context"
 	fmt "fmt"
-	v1 "github.com/atomix/atomix-runtime/api/atomix/runtime/counter/v1"
-	v11 "github.com/atomix/atomix-runtime/api/atomix/runtime/election/v1"
-	v12 "github.com/atomix/atomix-runtime/api/atomix/runtime/indexed_map/v1"
-	v13 "github.com/atomix/atomix-runtime/api/atomix/runtime/list/v1"
-	v14 "github.com/atomix/atomix-runtime/api/atomix/runtime/lock/v1"
-	v15 "github.com/atomix/atomix-runtime/api/atomix/runtime/map/v1"
-	v16 "github.com/atomix/atomix-runtime/api/atomix/runtime/set/v1"
-	v17 "github.com/atomix/atomix-runtime/api/atomix/runtime/topic/v1"
-	v18 "github.com/atomix/atomix-runtime/api/atomix/runtime/value/v1"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"
@@ -37,19 +28,7 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type CreatePrimitiveRequest struct {
-	PrimitiveID PrimitiveID `protobuf:"bytes,1,opt,name=primitive_id,json=primitiveId,proto3,casttype=PrimitiveID" json:"primitive_id,omitempty"`
-	StoreID     StoreID     `protobuf:"bytes,2,opt,name=store_id,json=storeId,proto3,casttype=StoreID" json:"store_id,omitempty"`
-	// Types that are valid to be assigned to Primitive:
-	//	*CreatePrimitiveRequest_Counter
-	//	*CreatePrimitiveRequest_Election
-	//	*CreatePrimitiveRequest_IndexedMap
-	//	*CreatePrimitiveRequest_List
-	//	*CreatePrimitiveRequest_Lock
-	//	*CreatePrimitiveRequest_Map
-	//	*CreatePrimitiveRequest_Set
-	//	*CreatePrimitiveRequest_Topic
-	//	*CreatePrimitiveRequest_Value
-	Primitive isCreatePrimitiveRequest_Primitive `protobuf_oneof:"primitive"`
+	Primitive *Primitive `protobuf:"bytes,1,opt,name=primitive,proto3" json:"primitive,omitempty"`
 }
 
 func (m *CreatePrimitiveRequest) Reset()         { *m = CreatePrimitiveRequest{} }
@@ -85,147 +64,11 @@ func (m *CreatePrimitiveRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CreatePrimitiveRequest proto.InternalMessageInfo
 
-type isCreatePrimitiveRequest_Primitive interface {
-	isCreatePrimitiveRequest_Primitive()
-	MarshalTo([]byte) (int, error)
-	Size() int
-}
-
-type CreatePrimitiveRequest_Counter struct {
-	Counter *v1.CounterOptions `protobuf:"bytes,3,opt,name=counter,proto3,oneof" json:"counter,omitempty"`
-}
-type CreatePrimitiveRequest_Election struct {
-	Election *v11.ElectionOptions `protobuf:"bytes,4,opt,name=election,proto3,oneof" json:"election,omitempty"`
-}
-type CreatePrimitiveRequest_IndexedMap struct {
-	IndexedMap *v12.IndexedMapOptions `protobuf:"bytes,5,opt,name=indexed_map,json=indexedMap,proto3,oneof" json:"indexed_map,omitempty"`
-}
-type CreatePrimitiveRequest_List struct {
-	List *v13.ListOptions `protobuf:"bytes,6,opt,name=list,proto3,oneof" json:"list,omitempty"`
-}
-type CreatePrimitiveRequest_Lock struct {
-	Lock *v14.LockOptions `protobuf:"bytes,7,opt,name=lock,proto3,oneof" json:"lock,omitempty"`
-}
-type CreatePrimitiveRequest_Map struct {
-	Map *v15.MapOptions `protobuf:"bytes,8,opt,name=map,proto3,oneof" json:"map,omitempty"`
-}
-type CreatePrimitiveRequest_Set struct {
-	Set *v16.SetOptions `protobuf:"bytes,9,opt,name=set,proto3,oneof" json:"set,omitempty"`
-}
-type CreatePrimitiveRequest_Topic struct {
-	Topic *v17.TopicOptions `protobuf:"bytes,10,opt,name=topic,proto3,oneof" json:"topic,omitempty"`
-}
-type CreatePrimitiveRequest_Value struct {
-	Value *v18.ValueOptions `protobuf:"bytes,11,opt,name=value,proto3,oneof" json:"value,omitempty"`
-}
-
-func (*CreatePrimitiveRequest_Counter) isCreatePrimitiveRequest_Primitive()    {}
-func (*CreatePrimitiveRequest_Election) isCreatePrimitiveRequest_Primitive()   {}
-func (*CreatePrimitiveRequest_IndexedMap) isCreatePrimitiveRequest_Primitive() {}
-func (*CreatePrimitiveRequest_List) isCreatePrimitiveRequest_Primitive()       {}
-func (*CreatePrimitiveRequest_Lock) isCreatePrimitiveRequest_Primitive()       {}
-func (*CreatePrimitiveRequest_Map) isCreatePrimitiveRequest_Primitive()        {}
-func (*CreatePrimitiveRequest_Set) isCreatePrimitiveRequest_Primitive()        {}
-func (*CreatePrimitiveRequest_Topic) isCreatePrimitiveRequest_Primitive()      {}
-func (*CreatePrimitiveRequest_Value) isCreatePrimitiveRequest_Primitive()      {}
-
-func (m *CreatePrimitiveRequest) GetPrimitive() isCreatePrimitiveRequest_Primitive {
+func (m *CreatePrimitiveRequest) GetPrimitive() *Primitive {
 	if m != nil {
 		return m.Primitive
 	}
 	return nil
-}
-
-func (m *CreatePrimitiveRequest) GetPrimitiveID() PrimitiveID {
-	if m != nil {
-		return m.PrimitiveID
-	}
-	return ""
-}
-
-func (m *CreatePrimitiveRequest) GetStoreID() StoreID {
-	if m != nil {
-		return m.StoreID
-	}
-	return ""
-}
-
-func (m *CreatePrimitiveRequest) GetCounter() *v1.CounterOptions {
-	if x, ok := m.GetPrimitive().(*CreatePrimitiveRequest_Counter); ok {
-		return x.Counter
-	}
-	return nil
-}
-
-func (m *CreatePrimitiveRequest) GetElection() *v11.ElectionOptions {
-	if x, ok := m.GetPrimitive().(*CreatePrimitiveRequest_Election); ok {
-		return x.Election
-	}
-	return nil
-}
-
-func (m *CreatePrimitiveRequest) GetIndexedMap() *v12.IndexedMapOptions {
-	if x, ok := m.GetPrimitive().(*CreatePrimitiveRequest_IndexedMap); ok {
-		return x.IndexedMap
-	}
-	return nil
-}
-
-func (m *CreatePrimitiveRequest) GetList() *v13.ListOptions {
-	if x, ok := m.GetPrimitive().(*CreatePrimitiveRequest_List); ok {
-		return x.List
-	}
-	return nil
-}
-
-func (m *CreatePrimitiveRequest) GetLock() *v14.LockOptions {
-	if x, ok := m.GetPrimitive().(*CreatePrimitiveRequest_Lock); ok {
-		return x.Lock
-	}
-	return nil
-}
-
-func (m *CreatePrimitiveRequest) GetMap() *v15.MapOptions {
-	if x, ok := m.GetPrimitive().(*CreatePrimitiveRequest_Map); ok {
-		return x.Map
-	}
-	return nil
-}
-
-func (m *CreatePrimitiveRequest) GetSet() *v16.SetOptions {
-	if x, ok := m.GetPrimitive().(*CreatePrimitiveRequest_Set); ok {
-		return x.Set
-	}
-	return nil
-}
-
-func (m *CreatePrimitiveRequest) GetTopic() *v17.TopicOptions {
-	if x, ok := m.GetPrimitive().(*CreatePrimitiveRequest_Topic); ok {
-		return x.Topic
-	}
-	return nil
-}
-
-func (m *CreatePrimitiveRequest) GetValue() *v18.ValueOptions {
-	if x, ok := m.GetPrimitive().(*CreatePrimitiveRequest_Value); ok {
-		return x.Value
-	}
-	return nil
-}
-
-// XXX_OneofWrappers is for the internal use of the proto package.
-func (*CreatePrimitiveRequest) XXX_OneofWrappers() []interface{} {
-	return []interface{}{
-		(*CreatePrimitiveRequest_Counter)(nil),
-		(*CreatePrimitiveRequest_Election)(nil),
-		(*CreatePrimitiveRequest_IndexedMap)(nil),
-		(*CreatePrimitiveRequest_List)(nil),
-		(*CreatePrimitiveRequest_Lock)(nil),
-		(*CreatePrimitiveRequest_Map)(nil),
-		(*CreatePrimitiveRequest_Set)(nil),
-		(*CreatePrimitiveRequest_Topic)(nil),
-		(*CreatePrimitiveRequest_Value)(nil),
-	}
 }
 
 type CreatePrimitiveResponse struct {
@@ -353,18 +196,7 @@ func (m *DeletePrimitiveResponse) XXX_DiscardUnknown() {
 var xxx_messageInfo_DeletePrimitiveResponse proto.InternalMessageInfo
 
 type CreateProxyRequest struct {
-	PrimitiveID PrimitiveID `protobuf:"bytes,1,opt,name=primitive_id,json=primitiveId,proto3,casttype=PrimitiveID" json:"primitive_id,omitempty"`
-	// Types that are valid to be assigned to Proxy:
-	//	*CreateProxyRequest_Counter
-	//	*CreateProxyRequest_Election
-	//	*CreateProxyRequest_IndexedMap
-	//	*CreateProxyRequest_List
-	//	*CreateProxyRequest_Lock
-	//	*CreateProxyRequest_Map
-	//	*CreateProxyRequest_Set
-	//	*CreateProxyRequest_Topic
-	//	*CreateProxyRequest_Value
-	Proxy isCreateProxyRequest_Proxy `protobuf_oneof:"proxy"`
+	Proxy *Proxy `protobuf:"bytes,1,opt,name=proxy,proto3" json:"proxy,omitempty"`
 }
 
 func (m *CreateProxyRequest) Reset()         { *m = CreateProxyRequest{} }
@@ -400,144 +232,15 @@ func (m *CreateProxyRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CreateProxyRequest proto.InternalMessageInfo
 
-type isCreateProxyRequest_Proxy interface {
-	isCreateProxyRequest_Proxy()
-	MarshalTo([]byte) (int, error)
-	Size() int
-}
-
-type CreateProxyRequest_Counter struct {
-	Counter *v1.CounterProxyOptions `protobuf:"bytes,2,opt,name=counter,proto3,oneof" json:"counter,omitempty"`
-}
-type CreateProxyRequest_Election struct {
-	Election *v11.ElectionProxyOptions `protobuf:"bytes,3,opt,name=election,proto3,oneof" json:"election,omitempty"`
-}
-type CreateProxyRequest_IndexedMap struct {
-	IndexedMap *v12.IndexedMapProxyOptions `protobuf:"bytes,4,opt,name=indexed_map,json=indexedMap,proto3,oneof" json:"indexed_map,omitempty"`
-}
-type CreateProxyRequest_List struct {
-	List *v13.ListProxyOptions `protobuf:"bytes,5,opt,name=list,proto3,oneof" json:"list,omitempty"`
-}
-type CreateProxyRequest_Lock struct {
-	Lock *v14.LockProxyOptions `protobuf:"bytes,6,opt,name=lock,proto3,oneof" json:"lock,omitempty"`
-}
-type CreateProxyRequest_Map struct {
-	Map *v15.MapProxyOptions `protobuf:"bytes,7,opt,name=map,proto3,oneof" json:"map,omitempty"`
-}
-type CreateProxyRequest_Set struct {
-	Set *v16.SetProxyOptions `protobuf:"bytes,8,opt,name=set,proto3,oneof" json:"set,omitempty"`
-}
-type CreateProxyRequest_Topic struct {
-	Topic *v17.TopicProxyOptions `protobuf:"bytes,9,opt,name=topic,proto3,oneof" json:"topic,omitempty"`
-}
-type CreateProxyRequest_Value struct {
-	Value *v18.ValueProxyOptions `protobuf:"bytes,10,opt,name=value,proto3,oneof" json:"value,omitempty"`
-}
-
-func (*CreateProxyRequest_Counter) isCreateProxyRequest_Proxy()    {}
-func (*CreateProxyRequest_Election) isCreateProxyRequest_Proxy()   {}
-func (*CreateProxyRequest_IndexedMap) isCreateProxyRequest_Proxy() {}
-func (*CreateProxyRequest_List) isCreateProxyRequest_Proxy()       {}
-func (*CreateProxyRequest_Lock) isCreateProxyRequest_Proxy()       {}
-func (*CreateProxyRequest_Map) isCreateProxyRequest_Proxy()        {}
-func (*CreateProxyRequest_Set) isCreateProxyRequest_Proxy()        {}
-func (*CreateProxyRequest_Topic) isCreateProxyRequest_Proxy()      {}
-func (*CreateProxyRequest_Value) isCreateProxyRequest_Proxy()      {}
-
-func (m *CreateProxyRequest) GetProxy() isCreateProxyRequest_Proxy {
+func (m *CreateProxyRequest) GetProxy() *Proxy {
 	if m != nil {
 		return m.Proxy
 	}
 	return nil
 }
 
-func (m *CreateProxyRequest) GetPrimitiveID() PrimitiveID {
-	if m != nil {
-		return m.PrimitiveID
-	}
-	return ""
-}
-
-func (m *CreateProxyRequest) GetCounter() *v1.CounterProxyOptions {
-	if x, ok := m.GetProxy().(*CreateProxyRequest_Counter); ok {
-		return x.Counter
-	}
-	return nil
-}
-
-func (m *CreateProxyRequest) GetElection() *v11.ElectionProxyOptions {
-	if x, ok := m.GetProxy().(*CreateProxyRequest_Election); ok {
-		return x.Election
-	}
-	return nil
-}
-
-func (m *CreateProxyRequest) GetIndexedMap() *v12.IndexedMapProxyOptions {
-	if x, ok := m.GetProxy().(*CreateProxyRequest_IndexedMap); ok {
-		return x.IndexedMap
-	}
-	return nil
-}
-
-func (m *CreateProxyRequest) GetList() *v13.ListProxyOptions {
-	if x, ok := m.GetProxy().(*CreateProxyRequest_List); ok {
-		return x.List
-	}
-	return nil
-}
-
-func (m *CreateProxyRequest) GetLock() *v14.LockProxyOptions {
-	if x, ok := m.GetProxy().(*CreateProxyRequest_Lock); ok {
-		return x.Lock
-	}
-	return nil
-}
-
-func (m *CreateProxyRequest) GetMap() *v15.MapProxyOptions {
-	if x, ok := m.GetProxy().(*CreateProxyRequest_Map); ok {
-		return x.Map
-	}
-	return nil
-}
-
-func (m *CreateProxyRequest) GetSet() *v16.SetProxyOptions {
-	if x, ok := m.GetProxy().(*CreateProxyRequest_Set); ok {
-		return x.Set
-	}
-	return nil
-}
-
-func (m *CreateProxyRequest) GetTopic() *v17.TopicProxyOptions {
-	if x, ok := m.GetProxy().(*CreateProxyRequest_Topic); ok {
-		return x.Topic
-	}
-	return nil
-}
-
-func (m *CreateProxyRequest) GetValue() *v18.ValueProxyOptions {
-	if x, ok := m.GetProxy().(*CreateProxyRequest_Value); ok {
-		return x.Value
-	}
-	return nil
-}
-
-// XXX_OneofWrappers is for the internal use of the proto package.
-func (*CreateProxyRequest) XXX_OneofWrappers() []interface{} {
-	return []interface{}{
-		(*CreateProxyRequest_Counter)(nil),
-		(*CreateProxyRequest_Election)(nil),
-		(*CreateProxyRequest_IndexedMap)(nil),
-		(*CreateProxyRequest_List)(nil),
-		(*CreateProxyRequest_Lock)(nil),
-		(*CreateProxyRequest_Map)(nil),
-		(*CreateProxyRequest_Set)(nil),
-		(*CreateProxyRequest_Topic)(nil),
-		(*CreateProxyRequest_Value)(nil),
-	}
-}
-
 type CreateProxyResponse struct {
-	SessionID SessionID `protobuf:"varint,1,opt,name=session_id,json=sessionId,proto3,casttype=SessionID" json:"session_id,omitempty"`
+	ProxyID ProxyID `protobuf:"varint,1,opt,name=proxy_id,json=proxyId,proto3,casttype=ProxyID" json:"proxy_id,omitempty"`
 }
 
 func (m *CreateProxyResponse) Reset()         { *m = CreateProxyResponse{} }
@@ -573,15 +276,15 @@ func (m *CreateProxyResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CreateProxyResponse proto.InternalMessageInfo
 
-func (m *CreateProxyResponse) GetSessionID() SessionID {
+func (m *CreateProxyResponse) GetProxyID() ProxyID {
 	if m != nil {
-		return m.SessionID
+		return m.ProxyID
 	}
 	return 0
 }
 
 type CloseProxyRequest struct {
-	SessionID SessionID `protobuf:"varint,1,opt,name=session_id,json=sessionId,proto3,casttype=SessionID" json:"session_id,omitempty"`
+	ProxyID ProxyID `protobuf:"varint,1,opt,name=proxy_id,json=proxyId,proto3,casttype=ProxyID" json:"proxy_id,omitempty"`
 }
 
 func (m *CloseProxyRequest) Reset()         { *m = CloseProxyRequest{} }
@@ -617,9 +320,9 @@ func (m *CloseProxyRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CloseProxyRequest proto.InternalMessageInfo
 
-func (m *CloseProxyRequest) GetSessionID() SessionID {
+func (m *CloseProxyRequest) GetProxyID() ProxyID {
 	if m != nil {
-		return m.SessionID
+		return m.ProxyID
 	}
 	return 0
 }
@@ -674,57 +377,34 @@ func init() {
 func init() { proto.RegisterFile("atomix/runtime/v1/runtime.proto", fileDescriptor_d426e124a0fc8e61) }
 
 var fileDescriptor_d426e124a0fc8e61 = []byte{
-	// 796 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xcc, 0x96, 0xcf, 0x4e, 0xdb, 0x4a,
-	0x14, 0xc6, 0x63, 0x42, 0x48, 0x72, 0x7c, 0x25, 0xc4, 0x5c, 0xc4, 0xf5, 0xcd, 0xc2, 0xe1, 0x06,
-	0xc2, 0x4d, 0x41, 0x0a, 0x0d, 0x15, 0x0b, 0x90, 0x8a, 0xd4, 0x00, 0x52, 0x53, 0xb5, 0x14, 0x25,
-	0x55, 0xd5, 0x4a, 0x95, 0x50, 0xea, 0x8c, 0xc0, 0xca, 0x9f, 0x71, 0x33, 0x93, 0x88, 0xbe, 0x44,
-	0xd5, 0x55, 0x9f, 0xa9, 0x4b, 0x56, 0x55, 0x57, 0xa8, 0x0a, 0x7d, 0x8a, 0xae, 0xaa, 0x99, 0xb1,
-	0x63, 0x67, 0x3c, 0x21, 0x48, 0xed, 0xa2, 0xbb, 0xf1, 0x9c, 0xef, 0xfb, 0x7c, 0x6c, 0x9f, 0xdf,
-	0x24, 0x90, 0x6f, 0x32, 0xd2, 0x75, 0x2f, 0xb7, 0xfb, 0x83, 0x1e, 0x73, 0xbb, 0x78, 0x7b, 0x58,
-	0x09, 0x96, 0x65, 0xaf, 0x4f, 0x18, 0x41, 0x4b, 0x52, 0x50, 0x0e, 0x76, 0x87, 0x95, 0xdc, 0xf2,
-	0x39, 0x39, 0x27, 0xa2, 0xba, 0xcd, 0x57, 0x52, 0x98, 0xfb, 0x5f, 0x49, 0x72, 0xc8, 0xa0, 0xc7,
-	0x70, 0x9f, 0x27, 0x12, 0x8f, 0xb9, 0xa4, 0x47, 0x7d, 0x61, 0x49, 0x11, 0xe2, 0x0e, 0x76, 0x78,
-	0x3d, 0xae, 0xdc, 0x52, 0x94, 0x6e, 0xaf, 0x85, 0x2f, 0x71, 0xeb, 0xac, 0xdb, 0xf4, 0xe2, 0xe2,
-	0x75, 0x45, 0xdc, 0x71, 0x29, 0xbb, 0x83, 0x8a, 0x38, 0xed, 0xb8, 0x6a, 0x4d, 0x51, 0x69, 0x6f,
-	0xa8, 0x8a, 0x28, 0xd6, 0xdc, 0xaf, 0xa8, 0x88, 0x18, 0xf1, 0x5c, 0x67, 0xb6, 0x6c, 0xd8, 0xec,
-	0x0c, 0x70, 0x4c, 0x56, 0xf8, 0x9e, 0x82, 0x95, 0xc3, 0x3e, 0x6e, 0x32, 0x7c, 0xda, 0x77, 0xbb,
-	0x2e, 0x73, 0x87, 0xb8, 0x8e, 0xdf, 0x0d, 0x30, 0x65, 0xe8, 0x11, 0xfc, 0xe5, 0x05, 0x7b, 0x67,
-	0x6e, 0xcb, 0x32, 0x56, 0x8d, 0x52, 0xb6, 0x6a, 0x8f, 0xae, 0xf3, 0xe6, 0x58, 0x5b, 0x3b, 0xfa,
-	0x31, 0x79, 0x59, 0x37, 0xc7, 0x9e, 0x5a, 0x0b, 0x55, 0x20, 0x43, 0x19, 0xe9, 0x0b, 0xfb, 0x9c,
-	0xb0, 0xaf, 0x8c, 0xae, 0xf3, 0xe9, 0x06, 0xdf, 0x13, 0xd6, 0x60, 0x59, 0x4f, 0x0b, 0x5d, 0xad,
-	0x85, 0x8e, 0x21, 0xed, 0x7f, 0x67, 0x2b, 0xb9, 0x6a, 0x94, 0xcc, 0x9d, 0x7b, 0x65, 0x65, 0x5e,
-	0xfc, 0x72, 0x79, 0x58, 0x29, 0x1f, 0xca, 0xe5, 0x73, 0xf9, 0x48, 0x8f, 0x13, 0xf5, 0xc0, 0x8b,
-	0x6a, 0x90, 0x09, 0xa6, 0xc0, 0x9a, 0x17, 0x39, 0x5b, 0x6a, 0x4e, 0x50, 0xe7, 0x41, 0xc7, 0xfe,
-	0x3a, 0x4c, 0x1a, 0xdb, 0x51, 0x03, 0xcc, 0xc8, 0x98, 0x58, 0x29, 0x91, 0x76, 0x5f, 0x4d, 0x8b,
-	0x48, 0x78, 0x60, 0x4d, 0x5e, 0x3e, 0x6b, 0x7a, 0x61, 0x24, 0xb8, 0xe3, 0x4d, 0xb4, 0x07, 0xf3,
-	0x7c, 0x9c, 0xac, 0x05, 0x91, 0xb6, 0xa6, 0xa6, 0xf1, 0x1a, 0x8f, 0x79, 0xea, 0x52, 0x16, 0x06,
-	0x08, 0x8b, 0xb0, 0x12, 0xa7, 0x6d, 0xa5, 0xa7, 0x58, 0x89, 0xd3, 0x16, 0x56, 0xe2, 0xb4, 0xa3,
-	0x56, 0xe2, 0xb4, 0xd1, 0x2e, 0x24, 0xf9, 0x23, 0x64, 0x84, 0xf3, 0x3f, 0xd5, 0xe9, 0xb7, 0x3e,
-	0xd1, 0x33, 0xd7, 0x73, 0x1b, 0xc5, 0xcc, 0xca, 0xea, 0x6d, 0x14, 0x8b, 0x56, 0x1b, 0x38, 0xd2,
-	0x29, 0xd7, 0xa3, 0x87, 0x90, 0x12, 0xc3, 0x69, 0x81, 0x30, 0x16, 0x55, 0xa3, 0x28, 0x72, 0xeb,
-	0x0b, 0xbe, 0x08, 0xcd, 0xd2, 0xc5, 0xed, 0x62, 0x68, 0x2d, 0x53, 0x6f, 0x17, 0x45, 0x6e, 0x7f,
-	0xc9, 0x17, 0x11, 0xbb, 0x28, 0x54, 0x4d, 0xc8, 0x8e, 0x47, 0xb1, 0xf0, 0x2f, 0xfc, 0x13, 0x9b,
-	0x72, 0xea, 0x91, 0x1e, 0xc5, 0x85, 0x0f, 0x06, 0xac, 0x1c, 0xe1, 0x0e, 0xfe, 0x53, 0x08, 0xe0,
-	0xbd, 0xc6, 0xfa, 0xf1, 0x7b, 0xfd, 0x92, 0x02, 0x14, 0x3c, 0x07, 0xb9, 0x7c, 0xff, 0x1b, 0xfb,
-	0x7c, 0x12, 0x62, 0x37, 0x27, 0x5e, 0x77, 0x79, 0x36, 0x76, 0xa2, 0x07, 0x0d, 0x7b, 0x27, 0x11,
-	0xf6, 0x92, 0x7a, 0x5a, 0x74, 0xec, 0x29, 0x71, 0x21, 0x80, 0xaf, 0x26, 0x01, 0x94, 0x38, 0xef,
-	0xde, 0x19, 0x40, 0x25, 0x37, 0x4a, 0xe1, 0x81, 0x4f, 0xa1, 0x64, 0xba, 0x74, 0x1b, 0x85, 0x4a,
-	0x8a, 0x44, 0xf1, 0xc0, 0x47, 0x71, 0x61, 0x8a, 0x3f, 0x82, 0x62, 0xcc, 0xcf, 0x79, 0xdc, 0x97,
-	0x3c, 0x4a, 0x92, 0x37, 0xa6, 0xf3, 0xa8, 0x98, 0x05, 0x94, 0xfb, 0x12, 0xca, 0x8c, 0xde, 0x1b,
-	0x42, 0xa9, 0x7a, 0x39, 0x99, 0xd5, 0x80, 0x4c, 0x89, 0xf4, 0xe6, 0xed, 0x64, 0x2a, 0x09, 0x3e,
-	0x9e, 0xd5, 0x00, 0x4f, 0xd0, 0x67, 0x4c, 0xe2, 0xa9, 0x66, 0x48, 0x46, 0xd3, 0x90, 0xf2, 0x78,
-	0xa1, 0x70, 0x0a, 0x7f, 0x4f, 0xcc, 0xb5, 0x9c, 0x77, 0xb4, 0x07, 0x40, 0x31, 0xa5, 0x2e, 0xe9,
-	0x05, 0x63, 0x3d, 0x5f, 0xcd, 0x8d, 0xae, 0xf3, 0xd9, 0x86, 0xdc, 0x15, 0x43, 0x1d, 0x5e, 0xd4,
-	0xb3, 0xbe, 0xba, 0xd6, 0x2a, 0x9c, 0xc0, 0xd2, 0x61, 0x87, 0xd0, 0x49, 0x50, 0x7e, 0x21, 0x6f,
-	0x19, 0x50, 0x34, 0x4f, 0x36, 0xb8, 0xf3, 0x29, 0x09, 0xe9, 0xba, 0x7c, 0x60, 0x74, 0x01, 0x8b,
-	0xca, 0x19, 0x83, 0x62, 0xbf, 0x5d, 0x1c, 0x1e, 0xed, 0xaf, 0x6d, 0x6e, 0xf3, 0x2e, 0x52, 0xff,
-	0xb5, 0x5c, 0xc0, 0xa2, 0x72, 0x42, 0x68, 0xef, 0xa4, 0x3f, 0xd5, 0xb4, 0x77, 0x9a, 0x72, 0xe0,
-	0xa0, 0x37, 0x60, 0x46, 0xbe, 0x0b, 0x2a, 0xde, 0xd2, 0x64, 0xf8, 0x9a, 0x73, 0x1b, 0xb3, 0x64,
-	0x7e, 0xfa, 0x6b, 0x80, 0xf0, 0x9d, 0xa2, 0x75, 0x9d, 0x4b, 0xfd, 0x84, 0xb9, 0xe2, 0x0c, 0x95,
-	0x8c, 0xae, 0x5a, 0x9f, 0x47, 0xb6, 0x71, 0x35, 0xb2, 0x8d, 0x6f, 0x23, 0xdb, 0xf8, 0x78, 0x63,
-	0x27, 0xae, 0x6e, 0xec, 0xc4, 0xd7, 0x1b, 0x3b, 0xf1, 0x76, 0x41, 0xfc, 0xf1, 0x79, 0xf0, 0x33,
-	0x00, 0x00, 0xff, 0xff, 0x22, 0xfe, 0xb6, 0x2d, 0xa8, 0x0a, 0x00, 0x00,
+	// 418 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4f, 0x2c, 0xc9, 0xcf,
+	0xcd, 0xac, 0xd0, 0x2f, 0x2a, 0xcd, 0x2b, 0xc9, 0xcc, 0x4d, 0xd5, 0x2f, 0x33, 0x84, 0x31, 0xf5,
+	0x0a, 0x8a, 0xf2, 0x4b, 0xf2, 0x85, 0x04, 0x21, 0x0a, 0xf4, 0x60, 0xa2, 0x65, 0x86, 0x52, 0x22,
+	0xe9, 0xf9, 0xe9, 0xf9, 0x60, 0x59, 0x7d, 0x10, 0x0b, 0xa2, 0x50, 0x4a, 0x0e, 0xd3, 0xa4, 0xe4,
+	0xfc, 0xdc, 0xdc, 0xfc, 0x3c, 0x88, 0xbc, 0x52, 0x08, 0x97, 0x98, 0x73, 0x51, 0x6a, 0x62, 0x49,
+	0x6a, 0x40, 0x51, 0x66, 0x6e, 0x66, 0x49, 0x66, 0x59, 0x6a, 0x50, 0x6a, 0x61, 0x69, 0x6a, 0x71,
+	0x89, 0x90, 0x15, 0x17, 0x67, 0x01, 0x4c, 0x4c, 0x82, 0x51, 0x81, 0x51, 0x83, 0xdb, 0x48, 0x46,
+	0x0f, 0xc3, 0x5a, 0x3d, 0x84, 0x3e, 0x84, 0x72, 0x25, 0x49, 0x2e, 0x71, 0x0c, 0x53, 0x8b, 0x0b,
+	0xf2, 0xf3, 0x8a, 0x53, 0x95, 0xfa, 0x18, 0xb9, 0xc4, 0x5c, 0x52, 0x73, 0x52, 0xb1, 0xd8, 0xe8,
+	0xc8, 0xc5, 0x03, 0x37, 0x22, 0x3e, 0x33, 0x05, 0x6c, 0x29, 0xa7, 0x93, 0xdc, 0xa3, 0x7b, 0xf2,
+	0xdc, 0x70, 0xb5, 0x9e, 0x2e, 0xbf, 0x50, 0xb9, 0x41, 0xdc, 0x70, 0x3d, 0x9e, 0x29, 0x42, 0x86,
+	0x5c, 0x1c, 0xc5, 0x25, 0xf9, 0x45, 0x60, 0xed, 0x4c, 0x60, 0xed, 0x62, 0x8f, 0xee, 0xc9, 0xb3,
+	0x07, 0x83, 0xc4, 0xc0, 0x5a, 0x61, 0xcc, 0x20, 0x76, 0xb0, 0x3a, 0xcf, 0x14, 0x90, 0x5b, 0x31,
+	0xdc, 0x03, 0x75, 0xab, 0x0b, 0x97, 0x10, 0xcc, 0x1b, 0xf9, 0x15, 0x95, 0x30, 0x67, 0xea, 0x71,
+	0xb1, 0x16, 0x80, 0xf8, 0xd0, 0x40, 0x91, 0xc0, 0x1a, 0x28, 0x20, 0xf5, 0x10, 0x65, 0x4a, 0x1e,
+	0x5c, 0xc2, 0x28, 0xa6, 0x40, 0x0c, 0x07, 0x39, 0x15, 0x2c, 0x0f, 0xf3, 0x29, 0x0b, 0xc4, 0xa9,
+	0x60, 0x45, 0x10, 0xa7, 0x42, 0x99, 0x41, 0xec, 0x60, 0x75, 0x9e, 0x29, 0x4a, 0x6e, 0x5c, 0x82,
+	0xce, 0x39, 0xf9, 0xc5, 0xa8, 0xce, 0x21, 0xc3, 0x1c, 0x11, 0x2e, 0x21, 0x64, 0x73, 0x20, 0x0e,
+	0x32, 0x9a, 0xc6, 0xcc, 0xc5, 0x1e, 0x04, 0xf1, 0x83, 0x50, 0x06, 0x17, 0x3f, 0x5a, 0x04, 0x0a,
+	0x69, 0x62, 0xf1, 0x27, 0xf6, 0xa4, 0x23, 0xa5, 0x45, 0x8c, 0x52, 0x68, 0x30, 0x64, 0x70, 0xf1,
+	0xa3, 0x05, 0x3f, 0x56, 0x9b, 0xb0, 0x27, 0x19, 0xac, 0x36, 0xe1, 0x88, 0x4d, 0xa1, 0x18, 0x2e,
+	0x6e, 0xa4, 0x78, 0x10, 0x52, 0xc5, 0xe3, 0x48, 0x44, 0xf0, 0x4a, 0xa9, 0x11, 0x52, 0x06, 0x35,
+	0x3d, 0x92, 0x8b, 0x0b, 0x11, 0xa6, 0x42, 0x2a, 0xd8, 0x74, 0xa1, 0x47, 0x9d, 0x94, 0x2a, 0x01,
+	0x55, 0x10, 0xa3, 0x9d, 0x24, 0x4e, 0x3c, 0x92, 0x63, 0xbc, 0xf0, 0x48, 0x8e, 0xf1, 0xc1, 0x23,
+	0x39, 0xc6, 0x09, 0x8f, 0xe5, 0x18, 0x2e, 0x3c, 0x96, 0x63, 0xb8, 0xf1, 0x58, 0x8e, 0x21, 0x89,
+	0x0d, 0x9c, 0x89, 0x8d, 0x01, 0x01, 0x00, 0x00, 0xff, 0xff, 0xe4, 0xb6, 0xad, 0x23, 0x30, 0x04,
+	0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -937,219 +617,19 @@ func (m *CreatePrimitiveRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 	_ = l
 	if m.Primitive != nil {
 		{
-			size := m.Primitive.Size()
-			i -= size
-			if _, err := m.Primitive.MarshalTo(dAtA[i:]); err != nil {
+			size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
 				return 0, err
 			}
+			i -= size
+			i = encodeVarintRuntime(dAtA, i, uint64(size))
 		}
-	}
-	if len(m.StoreID) > 0 {
-		i -= len(m.StoreID)
-		copy(dAtA[i:], m.StoreID)
-		i = encodeVarintRuntime(dAtA, i, uint64(len(m.StoreID)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.PrimitiveID) > 0 {
-		i -= len(m.PrimitiveID)
-		copy(dAtA[i:], m.PrimitiveID)
-		i = encodeVarintRuntime(dAtA, i, uint64(len(m.PrimitiveID)))
 		i--
 		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *CreatePrimitiveRequest_Counter) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreatePrimitiveRequest_Counter) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.Counter != nil {
-		{
-			size, err := m.Counter.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x1a
-	}
-	return len(dAtA) - i, nil
-}
-func (m *CreatePrimitiveRequest_Election) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreatePrimitiveRequest_Election) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.Election != nil {
-		{
-			size, err := m.Election.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x22
-	}
-	return len(dAtA) - i, nil
-}
-func (m *CreatePrimitiveRequest_IndexedMap) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreatePrimitiveRequest_IndexedMap) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.IndexedMap != nil {
-		{
-			size, err := m.IndexedMap.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x2a
-	}
-	return len(dAtA) - i, nil
-}
-func (m *CreatePrimitiveRequest_List) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreatePrimitiveRequest_List) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.List != nil {
-		{
-			size, err := m.List.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x32
-	}
-	return len(dAtA) - i, nil
-}
-func (m *CreatePrimitiveRequest_Lock) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreatePrimitiveRequest_Lock) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.Lock != nil {
-		{
-			size, err := m.Lock.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x3a
-	}
-	return len(dAtA) - i, nil
-}
-func (m *CreatePrimitiveRequest_Map) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreatePrimitiveRequest_Map) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.Map != nil {
-		{
-			size, err := m.Map.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x42
-	}
-	return len(dAtA) - i, nil
-}
-func (m *CreatePrimitiveRequest_Set) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreatePrimitiveRequest_Set) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.Set != nil {
-		{
-			size, err := m.Set.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x4a
-	}
-	return len(dAtA) - i, nil
-}
-func (m *CreatePrimitiveRequest_Topic) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreatePrimitiveRequest_Topic) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.Topic != nil {
-		{
-			size, err := m.Topic.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x52
-	}
-	return len(dAtA) - i, nil
-}
-func (m *CreatePrimitiveRequest_Value) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreatePrimitiveRequest_Value) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.Value != nil {
-		{
-			size, err := m.Value.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x5a
-	}
-	return len(dAtA) - i, nil
-}
 func (m *CreatePrimitiveResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -1255,212 +735,19 @@ func (m *CreateProxyRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = l
 	if m.Proxy != nil {
 		{
-			size := m.Proxy.Size()
-			i -= size
-			if _, err := m.Proxy.MarshalTo(dAtA[i:]); err != nil {
+			size, err := m.Proxy.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
 				return 0, err
 			}
+			i -= size
+			i = encodeVarintRuntime(dAtA, i, uint64(size))
 		}
-	}
-	if len(m.PrimitiveID) > 0 {
-		i -= len(m.PrimitiveID)
-		copy(dAtA[i:], m.PrimitiveID)
-		i = encodeVarintRuntime(dAtA, i, uint64(len(m.PrimitiveID)))
 		i--
 		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *CreateProxyRequest_Counter) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreateProxyRequest_Counter) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.Counter != nil {
-		{
-			size, err := m.Counter.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x12
-	}
-	return len(dAtA) - i, nil
-}
-func (m *CreateProxyRequest_Election) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreateProxyRequest_Election) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.Election != nil {
-		{
-			size, err := m.Election.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x1a
-	}
-	return len(dAtA) - i, nil
-}
-func (m *CreateProxyRequest_IndexedMap) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreateProxyRequest_IndexedMap) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.IndexedMap != nil {
-		{
-			size, err := m.IndexedMap.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x22
-	}
-	return len(dAtA) - i, nil
-}
-func (m *CreateProxyRequest_List) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreateProxyRequest_List) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.List != nil {
-		{
-			size, err := m.List.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x2a
-	}
-	return len(dAtA) - i, nil
-}
-func (m *CreateProxyRequest_Lock) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreateProxyRequest_Lock) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.Lock != nil {
-		{
-			size, err := m.Lock.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x32
-	}
-	return len(dAtA) - i, nil
-}
-func (m *CreateProxyRequest_Map) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreateProxyRequest_Map) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.Map != nil {
-		{
-			size, err := m.Map.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x3a
-	}
-	return len(dAtA) - i, nil
-}
-func (m *CreateProxyRequest_Set) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreateProxyRequest_Set) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.Set != nil {
-		{
-			size, err := m.Set.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x42
-	}
-	return len(dAtA) - i, nil
-}
-func (m *CreateProxyRequest_Topic) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreateProxyRequest_Topic) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.Topic != nil {
-		{
-			size, err := m.Topic.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x4a
-	}
-	return len(dAtA) - i, nil
-}
-func (m *CreateProxyRequest_Value) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreateProxyRequest_Value) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.Value != nil {
-		{
-			size, err := m.Value.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintRuntime(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x52
-	}
-	return len(dAtA) - i, nil
-}
 func (m *CreateProxyResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -1481,8 +768,8 @@ func (m *CreateProxyResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.SessionID != 0 {
-		i = encodeVarintRuntime(dAtA, i, uint64(m.SessionID))
+	if m.ProxyID != 0 {
+		i = encodeVarintRuntime(dAtA, i, uint64(m.ProxyID))
 		i--
 		dAtA[i] = 0x8
 	}
@@ -1509,8 +796,8 @@ func (m *CloseProxyRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.SessionID != 0 {
-		i = encodeVarintRuntime(dAtA, i, uint64(m.SessionID))
+	if m.ProxyID != 0 {
+		i = encodeVarintRuntime(dAtA, i, uint64(m.ProxyID))
 		i--
 		dAtA[i] = 0x8
 	}
@@ -1557,128 +844,13 @@ func (m *CreatePrimitiveRequest) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.PrimitiveID)
-	if l > 0 {
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	l = len(m.StoreID)
-	if l > 0 {
-		n += 1 + l + sovRuntime(uint64(l))
-	}
 	if m.Primitive != nil {
-		n += m.Primitive.Size()
+		l = m.Primitive.Size()
+		n += 1 + l + sovRuntime(uint64(l))
 	}
 	return n
 }
 
-func (m *CreatePrimitiveRequest_Counter) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Counter != nil {
-		l = m.Counter.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
-func (m *CreatePrimitiveRequest_Election) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Election != nil {
-		l = m.Election.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
-func (m *CreatePrimitiveRequest_IndexedMap) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.IndexedMap != nil {
-		l = m.IndexedMap.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
-func (m *CreatePrimitiveRequest_List) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.List != nil {
-		l = m.List.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
-func (m *CreatePrimitiveRequest_Lock) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Lock != nil {
-		l = m.Lock.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
-func (m *CreatePrimitiveRequest_Map) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Map != nil {
-		l = m.Map.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
-func (m *CreatePrimitiveRequest_Set) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Set != nil {
-		l = m.Set.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
-func (m *CreatePrimitiveRequest_Topic) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Topic != nil {
-		l = m.Topic.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
-func (m *CreatePrimitiveRequest_Value) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Value != nil {
-		l = m.Value.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
 func (m *CreatePrimitiveResponse) Size() (n int) {
 	if m == nil {
 		return 0
@@ -1720,132 +892,21 @@ func (m *CreateProxyRequest) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = len(m.PrimitiveID)
-	if l > 0 {
-		n += 1 + l + sovRuntime(uint64(l))
-	}
 	if m.Proxy != nil {
-		n += m.Proxy.Size()
+		l = m.Proxy.Size()
+		n += 1 + l + sovRuntime(uint64(l))
 	}
 	return n
 }
 
-func (m *CreateProxyRequest_Counter) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Counter != nil {
-		l = m.Counter.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
-func (m *CreateProxyRequest_Election) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Election != nil {
-		l = m.Election.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
-func (m *CreateProxyRequest_IndexedMap) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.IndexedMap != nil {
-		l = m.IndexedMap.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
-func (m *CreateProxyRequest_List) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.List != nil {
-		l = m.List.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
-func (m *CreateProxyRequest_Lock) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Lock != nil {
-		l = m.Lock.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
-func (m *CreateProxyRequest_Map) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Map != nil {
-		l = m.Map.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
-func (m *CreateProxyRequest_Set) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Set != nil {
-		l = m.Set.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
-func (m *CreateProxyRequest_Topic) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Topic != nil {
-		l = m.Topic.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
-func (m *CreateProxyRequest_Value) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Value != nil {
-		l = m.Value.Size()
-		n += 1 + l + sovRuntime(uint64(l))
-	}
-	return n
-}
 func (m *CreateProxyResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.SessionID != 0 {
-		n += 1 + sovRuntime(uint64(m.SessionID))
+	if m.ProxyID != 0 {
+		n += 1 + sovRuntime(uint64(m.ProxyID))
 	}
 	return n
 }
@@ -1856,8 +917,8 @@ func (m *CloseProxyRequest) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.SessionID != 0 {
-		n += 1 + sovRuntime(uint64(m.SessionID))
+	if m.ProxyID != 0 {
+		n += 1 + sovRuntime(uint64(m.ProxyID))
 	}
 	return n
 }
@@ -1908,71 +969,7 @@ func (m *CreatePrimitiveRequest) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PrimitiveID", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.PrimitiveID = PrimitiveID(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field StoreID", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.StoreID = StoreID(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Counter", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Primitive", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -1999,291 +996,12 @@ func (m *CreatePrimitiveRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			v := &v1.CounterOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if m.Primitive == nil {
+				m.Primitive = &Primitive{}
+			}
+			if err := m.Primitive.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
-			m.Primitive = &CreatePrimitiveRequest_Counter{v}
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Election", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &v11.ElectionOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Primitive = &CreatePrimitiveRequest_Election{v}
-			iNdEx = postIndex
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field IndexedMap", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &v12.IndexedMapOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Primitive = &CreatePrimitiveRequest_IndexedMap{v}
-			iNdEx = postIndex
-		case 6:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field List", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &v13.ListOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Primitive = &CreatePrimitiveRequest_List{v}
-			iNdEx = postIndex
-		case 7:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Lock", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &v14.LockOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Primitive = &CreatePrimitiveRequest_Lock{v}
-			iNdEx = postIndex
-		case 8:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Map", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &v15.MapOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Primitive = &CreatePrimitiveRequest_Map{v}
-			iNdEx = postIndex
-		case 9:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Set", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &v16.SetOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Primitive = &CreatePrimitiveRequest_Set{v}
-			iNdEx = postIndex
-		case 10:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Topic", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &v17.TopicOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Primitive = &CreatePrimitiveRequest_Topic{v}
-			iNdEx = postIndex
-		case 11:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &v18.ValueOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Primitive = &CreatePrimitiveRequest_Value{v}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -2551,39 +1269,7 @@ func (m *CreateProxyRequest) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PrimitiveID", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.PrimitiveID = PrimitiveID(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Counter", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Proxy", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -2610,291 +1296,12 @@ func (m *CreateProxyRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			v := &v1.CounterProxyOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if m.Proxy == nil {
+				m.Proxy = &Proxy{}
+			}
+			if err := m.Proxy.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
-			m.Proxy = &CreateProxyRequest_Counter{v}
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Election", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &v11.ElectionProxyOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Proxy = &CreateProxyRequest_Election{v}
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field IndexedMap", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &v12.IndexedMapProxyOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Proxy = &CreateProxyRequest_IndexedMap{v}
-			iNdEx = postIndex
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field List", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &v13.ListProxyOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Proxy = &CreateProxyRequest_List{v}
-			iNdEx = postIndex
-		case 6:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Lock", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &v14.LockProxyOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Proxy = &CreateProxyRequest_Lock{v}
-			iNdEx = postIndex
-		case 7:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Map", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &v15.MapProxyOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Proxy = &CreateProxyRequest_Map{v}
-			iNdEx = postIndex
-		case 8:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Set", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &v16.SetProxyOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Proxy = &CreateProxyRequest_Set{v}
-			iNdEx = postIndex
-		case 9:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Topic", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &v17.TopicProxyOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Proxy = &CreateProxyRequest_Topic{v}
-			iNdEx = postIndex
-		case 10:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowRuntime
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthRuntime
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &v18.ValueProxyOptions{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Proxy = &CreateProxyRequest_Value{v}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -2948,9 +1355,9 @@ func (m *CreateProxyResponse) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SessionID", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field ProxyID", wireType)
 			}
-			m.SessionID = 0
+			m.ProxyID = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowRuntime
@@ -2960,7 +1367,7 @@ func (m *CreateProxyResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.SessionID |= SessionID(b&0x7F) << shift
+				m.ProxyID |= ProxyID(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -3017,9 +1424,9 @@ func (m *CloseProxyRequest) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SessionID", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field ProxyID", wireType)
 			}
-			m.SessionID = 0
+			m.ProxyID = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowRuntime
@@ -3029,7 +1436,7 @@ func (m *CloseProxyRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.SessionID |= SessionID(b&0x7F) << shift
+				m.ProxyID |= ProxyID(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
