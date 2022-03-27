@@ -19,15 +19,21 @@ syntax = "proto3";
 package atomix.runtime.map.v1;
 
 import "google/protobuf/duration.proto";
+import "atomix/runtime/meta/v1/headers.proto";
 import "atomix/runtime/meta/v1/object.proto";
 import "atomix/runtime/primitive/v1/descriptor.proto";
 import "gogoproto/gogo.proto";
 
 message SizeRequest {
-
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message SizeResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     uint32 size = 2 [
         (atomix.runtime.primitive.v1.operation_aggregate) = SUM
     ];
@@ -40,6 +46,9 @@ message Precondition {
 }
 
 message PutRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Entry entry = 2 [
         (gogoproto.nullable) = false
     ];
@@ -49,24 +58,36 @@ message PutRequest {
 }
 
 message PutResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Entry entry = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message GetRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     string key = 2 [
         (atomix.runtime.primitive.v1.partition_key) = true
     ];
 }
 
 message GetResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Entry entry = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message RemoveRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Key key = 2 [
         (gogoproto.nullable) = false
     ];
@@ -76,35 +97,53 @@ message RemoveRequest {
 }
 
 message RemoveResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Entry entry = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message ClearRequest {
-
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message ClearResponse {
-
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message EntriesRequest {
-
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message EntriesResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Entry entry = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message EventsRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     string key = 2;
     bool replay = 3;
 }
 
 message EventsResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Event event = 2 [
         (gogoproto.nullable) = false
     ];

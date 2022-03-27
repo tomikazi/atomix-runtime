@@ -52,6 +52,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 | value | [Value](#atomix-runtime-list-v1-Value) |  |  |
 
 
@@ -65,6 +66,11 @@
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
+
+
 
 
 
@@ -75,6 +81,11 @@
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
+
+
 
 
 
@@ -83,6 +94,11 @@
 
 ### ClearResponse
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 
 
 
@@ -97,6 +113,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 | value | [Value](#atomix-runtime-list-v1-Value) |  |  |
 
 
@@ -112,6 +129,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | contains | [bool](#bool) |  |  |
 
 
@@ -123,6 +141,11 @@
 
 ### ElementsRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 
 
 
@@ -137,6 +160,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | item | [Item](#atomix-runtime-list-v1-Item) |  |  |
 
 
@@ -168,6 +192,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 | replay | [bool](#bool) |  |  |
 
 
@@ -183,6 +208,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | event | [Event](#atomix-runtime-list-v1-Event) |  |  |
 
 
@@ -198,6 +224,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 | index | [uint32](#uint32) |  |  |
 
 
@@ -213,6 +240,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | item | [Item](#atomix-runtime-list-v1-Item) |  |  |
 
 
@@ -228,6 +256,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 | item | [Item](#atomix-runtime-list-v1-Item) |  |  |
 | preconditions | [Precondition](#atomix-runtime-list-v1-Precondition) | repeated |  |
 
@@ -244,6 +273,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | item | [Item](#atomix-runtime-list-v1-Item) |  |  |
 
 
@@ -290,6 +320,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 | index | [uint32](#uint32) |  |  |
 | preconditions | [Precondition](#atomix-runtime-list-v1-Precondition) | repeated |  |
 
@@ -306,6 +337,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | item | [Item](#atomix-runtime-list-v1-Item) |  |  |
 
 
@@ -321,6 +353,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 | item | [Item](#atomix-runtime-list-v1-Item) |  |  |
 | preconditions | [Precondition](#atomix-runtime-list-v1-Precondition) | repeated |  |
 
@@ -337,6 +370,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | item | [Item](#atomix-runtime-list-v1-Item) |  |  |
 
 
@@ -348,6 +382,11 @@
 
 ### SizeRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 
 
 
@@ -362,6 +401,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | size | [uint32](#uint32) |  |  |
 
 

@@ -53,6 +53,11 @@
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
+
+
 
 
 
@@ -63,6 +68,11 @@
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
+
+
 
 
 
@@ -71,6 +81,11 @@
 
 ### EntriesRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 
 
 
@@ -85,6 +100,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | entry | [Entry](#atomix-runtime-indexed_map-v1-Entry) |  |  |
 
 
@@ -132,6 +148,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 | pos | [Position](#atomix-runtime-indexed_map-v1-Position) |  |  |
 | replay | [bool](#bool) |  |  |
 
@@ -148,6 +165,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | event | [Event](#atomix-runtime-indexed_map-v1-Event) |  |  |
 
 
@@ -159,6 +177,11 @@
 
 ### FirstEntryRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 
 
 
@@ -173,6 +196,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | entry | [Entry](#atomix-runtime-indexed_map-v1-Entry) |  |  |
 
 
@@ -188,6 +212,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 | position | [Position](#atomix-runtime-indexed_map-v1-Position) |  |  |
 
 
@@ -203,6 +228,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | entry | [Entry](#atomix-runtime-indexed_map-v1-Entry) |  |  |
 
 
@@ -214,6 +240,11 @@
 
 ### LastEntryRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 
 
 
@@ -228,6 +259,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | entry | [Entry](#atomix-runtime-indexed_map-v1-Entry) |  |  |
 
 
@@ -243,6 +275,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 | index | [uint64](#uint64) |  |  |
 
 
@@ -258,6 +291,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | entry | [Entry](#atomix-runtime-indexed_map-v1-Entry) |  |  |
 
 
@@ -304,6 +338,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 | index | [uint64](#uint64) |  |  |
 
 
@@ -319,6 +354,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | entry | [Entry](#atomix-runtime-indexed_map-v1-Entry) |  |  |
 
 
@@ -334,6 +370,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 | entry | [Entry](#atomix-runtime-indexed_map-v1-Entry) |  |  |
 | preconditions | [Precondition](#atomix-runtime-indexed_map-v1-Precondition) | repeated |  |
 
@@ -350,6 +387,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | entry | [Entry](#atomix-runtime-indexed_map-v1-Entry) |  |  |
 
 
@@ -365,6 +403,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 | entry | [Entry](#atomix-runtime-indexed_map-v1-Entry) |  |  |
 | preconditions | [Precondition](#atomix-runtime-indexed_map-v1-Precondition) | repeated |  |
 
@@ -381,6 +420,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | entry | [Entry](#atomix-runtime-indexed_map-v1-Entry) |  |  |
 
 
@@ -392,6 +432,11 @@
 
 ### SizeRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 
 
 
@@ -406,6 +451,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | size | [uint32](#uint32) |  |  |
 
 

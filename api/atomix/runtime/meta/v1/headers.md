@@ -3,83 +3,41 @@
 
 ## Table of Contents
 
-- [atomix/runtime/topic/v1/primitive.proto](#atomix_runtime_topic_v1_primitive-proto)
-    - [PublishRequest](#atomix-runtime-topic-v1-PublishRequest)
-    - [PublishResponse](#atomix-runtime-topic-v1-PublishResponse)
-    - [SubscribeRequest](#atomix-runtime-topic-v1-SubscribeRequest)
-    - [SubscribeResponse](#atomix-runtime-topic-v1-SubscribeResponse)
-  
-    - [Topic](#atomix-runtime-topic-v1-Topic)
+- [atomix/runtime/meta/v1/headers.proto](#atomix_runtime_meta_v1_headers-proto)
+    - [RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders)
+    - [ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders)
   
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix_runtime_topic_v1_primitive-proto"></a>
+<a name="atomix_runtime_meta_v1_headers-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/runtime/topic/v1/primitive.proto
+## atomix/runtime/meta/v1/headers.proto
 
 
 
-<a name="atomix-runtime-topic-v1-PublishRequest"></a>
+<a name="atomix-runtime-meta-v1-RequestHeaders"></a>
 
-### PublishRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
-| payload | [bytes](#bytes) |  |  |
-
-
-
-
-
-
-<a name="atomix-runtime-topic-v1-PublishResponse"></a>
-
-### PublishResponse
+### RequestHeaders
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
+| primitive_id | [string](#string) |  |  |
+| store_id | [string](#string) |  |  |
 
 
 
 
 
 
-<a name="atomix-runtime-topic-v1-SubscribeRequest"></a>
+<a name="atomix-runtime-meta-v1-ResponseHeaders"></a>
 
-### SubscribeRequest
+### ResponseHeaders
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
-
-
-
-
-
-
-<a name="atomix-runtime-topic-v1-SubscribeResponse"></a>
-
-### SubscribeResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
-| offset | [uint64](#uint64) |  |  |
-| timestamp | [google.protobuf.Timestamp](#google-protobuf-Timestamp) |  |  |
-| payload | [bytes](#bytes) |  |  |
 
 
 
@@ -90,17 +48,6 @@
  
 
  
-
-
-<a name="atomix-runtime-topic-v1-Topic"></a>
-
-### Topic
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| Publish | [PublishRequest](#atomix-runtime-topic-v1-PublishRequest) | [PublishResponse](#atomix-runtime-topic-v1-PublishResponse) |  |
-| Subscribe | [SubscribeRequest](#atomix-runtime-topic-v1-SubscribeRequest) | [SubscribeResponse](#atomix-runtime-topic-v1-SubscribeResponse) stream |  |
 
  
 

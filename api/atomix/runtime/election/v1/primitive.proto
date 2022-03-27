@@ -19,85 +19,125 @@ syntax = "proto3";
 package atomix.runtime.election.v1;
 
 import "atomix/runtime/primitive/v1/descriptor.proto";
+import "atomix/runtime/meta/v1/headers.proto";
 import "atomix/runtime/meta/v1/object.proto";
 import "gogoproto/gogo.proto";
 
 message EnterRequest {
-
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message EnterResponse {
-    uint64 candidate_id = 1 [
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
+    uint64 candidate_id = 2 [
         (gogoproto.customname) = "CandidateID"
     ];
-    Term term = 2 [
+    Term term = 3 [
         (gogoproto.nullable) = false
     ];
 }
 
 message WithdrawRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     uint64 candidate_id = 2 [
         (gogoproto.customname) = "CandidateID"
     ];
 }
 
 message WithdrawResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Term term = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message AnointRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     uint64 candidate_id = 2 [
         (gogoproto.customname) = "CandidateID"
     ];
 }
 
 message AnointResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Term term = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message PromoteRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     uint64 candidate_id = 2 [
         (gogoproto.customname) = "CandidateID"
     ];
 }
 
 message PromoteResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Term term = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message EvictRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     uint64 candidate_id = 2 [
         (gogoproto.customname) = "CandidateID"
     ];
 }
 
 message EvictResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Term term = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message GetTermRequest {
-
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message GetTermResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Term term = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message EventsRequest {
-
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message EventsResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Event event = 2 [
         (gogoproto.nullable) = false
     ];

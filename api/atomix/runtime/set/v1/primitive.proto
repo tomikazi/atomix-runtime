@@ -19,66 +19,100 @@ syntax = "proto3";
 package atomix.runtime.set.v1;
 
 import "atomix/runtime/primitive/v1/descriptor.proto";
+import "atomix/runtime/meta/v1/headers.proto";
 import "atomix/runtime/meta/v1/object.proto";
 import "gogoproto/gogo.proto";
 
 message SizeRequest {
-
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message SizeResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     uint32 size = 2 [
         (atomix.runtime.primitive.v1.operation_aggregate) = SUM
     ];
 }
 
 message ContainsRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Element element = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message ContainsResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     bool contains = 2;
 }
 
 message AddRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Element element = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message AddResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Element element = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message RemoveRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Element element = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message RemoveResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Element element = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message ClearRequest {
-
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message ClearResponse {
-
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message EventsRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     bool replay = 2;
 }
 
 message EventsResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Event event = 2 [
         (gogoproto.nullable) = false
     ];
@@ -99,10 +133,15 @@ message Event {
 }
 
 message ElementsRequest {
-
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message ElementsResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Element element = 2 [
         (gogoproto.nullable) = false
     ];

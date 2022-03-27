@@ -20,26 +20,37 @@ package atomix.runtime.topic.v1;
 
 import "atomix/runtime/primitive/v1/descriptor.proto";
 import "gogoproto/gogo.proto";
+import "atomix/runtime/meta/v1/headers.proto";
 import "google/protobuf/timestamp.proto";
 
 message PublishRequest {
-    bytes payload = 1;
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
+    bytes payload = 2;
 }
 
 message PublishResponse {
-
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message SubscribeRequest {
-
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message SubscribeResponse {
-    uint64 offset = 1;
-    google.protobuf.Timestamp timestamp = 2 [
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
+    uint64 offset = 2;
+    google.protobuf.Timestamp timestamp = 3 [
         (gogoproto.stdtime) = true
     ];
-    bytes payload = 3;
+    bytes payload = 4;
 }
 
 service Topic {

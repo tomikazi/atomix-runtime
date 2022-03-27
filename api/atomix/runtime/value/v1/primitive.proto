@@ -19,14 +19,20 @@ syntax = "proto3";
 package atomix.runtime.value.v1;
 
 import "atomix/runtime/primitive/v1/descriptor.proto";
+import "atomix/runtime/meta/v1/headers.proto";
 import "atomix/runtime/meta/v1/object.proto";
 import "gogoproto/gogo.proto";
 
 message GetRequest {
-
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message GetResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Object value = 2 [
         (gogoproto.nullable) = false
     ];
@@ -39,6 +45,9 @@ message Precondition {
 }
 
 message SetRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Object value = 2 [
         (gogoproto.nullable) = false
     ];
@@ -48,16 +57,24 @@ message SetRequest {
 }
 
 message SetResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Object value = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message EventsRequest {
-
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message EventsResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Event event = 2 [
         (gogoproto.nullable) = false
     ];

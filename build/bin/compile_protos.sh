@@ -24,7 +24,7 @@ go_import_paths="${go_import_paths},Matomix/runtime/topic/v1/options.proto=githu
 go_import_paths="${go_import_paths},Matomix/runtime/value/v1/options.proto=github.com/atomix/atomix-runtime/api/atomix/runtime/value/v1"
 
 protoc -I=$proto_path \
-  --doc_out=api/atomix/runtime/v1 \
+  --doc_out=api/atomix/controller/v1 \
   --doc_opt=markdown,controller.md \
   --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-runtime/api/atomix/controller/v1,plugins=grpc:api \
   api/atomix/controller/v1/controller.proto
@@ -43,10 +43,14 @@ protoc -I=$proto_path \
 
 protoc -I=$proto_path \
   --doc_out=api/atomix/runtime/meta/v1 \
+  --doc_opt=markdown,headers.md \
+  --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-runtime/api/atomix/runtime/meta/v1,plugins=grpc:api \
+  api/atomix/runtime/meta/v1/headers.proto
+protoc -I=$proto_path \
+  --doc_out=api/atomix/runtime/meta/v1 \
   --doc_opt=markdown,object.md \
   --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-runtime/api/atomix/runtime/meta/v1,plugins=grpc:api \
   api/atomix/runtime/meta/v1/object.proto
-
 protoc -I=$proto_path \
   --doc_out=api/atomix/runtime/meta/v1 \
   --doc_opt=markdown,timestamp.md \

@@ -20,40 +20,59 @@ package atomix.runtime.lock.v1;
 
 import "google/protobuf/duration.proto";
 import "atomix/runtime/primitive/v1/descriptor.proto";
+import "atomix/runtime/meta/v1/headers.proto";
 import "atomix/runtime/meta/v1/object.proto";
 import "gogoproto/gogo.proto";
 
 message LockRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     google.protobuf.Duration timeout = 2 [
         (gogoproto.stdduration) = true
     ];
 }
 
 message LockResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     LockInstance lock = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message UnlockRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     LockInstance lock = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message UnlockResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     LockInstance lock = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message GetLockRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     LockInstance lock = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message GetLockResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     LockInstance lock = 2 [
         (gogoproto.nullable) = false
     ];

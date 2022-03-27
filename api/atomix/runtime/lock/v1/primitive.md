@@ -35,6 +35,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 | lock | [LockInstance](#atomix-runtime-lock-v1-LockInstance) |  |  |
 
 
@@ -50,6 +51,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | lock | [LockInstance](#atomix-runtime-lock-v1-LockInstance) |  |  |
 
 
@@ -81,6 +83,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 | timeout | [google.protobuf.Duration](#google-protobuf-Duration) |  |  |
 
 
@@ -96,6 +99,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | lock | [LockInstance](#atomix-runtime-lock-v1-LockInstance) |  |  |
 
 
@@ -111,6 +115,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders) |  |  |
 | lock | [LockInstance](#atomix-runtime-lock-v1-LockInstance) |  |  |
 
 
@@ -126,6 +131,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.runtime.meta.v1.ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders) |  |  |
 | lock | [LockInstance](#atomix-runtime-lock-v1-LockInstance) |  |  |
 
 

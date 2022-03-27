@@ -4,17 +4,6 @@
 ## Table of Contents
 
 - [atomix/runtime/v1/runtime.proto](#atomix_runtime_v1_runtime-proto)
-    - [CloseProxyRequest](#atomix-runtime-v1-CloseProxyRequest)
-    - [CloseProxyResponse](#atomix-runtime-v1-CloseProxyResponse)
-    - [CreatePrimitiveRequest](#atomix-runtime-v1-CreatePrimitiveRequest)
-    - [CreatePrimitiveResponse](#atomix-runtime-v1-CreatePrimitiveResponse)
-    - [CreateProxyRequest](#atomix-runtime-v1-CreateProxyRequest)
-    - [CreateProxyResponse](#atomix-runtime-v1-CreateProxyResponse)
-    - [DeletePrimitiveRequest](#atomix-runtime-v1-DeletePrimitiveRequest)
-    - [DeletePrimitiveResponse](#atomix-runtime-v1-DeletePrimitiveResponse)
-    - [Primitive](#atomix-runtime-v1-Primitive)
-    - [Proxy](#atomix-runtime-v1-Proxy)
-  
     - [Runtime](#atomix-runtime-v1-Runtime)
   
 - [Scalar Value Types](#scalar-value-types)
@@ -25,146 +14,6 @@
 <p align="right"><a href="#top">Top</a></p>
 
 ## atomix/runtime/v1/runtime.proto
-
-
-
-<a name="atomix-runtime-v1-CloseProxyRequest"></a>
-
-### CloseProxyRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proxy_id | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="atomix-runtime-v1-CloseProxyResponse"></a>
-
-### CloseProxyResponse
-
-
-
-
-
-
-
-<a name="atomix-runtime-v1-CreatePrimitiveRequest"></a>
-
-### CreatePrimitiveRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| primitive | [Primitive](#atomix-runtime-v1-Primitive) |  |  |
-
-
-
-
-
-
-<a name="atomix-runtime-v1-CreatePrimitiveResponse"></a>
-
-### CreatePrimitiveResponse
-
-
-
-
-
-
-
-<a name="atomix-runtime-v1-CreateProxyRequest"></a>
-
-### CreateProxyRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proxy | [Proxy](#atomix-runtime-v1-Proxy) |  |  |
-
-
-
-
-
-
-<a name="atomix-runtime-v1-CreateProxyResponse"></a>
-
-### CreateProxyResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proxy_id | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="atomix-runtime-v1-DeletePrimitiveRequest"></a>
-
-### DeletePrimitiveRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| primitive_id | [string](#string) |  |  |
-| store_id | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix-runtime-v1-DeletePrimitiveResponse"></a>
-
-### DeletePrimitiveResponse
-
-
-
-
-
-
-
-<a name="atomix-runtime-v1-Primitive"></a>
-
-### Primitive
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  |  |
-| type | [string](#string) |  |  |
-| version | [string](#string) |  |  |
-| options | [google.protobuf.Any](#google-protobuf-Any) |  |  |
-
-
-
-
-
-
-<a name="atomix-runtime-v1-Proxy"></a>
-
-### Proxy
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| primitive_id | [string](#string) |  |  |
-| options | [google.protobuf.Any](#google-protobuf-Any) |  |  |
-
-
-
 
 
  
@@ -182,10 +31,6 @@ at runtime.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreatePrimitive | [CreatePrimitiveRequest](#atomix-runtime-v1-CreatePrimitiveRequest) | [CreatePrimitiveResponse](#atomix-runtime-v1-CreatePrimitiveResponse) |  |
-| DeletePrimitive | [DeletePrimitiveRequest](#atomix-runtime-v1-DeletePrimitiveRequest) | [DeletePrimitiveResponse](#atomix-runtime-v1-DeletePrimitiveResponse) |  |
-| CreateProxy | [CreateProxyRequest](#atomix-runtime-v1-CreateProxyRequest) | [CreateProxyResponse](#atomix-runtime-v1-CreateProxyResponse) |  |
-| CloseProxy | [CloseProxyRequest](#atomix-runtime-v1-CloseProxyRequest) | [CloseProxyResponse](#atomix-runtime-v1-CloseProxyResponse) |  |
 
  
 

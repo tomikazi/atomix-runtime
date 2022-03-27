@@ -20,14 +20,20 @@ package atomix.runtime.indexed_map.v1;
 
 import "google/protobuf/duration.proto";
 import "atomix/runtime/primitive/v1/descriptor.proto";
+import "atomix/runtime/meta/v1/headers.proto";
 import "atomix/runtime/meta/v1/object.proto";
 import "gogoproto/gogo.proto";
 
 message SizeRequest {
-
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message SizeResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     uint32 size = 2 [
         (atomix.runtime.primitive.v1.operation_aggregate) = SUM
     ];
@@ -40,6 +46,9 @@ message Precondition {
 }
 
 message PutRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Entry entry = 2 [
         (gogoproto.nullable) = false
     ];
@@ -49,52 +58,86 @@ message PutRequest {
 }
 
 message PutResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Entry entry = 2;
 }
 
 message GetRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Position position = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message GetResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Entry entry = 2;
 }
 
 message FirstEntryRequest {
-
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message FirstEntryResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Entry entry = 2;
 }
 
 message LastEntryRequest {
-
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message LastEntryResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Entry entry = 2;
 }
 
 message PrevEntryRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     uint64 index = 2;
 }
 
 message PrevEntryResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Entry entry = 2;
 }
 
 message NextEntryRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     uint64 index = 2;
 }
 
 message NextEntryResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Entry entry = 2;
 }
 
 message RemoveRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Entry entry = 2;
     repeated Precondition preconditions = 3 [
         (gogoproto.nullable) = false
@@ -102,28 +145,45 @@ message RemoveRequest {
 }
 
 message RemoveResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Entry entry = 2;
 }
 
 message ClearRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 
 }
 
 message ClearResponse {
-
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message EntriesRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
 
 }
 
 message EntriesResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Entry entry = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message EventsRequest {
+    atomix.runtime.meta.v1.RequestHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Position pos = 2 [
         (gogoproto.nullable) = false
     ];
@@ -131,6 +191,9 @@ message EventsRequest {
 }
 
 message EventsResponse {
+    atomix.runtime.meta.v1.ResponseHeaders headers = 1 [
+        (gogoproto.nullable) = false
+    ];
     Event event = 2 [
         (gogoproto.nullable) = false
     ];
