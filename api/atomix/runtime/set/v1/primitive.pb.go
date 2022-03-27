@@ -4,10 +4,9 @@
 package v1
 
 import (
-	v1 "atomix/runtime/meta/v1"
 	context "context"
 	fmt "fmt"
-	v11 "github.com/atomix/atomix-runtime/api/atomix/runtime/meta/v1"
+	v1 "github.com/atomix/atomix-runtime/api/atomix/runtime/meta/v1"
 	_ "github.com/atomix/atomix-runtime/api/atomix/runtime/primitive/v1"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
@@ -810,8 +809,8 @@ func (m *ElementsResponse) GetElement() Element {
 }
 
 type Element struct {
-	v11.ObjectMeta `protobuf:"bytes,1,opt,name=meta,proto3,embedded=meta" json:"meta"`
-	Value          string `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+	v1.ObjectMeta `protobuf:"bytes,1,opt,name=meta,proto3,embedded=meta" json:"meta"`
+	Value         string `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
 }
 
 func (m *Element) Reset()         { *m = Element{} }

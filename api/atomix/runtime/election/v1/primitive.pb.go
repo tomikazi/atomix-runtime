@@ -4,10 +4,9 @@
 package v1
 
 import (
-	v1 "atomix/runtime/meta/v1"
 	context "context"
 	fmt "fmt"
-	v11 "github.com/atomix/atomix-runtime/api/atomix/runtime/meta/v1"
+	v1 "github.com/atomix/atomix-runtime/api/atomix/runtime/meta/v1"
 	_ "github.com/atomix/atomix-runtime/api/atomix/runtime/primitive/v1"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
@@ -820,9 +819,9 @@ func (m *Event) GetTerm() Term {
 }
 
 type Term struct {
-	v11.ObjectMeta `protobuf:"bytes,1,opt,name=meta,proto3,embedded=meta" json:"meta"`
-	Leader         uint64   `protobuf:"varint,2,opt,name=leader,proto3" json:"leader,omitempty"`
-	Candidates     []uint64 `protobuf:"varint,3,rep,packed,name=candidates,proto3" json:"candidates,omitempty"`
+	v1.ObjectMeta `protobuf:"bytes,1,opt,name=meta,proto3,embedded=meta" json:"meta"`
+	Leader        uint64   `protobuf:"varint,2,opt,name=leader,proto3" json:"leader,omitempty"`
+	Candidates    []uint64 `protobuf:"varint,3,rep,packed,name=candidates,proto3" json:"candidates,omitempty"`
 }
 
 func (m *Term) Reset()         { *m = Term{} }

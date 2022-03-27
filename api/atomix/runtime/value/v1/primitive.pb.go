@@ -4,10 +4,9 @@
 package v1
 
 import (
-	v1 "atomix/runtime/meta/v1"
 	context "context"
 	fmt "fmt"
-	v11 "github.com/atomix/atomix-runtime/api/atomix/runtime/meta/v1"
+	v1 "github.com/atomix/atomix-runtime/api/atomix/runtime/meta/v1"
 	_ "github.com/atomix/atomix-runtime/api/atomix/runtime/primitive/v1"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
@@ -197,7 +196,7 @@ type isPrecondition_Precondition interface {
 }
 
 type Precondition_Metadata struct {
-	Metadata *v11.ObjectMeta `protobuf:"bytes,1,opt,name=metadata,proto3,oneof" json:"metadata,omitempty"`
+	Metadata *v1.ObjectMeta `protobuf:"bytes,1,opt,name=metadata,proto3,oneof" json:"metadata,omitempty"`
 }
 
 func (*Precondition_Metadata) isPrecondition_Precondition() {}
@@ -209,7 +208,7 @@ func (m *Precondition) GetPrecondition() isPrecondition_Precondition {
 	return nil
 }
 
-func (m *Precondition) GetMetadata() *v11.ObjectMeta {
+func (m *Precondition) GetMetadata() *v1.ObjectMeta {
 	if x, ok := m.GetPrecondition().(*Precondition_Metadata); ok {
 		return x.Metadata
 	}
@@ -484,8 +483,8 @@ func (m *Event) GetValue() Object {
 }
 
 type Object struct {
-	v11.ObjectMeta `protobuf:"bytes,1,opt,name=meta,proto3,embedded=meta" json:"meta"`
-	Value          []byte `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+	v1.ObjectMeta `protobuf:"bytes,1,opt,name=meta,proto3,embedded=meta" json:"meta"`
+	Value         []byte `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
 }
 
 func (m *Object) Reset()         { *m = Object{} }
@@ -1561,7 +1560,7 @@ func (m *Precondition) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			v := &v11.ObjectMeta{}
+			v := &v1.ObjectMeta{}
 			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}

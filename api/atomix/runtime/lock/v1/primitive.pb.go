@@ -4,10 +4,9 @@
 package v1
 
 import (
-	v1 "atomix/runtime/meta/v1"
 	context "context"
 	fmt "fmt"
-	v11 "github.com/atomix/atomix-runtime/api/atomix/runtime/meta/v1"
+	v1 "github.com/atomix/atomix-runtime/api/atomix/runtime/meta/v1"
 	_ "github.com/atomix/atomix-runtime/api/atomix/runtime/primitive/v1"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
@@ -372,8 +371,8 @@ func (m *GetLockResponse) GetLock() LockInstance {
 }
 
 type LockInstance struct {
-	v11.ObjectMeta `protobuf:"bytes,1,opt,name=meta,proto3,embedded=meta" json:"meta"`
-	State          LockInstance_State `protobuf:"varint,2,opt,name=state,proto3,enum=atomix.runtime.lock.v1.LockInstance_State" json:"state,omitempty"`
+	v1.ObjectMeta `protobuf:"bytes,1,opt,name=meta,proto3,embedded=meta" json:"meta"`
+	State         LockInstance_State `protobuf:"varint,2,opt,name=state,proto3,enum=atomix.runtime.lock.v1.LockInstance_State" json:"state,omitempty"`
 }
 
 func (m *LockInstance) Reset()         { *m = LockInstance{} }

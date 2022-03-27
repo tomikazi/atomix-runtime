@@ -4,9 +4,9 @@
 package v1
 
 import (
-	v1 "atomix/runtime/meta/v1"
 	context "context"
 	fmt "fmt"
+	v1 "github.com/atomix/atomix-runtime/api/atomix/runtime/meta/v1"
 	_ "github.com/atomix/atomix-runtime/api/atomix/runtime/primitive/v1"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
