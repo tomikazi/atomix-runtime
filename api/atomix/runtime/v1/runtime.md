@@ -12,6 +12,8 @@
     - [CreateProxyResponse](#atomix-runtime-v1-CreateProxyResponse)
     - [DeletePrimitiveRequest](#atomix-runtime-v1-DeletePrimitiveRequest)
     - [DeletePrimitiveResponse](#atomix-runtime-v1-DeletePrimitiveResponse)
+    - [Primitive](#atomix-runtime-v1-Primitive)
+    - [Proxy](#atomix-runtime-v1-Proxy)
   
     - [Runtime](#atomix-runtime-v1-Runtime)
   
@@ -126,6 +128,40 @@
 
 ### DeletePrimitiveResponse
 
+
+
+
+
+
+
+<a name="atomix-runtime-v1-Primitive"></a>
+
+### Primitive
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| type | [string](#string) |  |  |
+| version | [string](#string) |  |  |
+| options | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+
+
+
+
+
+
+<a name="atomix-runtime-v1-Proxy"></a>
+
+### Proxy
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| primitive_id | [string](#string) |  |  |
+| options | [google.protobuf.Any](#google-protobuf-Any) |  |  |
 
 
 

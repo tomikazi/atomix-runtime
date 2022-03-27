@@ -3,30 +3,32 @@
 
 ## Table of Contents
 
-- [atomix/runtime/v1/controller.proto](#atomix_runtime_v1_controller-proto)
-    - [CreatePrimitiveRequest](#atomix-runtime-v1-CreatePrimitiveRequest)
-    - [CreatePrimitiveResponse](#atomix-runtime-v1-CreatePrimitiveResponse)
-    - [DeletePrimitiveRequest](#atomix-runtime-v1-DeletePrimitiveRequest)
-    - [DeletePrimitiveResponse](#atomix-runtime-v1-DeletePrimitiveResponse)
-    - [GetPrimitiveRequest](#atomix-runtime-v1-GetPrimitiveRequest)
-    - [GetPrimitiveResponse](#atomix-runtime-v1-GetPrimitiveResponse)
-    - [GetStoreRequest](#atomix-runtime-v1-GetStoreRequest)
-    - [GetStoreResponse](#atomix-runtime-v1-GetStoreResponse)
+- [atomix/controller/v1/controller.proto](#atomix_controller_v1_controller-proto)
+    - [CreatePrimitiveRequest](#atomix-controller-v1-CreatePrimitiveRequest)
+    - [CreatePrimitiveResponse](#atomix-controller-v1-CreatePrimitiveResponse)
+    - [DeletePrimitiveRequest](#atomix-controller-v1-DeletePrimitiveRequest)
+    - [DeletePrimitiveResponse](#atomix-controller-v1-DeletePrimitiveResponse)
+    - [GetPrimitiveRequest](#atomix-controller-v1-GetPrimitiveRequest)
+    - [GetPrimitiveResponse](#atomix-controller-v1-GetPrimitiveResponse)
+    - [GetStoreRequest](#atomix-controller-v1-GetStoreRequest)
+    - [GetStoreResponse](#atomix-controller-v1-GetStoreResponse)
+    - [Primitive](#atomix-controller-v1-Primitive)
+    - [Store](#atomix-controller-v1-Store)
   
-    - [Controller](#atomix-runtime-v1-Controller)
+    - [Controller](#atomix-controller-v1-Controller)
   
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix_runtime_v1_controller-proto"></a>
+<a name="atomix_controller_v1_controller-proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/runtime/v1/controller.proto
+## atomix/controller/v1/controller.proto
 
 
 
-<a name="atomix-runtime-v1-CreatePrimitiveRequest"></a>
+<a name="atomix-controller-v1-CreatePrimitiveRequest"></a>
 
 ### CreatePrimitiveRequest
 
@@ -34,14 +36,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive | [Primitive](#atomix-runtime-v1-Primitive) |  |  |
+| primitive | [Primitive](#atomix-controller-v1-Primitive) |  |  |
 
 
 
 
 
 
-<a name="atomix-runtime-v1-CreatePrimitiveResponse"></a>
+<a name="atomix-controller-v1-CreatePrimitiveResponse"></a>
 
 ### CreatePrimitiveResponse
 
@@ -51,7 +53,7 @@
 
 
 
-<a name="atomix-runtime-v1-DeletePrimitiveRequest"></a>
+<a name="atomix-controller-v1-DeletePrimitiveRequest"></a>
 
 ### DeletePrimitiveRequest
 
@@ -66,7 +68,7 @@
 
 
 
-<a name="atomix-runtime-v1-DeletePrimitiveResponse"></a>
+<a name="atomix-controller-v1-DeletePrimitiveResponse"></a>
 
 ### DeletePrimitiveResponse
 
@@ -76,7 +78,7 @@
 
 
 
-<a name="atomix-runtime-v1-GetPrimitiveRequest"></a>
+<a name="atomix-controller-v1-GetPrimitiveRequest"></a>
 
 ### GetPrimitiveRequest
 
@@ -91,7 +93,7 @@
 
 
 
-<a name="atomix-runtime-v1-GetPrimitiveResponse"></a>
+<a name="atomix-controller-v1-GetPrimitiveResponse"></a>
 
 ### GetPrimitiveResponse
 
@@ -99,14 +101,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive | [Primitive](#atomix-runtime-v1-Primitive) |  |  |
+| primitive | [Primitive](#atomix-controller-v1-Primitive) |  |  |
 
 
 
 
 
 
-<a name="atomix-runtime-v1-GetStoreRequest"></a>
+<a name="atomix-controller-v1-GetStoreRequest"></a>
 
 ### GetStoreRequest
 
@@ -121,7 +123,7 @@
 
 
 
-<a name="atomix-runtime-v1-GetStoreResponse"></a>
+<a name="atomix-controller-v1-GetStoreResponse"></a>
 
 ### GetStoreResponse
 
@@ -129,7 +131,43 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| store | [Store](#atomix-runtime-v1-Store) |  |  |
+| store | [Store](#atomix-controller-v1-Store) |  |  |
+
+
+
+
+
+
+<a name="atomix-controller-v1-Primitive"></a>
+
+### Primitive
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| type | [string](#string) |  |  |
+| version | [string](#string) |  |  |
+| options | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+
+
+
+
+
+
+<a name="atomix-controller-v1-Store"></a>
+
+### Store
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  |  |
+| type | [string](#string) |  |  |
+| version | [string](#string) |  |  |
+| configuration | [google.protobuf.Any](#google-protobuf-Any) |  |  |
 
 
 
@@ -142,17 +180,17 @@
  
 
 
-<a name="atomix-runtime-v1-Controller"></a>
+<a name="atomix-controller-v1-Controller"></a>
 
 ### Controller
 The controller service provides control functions for the runtime.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreatePrimitive | [CreatePrimitiveRequest](#atomix-runtime-v1-CreatePrimitiveRequest) | [CreatePrimitiveResponse](#atomix-runtime-v1-CreatePrimitiveResponse) |  |
-| GetPrimitive | [GetPrimitiveRequest](#atomix-runtime-v1-GetPrimitiveRequest) | [GetPrimitiveResponse](#atomix-runtime-v1-GetPrimitiveResponse) |  |
-| DeletePrimitive | [DeletePrimitiveRequest](#atomix-runtime-v1-DeletePrimitiveRequest) | [DeletePrimitiveResponse](#atomix-runtime-v1-DeletePrimitiveResponse) |  |
-| GetStore | [GetStoreRequest](#atomix-runtime-v1-GetStoreRequest) | [GetStoreResponse](#atomix-runtime-v1-GetStoreResponse) |  |
+| CreatePrimitive | [CreatePrimitiveRequest](#atomix-controller-v1-CreatePrimitiveRequest) | [CreatePrimitiveResponse](#atomix-controller-v1-CreatePrimitiveResponse) |  |
+| GetPrimitive | [GetPrimitiveRequest](#atomix-controller-v1-GetPrimitiveRequest) | [GetPrimitiveResponse](#atomix-controller-v1-GetPrimitiveResponse) |  |
+| DeletePrimitive | [DeletePrimitiveRequest](#atomix-controller-v1-DeletePrimitiveRequest) | [DeletePrimitiveResponse](#atomix-controller-v1-DeletePrimitiveResponse) |  |
+| GetStore | [GetStoreRequest](#atomix-controller-v1-GetStoreRequest) | [GetStoreResponse](#atomix-controller-v1-GetStoreResponse) |  |
 
  
 

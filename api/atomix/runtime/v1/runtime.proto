@@ -19,8 +19,7 @@ syntax = "proto3";
 package atomix.runtime.v1;
 
 import "gogoproto/gogo.proto";
-
-import "atomix/runtime/v1/common.proto";
+import "google/protobuf/any.proto";
 
 // The runtime service provides functions for applications to create and manage primitives
 // at runtime.
@@ -29,6 +28,16 @@ service Runtime {
     rpc DeletePrimitive(DeletePrimitiveRequest) returns (DeletePrimitiveResponse);
     rpc CreateProxy(CreateProxyRequest) returns (CreateProxyResponse);
     rpc CloseProxy(CloseProxyRequest) returns (CloseProxyResponse);
+}
+
+message Primitive {
+    string id = 1 [
+        (gogoproto.customname) = "PrimitiveID",
+        (gogoproto.casttype) = "PrimitiveID"
+    ];
+    string type = 2;
+    string version = 3;
+    google.protobuf.Any options = 4;
 }
 
 message CreatePrimitiveRequest {
@@ -53,6 +62,14 @@ message DeletePrimitiveRequest {
 
 message DeletePrimitiveResponse {
 
+}
+
+message Proxy {
+    string primitive_id = 1 [
+        (gogoproto.customname) = "PrimitiveID",
+        (gogoproto.casttype) = "PrimitiveID"
+    ];
+    google.protobuf.Any options = 4;
 }
 
 message CreateProxyRequest {

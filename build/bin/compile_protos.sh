@@ -26,14 +26,10 @@ go_import_paths="${go_import_paths},Matomix/runtime/value/v1/options.proto=githu
 
 protoc -I=$proto_path \
   --doc_out=api/atomix/runtime/v1 \
-  --doc_opt=markdown,common.md \
-  --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-runtime/api/atomix/runtime/v1,plugins=grpc:api \
-  api/atomix/runtime/v1/common.proto
-protoc -I=$proto_path \
-  --doc_out=api/atomix/runtime/v1 \
   --doc_opt=markdown,controller.md \
-  --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-runtime/api/atomix/runtime/v1,plugins=grpc:api \
-  api/atomix/runtime/v1/controller.proto
+  --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-runtime/api/atomix/controller/v1,plugins=grpc:api \
+  api/atomix/controller/v1/controller.proto
+
 protoc -I=$proto_path \
   --doc_out=api/atomix/runtime/v1 \
   --doc_opt=markdown,runtime.md \

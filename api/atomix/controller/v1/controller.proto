@@ -16,11 +16,10 @@ limitations under the License.
 
 syntax = "proto3";
 
-package atomix.runtime.v1;
+package atomix.controller.v1;
 
 import "gogoproto/gogo.proto";
-
-import "atomix/runtime/v1/common.proto";
+import "google/protobuf/any.proto";
 
 // The controller service provides control functions for the runtime.
 service Controller {
@@ -28,6 +27,16 @@ service Controller {
     rpc GetPrimitive(GetPrimitiveRequest) returns (GetPrimitiveResponse);
     rpc DeletePrimitive(DeletePrimitiveRequest) returns (DeletePrimitiveResponse);
     rpc GetStore(GetStoreRequest) returns (GetStoreResponse);
+}
+
+message Primitive {
+    string id = 1 [
+        (gogoproto.customname) = "PrimitiveID",
+        (gogoproto.casttype) = "PrimitiveID"
+    ];
+    string type = 2;
+    string version = 3;
+    google.protobuf.Any options = 4;
 }
 
 message CreatePrimitiveRequest {
@@ -58,6 +67,16 @@ message DeletePrimitiveRequest {
 
 message DeletePrimitiveResponse {
 
+}
+
+message Store {
+    string id = 1 [
+        (gogoproto.customname) = "ID",
+        (gogoproto.casttype) = "StoreID"
+    ];
+    string type = 2;
+    string version = 3;
+    google.protobuf.Any configuration = 4;
 }
 
 message GetStoreRequest {
