@@ -14,7 +14,7 @@
 
 package time
 
-import metaapi "github.com/atomix/atomix-runtime/api/atomix/primitive/meta/v1"
+import metaapi "github.com/atomix/atomix-runtime/api/atomix/runtime/meta/v1"
 
 // NewTimestamp creates new object timestamp from the given proto timestamp
 func NewTimestamp(meta metaapi.Timestamp) Timestamp {

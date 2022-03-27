@@ -15,7 +15,7 @@
 package meta
 
 import (
-	metaapi "github.com/atomix/atomix-runtime/api/atomix/primitive/meta/v1"
+	metaapi "github.com/atomix/atomix-runtime/api/atomix/runtime/meta/v1"
 	"github.com/atomix/atomix-runtime/pkg/time"
 )
 
