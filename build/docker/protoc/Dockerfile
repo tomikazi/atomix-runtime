@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
 FROM golang:1.18
 
 RUN apt-get update && \
