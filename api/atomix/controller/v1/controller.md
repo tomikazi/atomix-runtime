@@ -34,7 +34,7 @@
 | store | [string](#string) |  |  |
 | driver | [string](#string) |  |  |
 | version | [string](#string) |  |  |
-| configuration | [google.protobuf.Any](#google-protobuf-Any) |  |  |
+| data | [bytes](#bytes) |  |  |
 
 
 
