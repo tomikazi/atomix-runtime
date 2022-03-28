@@ -30,7 +30,7 @@ message Configuration {
     string store = 1 [
         (gogoproto.casttype) = "StoreID"
     ];
-    string driver = 2;
+    string type = 2;
     string version = 3;
     bytes data = 4;
 }

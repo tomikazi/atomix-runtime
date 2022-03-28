@@ -20,14 +20,18 @@ package atomix.runtime.meta.v1;
 
 import "gogoproto/gogo.proto";
 
-message RequestHeaders {
-    string primitive_id = 1 [
-        (gogoproto.customname) = "PrimitiveID",
+message PrimitiveMeta {
+    string store = 1 [
+        (gogoproto.casttype) = "StoreID"
+    ];
+    string primitive = 2 [
         (gogoproto.casttype) = "PrimitiveID"
     ];
-    string store_id = 2 [
-        (gogoproto.customname) = "StoreID",
-        (gogoproto.casttype) = "StoreID"
+}
+
+message RequestHeaders {
+    PrimitiveMeta primitive = 1 [
+        (gogoproto.nullable) = false
     ];
 }
 

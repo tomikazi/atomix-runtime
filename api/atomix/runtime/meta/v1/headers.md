@@ -4,6 +4,7 @@
 ## Table of Contents
 
 - [atomix/runtime/meta/v1/headers.proto](#atomix_runtime_meta_v1_headers-proto)
+    - [PrimitiveMeta](#atomix-runtime-meta-v1-PrimitiveMeta)
     - [RequestHeaders](#atomix-runtime-meta-v1-RequestHeaders)
     - [ResponseHeaders](#atomix-runtime-meta-v1-ResponseHeaders)
   
@@ -18,6 +19,22 @@
 
 
 
+<a name="atomix-runtime-meta-v1-PrimitiveMeta"></a>
+
+### PrimitiveMeta
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| store | [string](#string) |  |  |
+| primitive | [string](#string) |  |  |
+
+
+
+
+
+
 <a name="atomix-runtime-meta-v1-RequestHeaders"></a>
 
 ### RequestHeaders
@@ -26,8 +43,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive_id | [string](#string) |  |  |
-| store_id | [string](#string) |  |  |
+| primitive | [PrimitiveMeta](#atomix-runtime-meta-v1-PrimitiveMeta) |  |  |
 
 
 
