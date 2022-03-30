@@ -15,7 +15,7 @@
 package controller
 
 import (
-	context "context"
+	"context"
 	controllerv1 "github.com/atomix/atomix-runtime/api/atomix/controller/v1"
 	"github.com/atomix/atomix-runtime/pkg/logging"
 )

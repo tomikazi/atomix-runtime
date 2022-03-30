@@ -47,6 +47,7 @@ func GetRootCommand() *cobra.Command {
 	}
 	cmd.PersistentFlags().StringP("log-level", "l", "info", "the log level")
 	cmd.AddCommand(getInitCommand())
+	cmd.AddCommand(getBuildCommand())
 	cmd.AddCommand(getRunCommand())
 	cmd.AddCommand(getCreateCommand())
 	cmd.AddCommand(getDeleteCommand())

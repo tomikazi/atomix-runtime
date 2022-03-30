@@ -15,8 +15,6 @@
 package main
 
 import (
-	_ "github.com/atomix/atomix-runtime/examples/pubsub"
-	_ "github.com/atomix/atomix-runtime/examples/storage"
 	"github.com/atomix/atomix-runtime/internal/runtime"
 	"github.com/spf13/cobra"
 	"os"
@@ -64,7 +62,7 @@ func main() {
 		panic(err)
 	}
 
-	r := runtime.New(
+	r := runtime.NewRuntime(
 		runtime.WithHost(host),
 		runtime.WithPort(port),
 		runtime.WithControllerHost(controllerHost),

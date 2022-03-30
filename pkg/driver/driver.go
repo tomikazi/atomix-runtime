@@ -15,20 +15,20 @@
 package driver
 
 import (
-	"github.com/atomix/atomix-runtime/pkg/service"
+	"context"
+	"github.com/atomix/atomix-runtime/pkg/logging"
+	"github.com/atomix/atomix-runtime/pkg/runtime"
 )
 
-// Config is a driver configuration
-type Config interface{}
+var log = logging.GetLogger("atomix", "driver")
 
-// Driver is a storage driver
-type Driver[C Config] interface {
-	NewConfig() C
-	NewAgent() Agent[C]
+// Driver is a driver plugin
+type Driver interface {
+	runtime.Component
+	Connect(ctx context.Context, store string) (Conn, error)
 }
 
-// Agent is a storage agent
-type Agent[C Config] interface {
-	service.Service
-	Configure(config C) error
+// Provider is an interface for providers of drivers for a store
+type Provider interface {
+	GetDriver(ctx context.Context, store string) (Driver, error)
 }

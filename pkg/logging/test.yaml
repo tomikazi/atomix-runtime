@@ -39,7 +39,7 @@ sinks:
     encoding: json
     kafka:
       brokers:
-        - "127.0.0.1:9092"
+      - "127.0.0.1:9092"
       topic: "traces"
       key: "test"
   stdout-1:

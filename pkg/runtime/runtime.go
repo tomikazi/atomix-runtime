@@ -12,38 +12,27 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package storage
+package runtime
 
 import (
-	"fmt"
-	"github.com/atomix/atomix-runtime/pkg/runtime"
-	"github.com/atomix/atomix-runtime/pkg/storage"
+	controllerv1 "github.com/atomix/atomix-runtime/api/atomix/controller/v1"
+	"github.com/atomix/atomix-runtime/pkg/driver"
+	"google.golang.org/grpc"
 )
 
-const Name = "example"
-const Version = "v1"
-
-func init() {
-	runtime.Register(Driver{})
+type Runtime interface {
+	driver.Provider
+	Server() *grpc.Server
+	Controller() controllerv1.ControllerClient
 }
 
-type Driver struct{}
-
-func (d Driver) Name() string {
-	return Name
+type Component interface {
+	Name() string
+	Version() string
 }
 
-func (d Driver) Version() string {
-	return Version
-}
+type ComponentFactory[T Component] func(runtime Runtime) T
 
-func (d Driver) NewProxy(config storage.ProxyConfig) storage.Proxy {
-	//TODO implement me
-	panic("implement me")
+type Plugin[T Component] interface {
+	New(runtime Runtime) T
 }
-
-func (d Driver) String() string {
-	return fmt.Sprintf("%s/%s", Name, Version)
-}
-
-var _ storage.Driver = Driver{}

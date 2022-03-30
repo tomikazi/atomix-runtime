@@ -143,8 +143,8 @@ func (o ControllerOptions) Address() string {
 }
 
 func (o ControllerOptions) apply(opts ...ControllerOption) {
-	o.Host = controller.DefaultHost
-	o.Port = controller.DefaultPort
+	o.Host = DefaultControllerHost
+	o.Port = DefaultControllerPort
 	for _, opt := range opts {
 		opt.applyControllerOptions(&o)
 	}

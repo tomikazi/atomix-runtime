@@ -15,8 +15,6 @@
 package main
 
 import (
-	_ "github.com/atomix/atomix-runtime/examples/pubsub"
-	_ "github.com/atomix/atomix-runtime/examples/storage"
 	"github.com/atomix/atomix-runtime/internal/controller"
 	"github.com/spf13/cobra"
 	"os"

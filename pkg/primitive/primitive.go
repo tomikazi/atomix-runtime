@@ -15,12 +15,9 @@
 package primitive
 
 import (
-	"google.golang.org/grpc"
+	"github.com/atomix/atomix-runtime/pkg/runtime"
 )
 
-// Config is an identifier interface for primitive configuration
-type Config interface{}
-
-type PrimitiveType interface {
-	RegisterServer(server *grpc.Server)
+type Primitive interface {
+	runtime.Component
 }

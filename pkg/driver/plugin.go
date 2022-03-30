@@ -12,38 +12,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package pubsub
+package driver
 
-import (
-	"fmt"
-	"github.com/atomix/atomix-runtime/pkg/pubsub"
-	"github.com/atomix/atomix-runtime/pkg/runtime"
-)
+import "github.com/atomix/atomix-runtime/pkg/runtime"
 
-const Name = "example"
-const Version = "v1"
-
-func init() {
-	runtime.Register(Driver{})
+func NewPlugin(factory runtime.ComponentFactory[Driver]) Plugin {
+	return newDriverPlugin(factory)
 }
 
-type Driver struct{}
-
-func (d Driver) Name() string {
-	return Name
+type Plugin interface {
+	runtime.Plugin[Driver]
 }
 
-func (d Driver) Version() string {
-	return Version
+func newDriverPlugin(factory runtime.ComponentFactory[Driver]) Plugin {
+	return &driverPlugin{
+		factory: factory,
+	}
 }
 
-func (d Driver) NewTopic(config pubsub.TopicConfig) pubsub.Topic {
-	//TODO implement me
-	panic("implement me")
+type driverPlugin struct {
+	factory runtime.ComponentFactory[Driver]
 }
 
-func (d Driver) String() string {
-	return fmt.Sprintf("%s/%s", Name, Version)
+func (p *driverPlugin) New(runtime runtime.Runtime) Driver {
+	return p.factory(runtime)
 }
 
-var _ pubsub.Driver = Driver{}
+var _ Plugin = (*driverPlugin)(nil)
