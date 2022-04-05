@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2019-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
 FROM golang:1.18
 
 RUN apt-get update && \
@@ -24,7 +28,7 @@ RUN export GO111MODULE=off && \
     go get -u github.com/favadi/protoc-go-inject-tag
 
 RUN mkdir -p /go/src/github.com/google /go/src/github.com/p4lang && \
-    git clone --branch master https://github.com/google/protobuf /go/src/github.com/google/protobuf && \
+    git clone --branch main https://github.com/google/protobuf /go/src/github.com/google/protobuf && \
     git clone --branch master https://github.com/openconfig/gnmi /go/src/github.com/openconfig/gnmi && \
     git clone --branch main https://github.com/p4lang/p4runtime /go/src/github.com/p4lang/p4runtime && \
     git clone --branch main https://github.com/googleapis/api-common-protos /go/src/github.com/googleapis/api-common-protos && \

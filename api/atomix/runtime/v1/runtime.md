@@ -4,6 +4,10 @@
 ## Table of Contents
 
 - [atomix/runtime/v1/runtime.proto](#atomix_runtime_v1_runtime-proto)
+    - [GetRuntimeInfoRequest](#atomix-runtime-v1-GetRuntimeInfoRequest)
+    - [GetRuntimeInfoResponse](#atomix-runtime-v1-GetRuntimeInfoResponse)
+    - [RuntimeInfo](#atomix-runtime-v1-RuntimeInfo)
+  
     - [Runtime](#atomix-runtime-v1-Runtime)
   
 - [Scalar Value Types](#scalar-value-types)
@@ -14,6 +18,46 @@
 <p align="right"><a href="#top">Top</a></p>
 
 ## atomix/runtime/v1/runtime.proto
+
+
+
+<a name="atomix-runtime-v1-GetRuntimeInfoRequest"></a>
+
+### GetRuntimeInfoRequest
+
+
+
+
+
+
+
+<a name="atomix-runtime-v1-GetRuntimeInfoResponse"></a>
+
+### GetRuntimeInfoResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| info | [RuntimeInfo](#atomix-runtime-v1-RuntimeInfo) |  |  |
+
+
+
+
+
+
+<a name="atomix-runtime-v1-RuntimeInfo"></a>
+
+### RuntimeInfo
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| version | [string](#string) |  |  |
+
+
+
 
 
  
@@ -31,6 +75,7 @@ at runtime.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+| GetRuntimeInfo | [GetRuntimeInfoRequest](#atomix-runtime-v1-GetRuntimeInfoRequest) | [GetRuntimeInfoResponse](#atomix-runtime-v1-GetRuntimeInfoResponse) |  |
 
  
 
